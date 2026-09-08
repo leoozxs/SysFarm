@@ -9,12 +9,14 @@ class Medicamento:
         self._ativo = ativo
    
         
+        
     @property
     def id(self):
             return self._id
     @id.setter
     def id(self, novo_nome):
         self._id = novo_nome
+        
         
         
     @property
@@ -25,12 +27,14 @@ class Medicamento:
         self._nome = novo_nome
             
         
+        
     @property
     def tipo(self):
         return self._tipo
     @tipo.setter
     def tipo(self, novo_tipo):
         self._tipo = novo_tipo
+        
         
         
     @property
