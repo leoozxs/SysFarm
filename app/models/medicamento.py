@@ -1,4 +1,3 @@
-
 class Medicamento:
     def __init__(self, id, nome, tipo, categoria, dosagem, ativo=True):
         self._id = id
