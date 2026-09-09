@@ -13,11 +13,11 @@ class Usuario:
         return self._id
     
     @id.setter
-        def id(self, novo_id):
+    def id(self, novo_id):
         self._id = novo_id
     
     @property
-        def nome(self):
+    def nome(self):
         return self._nome
 
     @nome.setter
@@ -33,7 +33,7 @@ class Usuario:
         self._cpf = novo_cpf
     
     @property
-        def senha(self):
+    def senha(self):
         return self._senha
 
     @senha.setter
