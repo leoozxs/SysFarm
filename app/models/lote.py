@@ -2,7 +2,7 @@ from app.models.medicamento import Medicamento
 from app.models.fornecedor import Fornecedor
 
 class Lote:
-    def __init__(self, id, numero_lote, medicamento = Medicamento, fornecedor: Fornecedor, validade):
+    def __init__(self, id, numero_lote, medicamento: Medicamento, fornecedor: Fornecedor, validade):
         self._id = id
         self._numero_lote = numero_lote
         self._medicamento = medicamento
