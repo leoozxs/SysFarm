@@ -2,7 +2,7 @@ from app.models.lote import Lote
 from app.models.medicamento import Medicamento
 
 class Estoque:
-    def __init__(self, id, lote: Lote, medicamento: Medicamento, data_entrada, validade, qtd_atual):
+    def __init__(self, id, lote: Lote, medicamento: Medicamento, data_entrada, validade, qtd_atual, status):
         self._id = id
         self._lote = lote
         self._medicamento = medicamento
@@ -56,4 +56,12 @@ class Estoque:
     @qtd_atual.setter
     def qtd_atual(self, novo_qtd_atual):
         self._qtd_atual = novo_qtd_atual
+    
+    
+    @property
+    def status(self):
+        return self._status
+    @status.setter
+    def status(self, novo_status):
+        self._status = novo_status
         
