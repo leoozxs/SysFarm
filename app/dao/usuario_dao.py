@@ -99,7 +99,7 @@ class Usuario_DAO(DAO):
                 registro[5],
                 registro[6]
             )
-           finally:
+        finally:
                self.desconectar(conexao, cursor)
 
     def get_all(self):
