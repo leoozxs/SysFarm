@@ -117,18 +117,7 @@ class Entrada_DAO(DAO):
             self.desconectar(conexao, cursor)
             
     def delete(self, id):
-        conexao, cursor = self.conectar()
-        try:
-            sql =   """
-                            DELETE FROM entrada
-                            WHERE 
-                                id = %s
-                    """
-            cursor.execute(sql, (id,))
-            conexao.commit()
-        except Exception:
-            conexao.rollback()
-            raise
-        finally:
-            self.desconectar(conexao, cursor)
+        raise NotImplementedError(
+        "Registros de entrada não podem ser excluídos."
+    )
             
