@@ -33,7 +33,7 @@ class Usuario_DAO(DAO):
             conexao.commit()
             usuario.id = cursor.lastrowid
             return usuario
-        except Exception as e:
+        except Exception:
             conexao.rollback()
             raise
         finally:
@@ -99,7 +99,7 @@ class Usuario_DAO(DAO):
                 registro[5],
                 registro[6]
             )
-           finally:
+        finally:
                self.desconectar(conexao, cursor)
 
     def get_all(self):
