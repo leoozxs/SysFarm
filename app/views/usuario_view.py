@@ -63,7 +63,7 @@ class Usuario_View:
 
         self.lbl_data_entrada = ttk.Label(self.frm_dados, text="Data de Entrada", font=("Courier New",13,"bold"))
         self.lbl_data_entrada.grid(row = 2, column = 3, padx=(10,5), sticky="w")
-        self.txt_data_entrada = ttk.Entry(self.frm_dados, width=11)
+        self.txt_data_entrada = ttk.DateEntry(self.frm_dados, width, date_format="%d/%m/%Y")
         self.txt_data_entrada.grid(row=2, column=4, sticky="w", padx=10)
     
     
@@ -134,7 +134,9 @@ class Usuario_View:
         self.txt_id.config(state = "readonly")
         self.txt_nome.delete(0, ttk.END)
         self.txt_cpf.delete(0, ttk.END)
-        self.txt_cpf.delete(0, ttk.END)
+        self.txt_cargo.delete(0, ttk.END)
+        self.txt_data_entrada(0, ttk.END)
+        self.txt_senha(0, ttk.END)
         self.txt_nome.focus()
 
 if __name__ == "__main__":
