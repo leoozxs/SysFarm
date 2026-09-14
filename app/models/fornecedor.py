@@ -4,6 +4,10 @@ class Fornecedor:
         self._nome = nome
         self._cnpj = cnpj
         self._ativo = ativo
+    
+    def atualizar_dados(self, novo_nome, novo_cnpj):
+        self._nome = novo_nome
+        self._cnpj = novo_cnpj
         
     @property
     def id(self):

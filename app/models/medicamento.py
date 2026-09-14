@@ -8,14 +8,18 @@ class Medicamento:
         self._ativo = ativo
    
         
-        
+    def atualizar_dados(self, novo_nome, novo_tipo, novo_categoria, novo_dosagem):
+        self._nome = novo_nome
+        self._tipo = novo_tipo
+        self._categoria = novo_categoria
+        self._dosagem = novo_dosagem
+
     @property
     def id(self):
             return self._id
     @id.setter
     def id(self, novo_nome):
         self._id = novo_nome
-        
         
         
     @property
@@ -26,14 +30,12 @@ class Medicamento:
         self._nome = novo_nome
             
         
-        
     @property
     def tipo(self):
         return self._tipo
     @tipo.setter
     def tipo(self, novo_tipo):
         self._tipo = novo_tipo
-        
         
         
     @property
@@ -50,7 +52,6 @@ class Medicamento:
     @dosagem.setter
     def dosagem(self, novo_dosagem):
         self._dosagem = novo_dosagem
-        
         
         
     @property

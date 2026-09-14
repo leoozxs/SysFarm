@@ -8,6 +8,13 @@ class Usuario:
         self._data_entrada = data_entrada
         self._ativo = ativo
         
+    
+    def atualizar_dados(self, novo_nome,novo_cpf,novo_senha,novo_cargo):
+        self._nome = novo_nome
+        self._cpf = novo_cpf
+        self._senha = novo_senha
+        self._cargo = novo_cargo
+
     @property
     def id(self):
         return self._id
