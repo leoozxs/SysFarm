@@ -1,6 +1,7 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
-from app.controllers.usuario_controller import Usuario_Controller
+import ttkbootstrap as ttk
+import customtkinter as ctk
 
 class Usuario_View:
     def __init__(self, root, controller):
@@ -68,26 +69,26 @@ class Usuario_View:
     
         #BOTOES
         self.frm_botoes = ttk.Frame(self.frm_dados)
-        self.frm_botoes.grid(row=3,column=0,padx=10,pady=5, columnspan=5,)
+        self.frm_botoes.grid(row=3,column=0,padx=10,pady=5, columnspan=5)
         
         
-        self.btn_novo = ttk.Button(self.frm_botoes,text = "Novo",width = 15, bootstyle="primary-outline", cursor="hand1")
+        self.btn_novo = ctk.Button(self.frm_botoes,text = "Novo",width = 15, fg_color="transparent",border_width=2, border_color="#1014E0", text_color="#1014E0",hover_color="#1e2a24", corner_radius=8)
         self.btn_novo.grid(row = 0,column = 0,padx = 5,pady = 5)
         
         
-        self.btn_salvar = ttk.Button(self.frm_botoes,text = "Salvar",width = 15, bootstyle="success-outline", cursor="hand1")
+        self.btn_salvar = ctk.Button(self.frm_botoes,text = "Salvar", width=15, fg_color="transparent",border_width=2, border_color="#198754", text_color="#198754",hover_color="#1e2a24", corner_radius=8)
         self.btn_salvar.grid(row = 0,column = 1,padx = 5, pady = 5)
         
         
-        self.btn_alterar = ttk.Button(self.frm_botoes,text = "Alterar",width = 15, bootstyle="warning-outline", cursor="hand1")
+        self.btn_alterar = ctk.Button(self.frm_botoes,text = "Alterar",width=15, fg_color="transparent",border_width=2, border_color="#E6E215", text_color="#E6E215",hover_color="#1e2a24", corner_radius=8)
         self.btn_alterar.grid(row = 0,column = 2,padx = 5,pady = 5)
         
         
-        self.btn_excluir = ttk.Button(self.frm_botoes,text = "Excluir",width = 15, bootstyle="danger-outline", cursor="hand1")
+        self.btn_excluir = ctk.Button(self.frm_botoes,text = "Excluir",width=15, fg_color="transparent",border_width=2, border_color="#B10E0E", text_color="#B10E0E",hover_color="#1e2a24", corner_radius=8)
         self.btn_excluir.grid(row = 0,column = 3,padx = 5,pady = 5)
         
         
-        self.btn_fechar = ttk.Button(self.frm_botoes, text = "Fechar",width = 15, bootstyle="light-outline", cursor="hand1")
+        self.btn_fechar = ctk.Button(self.frm_botoes, text = "Fechar",width=15, fg_color="transparent",border_width=2, border_color="#727E78BA", text_color="#727E78BA",hover_color="#1e2a24", corner_radius=8)
         self.btn_fechar.grid(row = 0,column = 4,padx = 5,pady = 5)
         
         #TREEVIEW
