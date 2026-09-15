@@ -1,7 +1,6 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
-
-
+from app.controllers.usuario_controller import Usuario_Controller
 
 class Usuario_View:
     def __init__(self, root, controller):
@@ -16,7 +15,7 @@ class Usuario_View:
     
     def configurar_janela(self):
         self.root.title("Gestão Usuários")
-        self.root.geometry("685x600")
+        self.root.geometry("700x600")
         self.root.resizable(False, False)
 
     def configurar_estilo(self):
@@ -63,7 +62,7 @@ class Usuario_View:
 
         self.lbl_data_entrada = ttk.Label(self.frm_dados, text="Data de Entrada", font=("Courier New",13,"bold"))
         self.lbl_data_entrada.grid(row = 2, column = 3, padx=(10,5), sticky="w")
-        self.txt_data_entrada = ttk.DateEntry(self.frm_dados, width, date_format="%d/%m/%Y")
+        self.txt_data_entrada = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="light-outline" )
         self.txt_data_entrada.grid(row=2, column=4, sticky="w", padx=10)
     
     
@@ -104,7 +103,7 @@ class Usuario_View:
         self.tbl_usuarios.column("cpf", width=110, anchor="center", stretch=False)
         self.tbl_usuarios.column("senha", width=80, anchor="center", stretch=False)
         self.tbl_usuarios.column("cargo",width=120, anchor="w", stretch=False)
-        self.tbl_usuarios.column("data de entrada",width=175, anchor="center", stretch=False)
+        self.tbl_usuarios.column("data de entrada",width=190, anchor="center", stretch=False)
         
         
         self.tbl_usuarios.heading("id",text="ID")
@@ -115,18 +114,66 @@ class Usuario_View:
         self.tbl_usuarios.heading("data de entrada",text="DATA DE ENTRADA")
         style.configure("Treeview.Heading", font=("Arial", 9), padding=(1, 1))
         
+    def preencher_campos(self, usuario):
+        self.limpar_campos()
         
+        self.txt_id.config(state="normal")
+        self.txt_id.insert(0, str(usuario.id))
+        self.txt_id.config(state="readonly")
         
-    
+        self.txt_nome.insert(0, str(usuario.nome))
+        
+        self.txt_cpf.insert(0, str(usuario.cpf))
+        
+        self.txt_senha.insert(0, str(usuario.senha))
+        
+        self.txt_cargo.insert(0, str(usuario.cargo))
+
+        self.txt_data_entrada.entry.delete(0, "end")
+        self.txt_data_entrada.entry.insert(0, usuario.data_entrada.strftime("%d/%m/%Y"))
+        
+
+    def limpar_treeview(self):
+        for item in self.tbl_usuarios.get_children():
+            self.tbl_usuarios.delete(item)
+
+
+    def get_id_selecionado(self):
+
+        item = self.tbl_usuarios.selection()[0]
+
+        return self.tbl_usuarios.item(item)["values"][0]
+
+    def ler_dados_usuario(self):
+        nome = self.txt_nome.get()
+        cpf = self.txt_cpf.get()
+        senha = self.txt_senha.get()
+        cargo = self.txt_cargo.get()
+        data_entrada = self.txt_data_entrada.entry.get()
+        return nome, cpf, senha, cargo, data_entrada
+
+    def confirmar_exclusao(self):
+
+        return Messagebox.askyesno(
+            "Confirmação",
+            "Deseja realmente excluir este usuario?",
+            parent=self.root
+            )
+
+    def exibir_mensagem(self, mensagem, sucesso=True):
+        if sucesso:
+            Messagebox.showinfo("SysFarm",mensagem,parent=self.root)
+        else:
+            Messagebox.showerror("SysFarm", mensagem, parent=self.root)
+            
     def configurar_eventos(self):
         
-        # self.btn_novo.config(command = self.controller.new)
-        # self.btn_salvar.config(command = self.controller.save)
-        # self.btn_alterar.config(command = self.controller.update)
-        # self.btn_excluir.config(command = self.controller.delete)
-        # self.btn_fechar.config(command = self.fechar)
-        # self.tbl_estados.bind("<<TreeviewSelect>>", self.controller.selecionar_estado)
-        pass
+        self.btn_novo.config(command = self.controller.new)
+        self.btn_salvar.config(command = self.controller.save)
+        self.btn_alterar.config(command = self.controller.update)
+        self.btn_excluir.config(command = self.controller.delete)
+        self.btn_fechar.config(command = self.fechar)
+        self.tbl_usuarios.bind("<<TreeviewSelect>>", self.controller.selecionar_usuario)
 
     def limpar_campos(self):
         self.txt_id.config(state = "normal")
@@ -134,14 +181,33 @@ class Usuario_View:
         self.txt_id.config(state = "readonly")
         self.txt_nome.delete(0, ttk.END)
         self.txt_cpf.delete(0, ttk.END)
+        self.txt_senha.delete(0, ttk.END)
         self.txt_cargo.delete(0, ttk.END)
-        self.txt_data_entrada(0, ttk.END)
-        self.txt_senha(0, ttk.END)
+        self.txt_data_entrada.entry.delete(0, "end")
         self.txt_nome.focus()
+        
+    def exibir_usuarios(self, usuarios):
 
-if __name__ == "__main__":
-    import ttkbootstrap as ttk
+        self.limpar_treeview()
 
-    janela = ttk.Window(themename="darkly")
-    view = Usuario_View(janela, controller=None)
-    janela.mainloop()
+        for usuario in usuarios:
+
+            self.tbl_usuarios.insert(
+                "",
+                ttk.END,
+                values=(
+                    usuario.id,
+                    usuario.nome,
+                    usuario.cpf,
+                    usuario.senha,
+                    usuario.cargo,
+                    usuario.data_entrada
+                )
+            )
+
+    def fechar(self):
+        self.root.destroy()
+
+    def iniciar(self):
+        self.controller.get_all()
+    
