@@ -9,11 +9,12 @@ class Usuario:
         self._ativo = ativo
         
     
-    def atualizar_dados(self, novo_nome,novo_cpf,novo_senha,novo_cargo):
+    def atualizar_dados(self, novo_nome,novo_cpf,novo_senha,novo_cargo, novo_data_entrada):
         self._nome = novo_nome
         self._cpf = novo_cpf
         self._senha = novo_senha
         self._cargo = novo_cargo
+        self._data_entrada = novo_data_entrada
 
     @property
     def id(self):

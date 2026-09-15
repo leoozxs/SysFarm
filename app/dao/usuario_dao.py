@@ -153,4 +153,19 @@ class Usuario_DAO(DAO):
             raise
         finally:
             self.desconectar(conexao, cursor)
-        
+
+    def autenticar(self, cpf, senha):
+        conexao, cursor = self.conectar()
+        try:
+            sql = """
+                SELECT id, nome, cpf, senha, cargo, data_entrada, ativo
+                FROM usuario
+                WHERE cpf = %s AND senha = %s AND ativo = True
+            """
+            cursor.execute(sql, (cpf, senha))
+            registro = cursor.fetchone()
+            if registro is None:
+                return None
+            return Usuario(registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6])
+        finally:
+            self.desconectar(conexao, cursor)
