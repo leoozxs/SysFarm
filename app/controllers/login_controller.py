@@ -1,5 +1,6 @@
 class Login_Controller:
-        def __init__(self, view, usuario_dao, ao_logar_com_sucesso):
+    def __init__(self, view, usuario_dao, ao_logar_com_sucesso):
+
         self.view = view
         self.usuario_dao = usuario_dao
         self.ao_logar_com_sucesso = ao_logar_com_sucesso
