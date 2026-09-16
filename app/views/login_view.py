@@ -1,4 +1,5 @@
 import ttkbootstrap as ttk
+import customtkinter as ctk
 from ttkbootstrap.dialogs import Messagebox
 
 class Login_View:
@@ -19,7 +20,7 @@ class Login_View:
         self.txt_senha = ttk.Entry(self.root, width=20, show="*")
         self.txt_senha.grid(row=1, column=1, padx=10, pady=10)
 
-        self.btn_entrar = ttk.Button(self.root, text="Entrar")
+        self.btn_entrar = ctk.ctButton(ctk.CTkButton(self.frm_botoes,text = "Entrar",width = 15, fg_color="transparent",border_width=2, border_color="#1014E0", text_color="#1014E0",hover_color="#1e2a24", corner_radius=8)) 
         self.btn_entrar.grid(row=2, column=0, columnspan=2, pady=10)
 
     def configurar_eventos(self):

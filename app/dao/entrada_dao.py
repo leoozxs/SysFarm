@@ -6,7 +6,7 @@ class Entrada_DAO(DAO):
         super().__init__(database)
         
     def save(self, entrada):
-        conexao, cursor = self.conectar
+        conexao, cursor = self.conectar()
         try:
             sql =   """
                         INSERT INTO ENTRADA(
