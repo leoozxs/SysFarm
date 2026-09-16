@@ -1,7 +1,5 @@
-from app.core.sessao import Sessao
-
 class Login_Controller:
-    def __init__(self, view, usuario_dao, ao_logar_com_sucesso):
+        def __init__(self, view, usuario_dao, ao_logar_com_sucesso):
         self.view = view
         self.usuario_dao = usuario_dao
         self.ao_logar_com_sucesso = ao_logar_com_sucesso
@@ -15,5 +13,3 @@ class Login_Controller:
         if usuario is None:
             self.view.exibir_mensagem("CPF ou senha incorretos.", False)
             return
-        Sessao.usuario_logado = usuario
-        self.ao_logar_com_sucesso(usuario)
