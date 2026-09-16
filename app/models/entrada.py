@@ -1,7 +1,7 @@
 from app.models.lote import Lote
-
+from app.models.usuario import Usuario
 class Entrada:
-    def __init__(self, id, lote: Lote, qtd_entrada, data_entrada):
+    def __init__(self, id, lote: Lote, qtd_entrada, data_entrada, usuario: Usuario):
         self._id = id
         self._lote = lote
         self._qtd_entrada = qtd_entrada
@@ -31,6 +31,13 @@ class Entrada:
         self._qtd_entrada = novo_entrada
         
     
+    @property
+    def data_entrada(self):
+        return self._data_entrada
+    @data_entrada.setter
+    def data_entrada(self, novo_entrada):
+        self._data_entrada = novo_entrada
+
     @property
     def data_entrada(self):
         return self._data_entrada

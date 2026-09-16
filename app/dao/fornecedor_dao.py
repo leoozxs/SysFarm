@@ -30,29 +30,31 @@ class Fornecedor_DAO(DAO):
         finally:
             self.desconectar(conexao, cursor)
             
+    # Fornecedor_DAO.update — só a correção de retorno, resto do arquivo continua igual
     def update(self, fornecedor):
         conexao, cursor = self.conectar()
-        try:    
-            sql =   """
-                    UPDATE FORNECEDOR SET
-                        NOME = %s,
-                        CNPJ = %s,
-                        ATIVO = %s
-                    WHERE
-                        ID = %s
-                    """
-            cursor.execute(sql, (fornecedor.nome,
-                                 fornecedor.cnpj,
-                                 fornecedor.ativo,
-                                 fornecedor.id))
+        try:
+            sql = """
+                UPDATE FORNECEDOR SET
+                    NOME = %s,
+                    CNPJ = %s,
+                    ATIVO = %s
+                WHERE ID = %s
+            """
+            cursor.execute(sql, (
+                fornecedor.nome,
+                fornecedor.cnpj,
+                fornecedor.ativo,
+                fornecedor.id
+            ))
             conexao.commit()
-            return fornecedor
-        except Exception as e:
+            return cursor.rowcount > 0
+        except Exception:
             conexao.rollback()
             raise
         finally:
             self.desconectar(conexao, cursor)
-            
+
     def get_by_id(self, id):
         conexao, cursor = self.conectar()
         try:
