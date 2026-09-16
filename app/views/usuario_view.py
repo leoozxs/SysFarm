@@ -68,30 +68,30 @@ class Usuario_View:
     
         #BOTOES
         self.frm_botoes = ttk.Frame(self.frm_dados)
-        self.frm_botoes.grid(row=3,column=0,padx=10,pady=5, columnspan=5)
+        self.frm_botoes.grid(row=3,column=0,padx=10,pady=5, columnspan=5,)
         
         
-        self.btn_novo = ctk.CTkButton(self.frm_botoes,text = "Novo",width = 15, fg_color="transparent",border_width=2, border_color="#1014E0", text_color="#1014E0",hover_color="#1e2a24", corner_radius=8)
+        self.btn_novo = ttk.Button(self.frm_botoes,text = "Novo",width = 15, bootstyle="primary-outline", cursor="hand1")
         self.btn_novo.grid(row = 0,column = 0,padx = 5,pady = 5)
         
         
-        self.btn_salvar = ctk.CTkButton(self.frm_botoes,text = "Salvar", width=15, fg_color="transparent",border_width=2, border_color="#198754", text_color="#198754",hover_color="#1e2a24", corner_radius=8)
+        self.btn_salvar = ttk.Button(self.frm_botoes,text = "Salvar",width = 15, bootstyle="success-outline", cursor="hand1")
         self.btn_salvar.grid(row = 0,column = 1,padx = 5, pady = 5)
         
         
-        self.btn_alterar = ctk.CTkButton(self.frm_botoes,text = "Alterar",width=15, fg_color="transparent",border_width=2, border_color="#E6E215", text_color="#E6E215",hover_color="#1e2a24", corner_radius=8)
+        self.btn_alterar = ttk.Button(self.frm_botoes,text = "Alterar",width = 15, bootstyle="warning-outline", cursor="hand1")
         self.btn_alterar.grid(row = 0,column = 2,padx = 5,pady = 5)
         
         
-        self.btn_excluir = ctk.CTkButton(self.frm_botoes,text = "Excluir",width=15, fg_color="transparent",border_width=2, border_color="#B10E0E", text_color="#B10E0E",hover_color="#1e2a24", corner_radius=8)
+        self.btn_excluir = ttk.Button(self.frm_botoes,text = "Excluir",width = 15, bootstyle="danger-outline", cursor="hand1")
         self.btn_excluir.grid(row = 0,column = 3,padx = 5,pady = 5)
         
         
-        self.btn_fechar = ctk.CTkButton(self.frm_botoes, text = "Fechar",width=15, fg_color="transparent",border_width=2, border_color="#727E78", text_color="#727E78",hover_color="#1e2a24", corner_radius=8)
+        self.btn_fechar = ttk.Button(self.frm_botoes, text = "Fechar",width = 15, bootstyle="light-outline", cursor="hand1")
         self.btn_fechar.grid(row = 0,column = 4,padx = 5,pady = 5)
         
         #TREEVIEW
-        self.tbl_usuarios = ttk.Treeview(self.root,height = 18, bootstyle="light")
+        self.tbl_usuarios = ttk.Treeview(self.root,height = 23, bootstyle="light")
         self.tbl_usuarios.grid(row = 3,column = 0,columnspan = 4,padx = 10,pady = 10,sticky = "nsew")
     
     def configurar_treeview(self):
@@ -168,11 +168,11 @@ class Usuario_View:
             
     def configurar_eventos(self):
         
-        self.btn_novo.config(command = self.controller.new)
-        self.btn_salvar.config(command = self.controller.save)
-        self.btn_alterar.config(command = self.controller.update)
-        self.btn_excluir.config(command = self.controller.delete)
-        self.btn_fechar.config(command = self.fechar)
+        self.btn_novo.configure(command = self.controller.new)
+        self.btn_salvar.configure(command = self.controller.save)
+        self.btn_alterar.configure(command = self.controller.update)
+        self.btn_excluir.configure(command = self.controller.delete)
+        self.btn_fechar.configure(command = self.fechar)
         self.tbl_usuarios.bind("<<TreeviewSelect>>", self.controller.selecionar_usuario)
 
     def limpar_campos(self):
@@ -210,4 +210,28 @@ class Usuario_View:
 
     def iniciar(self):
         self.controller.get_all()
-    
+
+
+
+if __name__ == "__main__":
+    import ttkbootstrap as ttk
+
+    class ControllerFake:
+        def new(self):
+            print("Novo clicado")
+
+        def save(self):
+            print("Salvar clicado")
+
+        def update(self):
+            print("Alterar clicado")
+
+        def delete(self):
+            print("Excluir clicado")
+
+        def selecionar_usuario(self, event):
+            print("Linha selecionada")
+
+    janela = ttk.Window(themename="darkly")
+    view = Usuario_View(janela, controller=ControllerFake())
+    janela.mainloop()
