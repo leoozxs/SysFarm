@@ -68,8 +68,8 @@ class Estoque_DAO(DAO):
                     L.NUMERO_LOTE,
                     M.ID, M.NOME, M.TIPO, M.CATEGORIA, M.DOSAGEM, M.ATIVO
                 FROM 
-                    ESTOQUE E JOIN LOTE L ON E.LOTE.ID = L.ID
-                    JOIN MEDICAMENTO M ON E.MEDICAMENTO = M.ID
+                    ESTOQUE E JOIN LOTE L ON E.LOTE_ID = L.ID
+                    JOIN MEDICAMENTO M ON E.MEDICAMENTO_ID = M.ID
                 WHERE e.lote_id = %s
             """
             cursor.execute(sql, (lote_id,))
