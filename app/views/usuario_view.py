@@ -11,7 +11,14 @@ class Usuario_View:
         self.configurar_estilo()
         self.configurar_treeview()
         self.configurar_eventos()
+        self._centralizar()
         
+    def _centralizar(self):
+        self.root.update_idletasks()
+        largura, altura = 700, 600
+        x = (self.root.winfo_screenwidth() // 2) - (largura // 2)
+        y = (self.root.winfo_screenheight() // 2) - (altura // 2)
+        self.root.geometry(f"{largura}x{altura}+{x}+{y}")
     
     def configurar_janela(self):
         self.root.title("Gestão Usuários")
