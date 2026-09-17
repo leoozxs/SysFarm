@@ -52,6 +52,10 @@ class Usuario_View:
     def configurar_eventos(self):
         pass
 
+    def fechar(self):
+        self.root.destroy()
+
+
 
 if __name__ == "__main__":
     import ttkbootstrap as ttk

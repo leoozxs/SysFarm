@@ -46,6 +46,12 @@ class Saida_View:
         self.txt_data_saida = ttk.DateEntry(self.root, width=11, date_format="%d/%m/%Y", bootstyle="light-outline")
         self.txt_data_saida.place(relx=0.5, rely=0.65, anchor="center")
 
+        self.btn_ok = ttk.Button(self.root, text="OK", width=8, bootstyle="success-outline")
+        self.btn_ok.place(relx=0.3, rely=0.75, anchor="center")
+
+        self.btn_x = ttk.Button(self.root, text="X", width=8, bootstyle="danger-outline")
+        self.btn_x.place(relx=0.6, rely=0.75, anchor="center")
+
     def configurar_eventos(self):
         pass
     
