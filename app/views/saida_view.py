@@ -9,84 +9,147 @@ class Saida_View:
         self.criar_componentes()
         self.configurar_treeview()
         self.configurar_eventos()
-        self._centralizar()
 
     def configurar_janela(self):
         self.root.title("Registrar Saída")
+        self.root.geometry("750x600")
         self.root.resizable(False, False)
 
-    def _centralizar(self):
-        self.root.update_idletasks()
-        largura, altura = 350, 550
-        x = (self.root.winfo_screenwidth() // 2) - (largura // 2)
-        y = (self.root.winfo_screenheight() // 2) - (altura // 2)
-        self.root.geometry(f"{largura}x{altura}+{x}+{y}")
-    
     def criar_componentes(self):
-        self.lbl_titulo = ttk.Label(self.root, text="Saída", font=("Courier New", 20, "bold"))
-        self.lbl_titulo.place(relx=0.5, rely=0.05, anchor="center")
+        self.lbl_titulo = ttk.Label(self.root, text="Registrar Saída", font=("Courier New", 20, "bold"))
+        self.lbl_titulo.grid(row=0, column=0, columnspan=4, pady=10)
 
-        self.lbl_lote = ttk.Label(self.root, text="Serial Lote", font=("Courier New", 13, "bold"))
-        self.lbl_lote.place(relx=0.5, rely=0.15, anchor="center")
-        self.cmb_lote = ttk.Combobox(self.root, width=18)
-        self.cmb_lote.place(relx=0.5, rely=0.20, anchor="center")
+        self.frm_dados = ttk.Labelframe(self.root, text="Dados da Saída", labelanchor="n")
+        self.frm_dados.grid(row=1, column=0, columnspan=4, padx=10, pady=5, sticky="ew")
 
-        self.lbl_tipo_saida = ttk.Label(self.root, text="Tipo de Saída", font=("Courier New", 13, "bold"))
-        self.lbl_tipo_saida.place(relx=0.5, rely=0.43, anchor="center")
-        self.cmb_tipo_saida = ttk.Combobox(self.root, width=15)
-        self.cmb_tipo_saida.place(relx=0.5, rely=0.50, anchor="center")
+        self.lbl_lote = ttk.Label(self.frm_dados, text="Lote Referente")
+        self.lbl_lote.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+        self.cmb_lote = ttk.Combobox(self.frm_dados, width=25, state="readonly")
+        self.cmb_lote.grid(row=0, column=1, padx=10, pady=10, sticky="w")
+        self.cmb_lote.bind("<<ComboboxSelected>>", self.preencher_medicamento_automatico)
 
-        self.lbl_qtd_saida = ttk.Label(self.root, text="Quantidade de Saída", font=("Courier New", 13, "bold"))
-        self.lbl_qtd_saida.place(relx=0.5, rely=0.29, anchor="center")
-        self.txt_qtd_saida = ttk.Entry(self.root, width=10)
-        self.txt_qtd_saida.place(relx=0.5, rely=0.35, anchor="center")
+        self.lbl_medicamento = ttk.Label(self.frm_dados, text="Medicamento")
+        self.lbl_medicamento.grid(row=0, column=2, padx=10, pady=10, sticky="w")
+        self.txt_medicamento = ttk.Entry(self.frm_dados, width=25, state="readonly")
+        self.txt_medicamento.grid(row=0, column=3, padx=10, pady=10, sticky="w")
 
-        self.lbl_data_saida = ttk.Label(self.root, text="Data de Saída", font=("Courier New", 13, "bold"))
-        self.lbl_data_saida.place(relx=0.5, rely=0.60, anchor="center")
-        self.txt_data_saida = ttk.DateEntry(self.root, width=11, date_format="%d/%m/%Y", bootstyle="light-outline")
-        self.txt_data_saida.place(relx=0.5, rely=0.65, anchor="center")
+        self.lbl_qtd_saida = ttk.Label(self.frm_dados, text="Quantidade de Saída")
+        self.lbl_qtd_saida.grid(row=1, column=0, padx=10, pady=10, sticky="w")
+        self.txt_qtd_saida = ttk.Entry(self.frm_dados, width=10)
+        self.txt_qtd_saida.grid(row=1, column=1, padx=10, pady=10, sticky="w")
 
-        self.btn_ok = ttk.Button(self.root, text="OK", width=8, bootstyle="success-outline")
-        self.btn_ok.place(relx=0.3, rely=0.75, anchor="center")
+        self.lbl_tipo_saida = ttk.Label(self.frm_dados, text="Tipo de Saída")
+        self.lbl_tipo_saida.grid(row=1, column=2, padx=10, pady=10, sticky="w")
+        self.cmb_tipo_saida = ttk.Combobox(
+            self.frm_dados, width=15, state="readonly",
+            values=["Venda", "Avaria", "Perda", "Roubo"]
+        )
+        self.cmb_tipo_saida.grid(row=1, column=3, padx=10, pady=10, sticky="w")
 
-        self.btn_x = ttk.Button(self.root, text="X", width=8, bootstyle="danger-outline")
-        self.btn_x.place(relx=0.6, rely=0.75, anchor="center")
+        self.lbl_usuario = ttk.Label(self.frm_dados, text="Usuário Responsável")
+        self.lbl_usuario.grid(row=2, column=0, padx=10, pady=10, sticky="w")
+        self.cmb_usuario = ttk.Combobox(self.frm_dados, width=25, state="readonly")
+        self.cmb_usuario.grid(row=2, column=1, padx=10, pady=10, sticky="w")
 
-    def configurar_eventos(self):
-        pass
-    
+        self.frm_botoes = ttk.Frame(self.frm_dados)
+        self.frm_botoes.grid(row=3, column=0, columnspan=4, pady=10)
+
+        self.btn_novo = ttk.Button(self.frm_botoes, text="Novo", width=15, bootstyle="primary-outline")
+        self.btn_novo.grid(row=0, column=0, padx=5)
+        self.btn_salvar = ttk.Button(self.frm_botoes, text="Salvar", width=15, bootstyle="success-outline")
+        self.btn_salvar.grid(row=0, column=1, padx=5)
+        self.btn_fechar = ttk.Button(self.frm_botoes, text="Fechar", width=15, bootstyle="secondary-outline")
+        self.btn_fechar.grid(row=0, column=2, padx=5)
+
+        self.tbl_saidas = ttk.Treeview(self.root, height=12, bootstyle="light")
+        self.tbl_saidas.grid(row=2, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
+
     def configurar_treeview(self):
-        pass
+        self.tbl_saidas["columns"] = ("id", "lote", "medicamento", "qtd", "tipo", "usuario", "data")
+        self.tbl_saidas.column("#0", width=0, stretch=False)
+        self.tbl_saidas.column("id", width=40, anchor="center", stretch=False)
+        self.tbl_saidas.column("lote", width=80, anchor="center", stretch=False)
+        self.tbl_saidas.column("medicamento", width=140, anchor="w", stretch=False)
+        self.tbl_saidas.column("qtd", width=50, anchor="center", stretch=False)
+        self.tbl_saidas.column("tipo", width=80, anchor="center", stretch=False)
+        self.tbl_saidas.column("usuario", width=120, anchor="w", stretch=False)
+        self.tbl_saidas.column("data", width=90, anchor="center", stretch=False)
+        self.tbl_saidas.heading("id", text="ID")
+        self.tbl_saidas.heading("lote", text="LOTE")
+        self.tbl_saidas.heading("medicamento", text="MEDICAMENTO")
+        self.tbl_saidas.heading("qtd", text="QTD")
+        self.tbl_saidas.heading("tipo", text="TIPO")
+        self.tbl_saidas.heading("usuario", text="USUÁRIO")
+        self.tbl_saidas.heading("data", text="DATA")
+
+    def preencher_medicamento_automatico(self, event=None):
+        # o controller injeta a lista de lotes; aqui só repassamos o índice escolhido
+        self.controller.lote_selecionado(self.cmb_lote.current())
+
+    def exibir_medicamento_do_lote(self, nome_medicamento):
+        self.txt_medicamento.config(state="normal")
+        self.txt_medicamento.delete(0, "end")
+        self.txt_medicamento.insert(0, nome_medicamento)
+        self.txt_medicamento.config(state="readonly")
+
+    def limpar_campos(self):
+        self.cmb_lote.set("")
+        self.txt_medicamento.config(state="normal")
+        self.txt_medicamento.delete(0, "end")
+        self.txt_medicamento.config(state="readonly")
+        self.txt_qtd_saida.delete(0, "end")
+        self.cmb_tipo_saida.set("")
+        self.cmb_usuario.set("")
+        self.cmb_lote.focus()
+
+    def ler_dados_saida(self):
+        lote_idx = self.cmb_lote.current()
+        qtd_saida = self.txt_qtd_saida.get()
+        tipo_saida = self.cmb_tipo_saida.get()
+        usuario_idx = self.cmb_usuario.current()
+        return lote_idx, qtd_saida, tipo_saida, usuario_idx
+
+    def carregar_lotes(self, lotes):
+        self.cmb_lote["values"] = [l.numero_lote for l in lotes]
+
+    def carregar_usuarios(self, usuarios):
+        self.cmb_usuario["values"] = [u.nome for u in usuarios]
+
+    def limpar_treeview(self):
+        for item in self.tbl_saidas.get_children():
+            self.tbl_saidas.delete(item)
+
+    def exibir_saidas(self, saidas):
+        self.limpar_treeview()
+        for s in saidas:
+            self.tbl_saidas.insert("", "end", values=(
+                s.id, s.lote.numero_lote, s.lote.medicamento.nome, s.qtd_saida,
+                s.tipo_saida, s.usuario.nome, s.data_saida
+            ))
+
+    def exibir_mensagem(self, mensagem, sucesso=True):
+        if sucesso:
+            Messagebox.showinfo("SysFarm", mensagem, parent=self.root)
+        else:
+            Messagebox.showerror("SysFarm", mensagem, parent=self.root)
 
     def configurar_eventos(self):
-        pass
+        self.btn_novo.config(command=self.controller.new)
+        self.btn_salvar.config(command=self.controller.save)
+        self.btn_fechar.config(command=self.fechar)
 
+    def fechar(self):
+        self.root.destroy()
 
-
-
+    def iniciar(self):
+        self.controller.get_all()
 
 
 if __name__ == "__main__":
-    import ttkbootstrap as ttk
-
     class ControllerFake:
-        def new(self):
-            print("Novo clicado")
-
-        def save(self):
-            print("Salvar clicado")
-
-        def update(self):
-            print("Alterar clicado")
-
-        def delete(self):
-            print("Excluir clicado")
-
-        def selecionar_usuario(self, event):
-            print("Linha selecionada")
-        
-        def autenticar(self):
-            print("Autenticado!")
+        def new(self): print("novo")
+        def save(self): print("salvar")
+        def lote_selecionado(self, idx): print(f"lote {idx} selecionado")
 
     janela = ttk.Window(themename="darkly")
     view = Saida_View(janela, controller=ControllerFake())
