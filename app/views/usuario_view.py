@@ -69,7 +69,7 @@ class Usuario_View:
 
         self.lbl_data_entrada = ttk.Label(self.frm_dados, text="Data de Entrada", font=("Courier New",13,"bold"))
         self.lbl_data_entrada.grid(row = 2, column = 3, padx=(10,5), sticky="w")
-        self.txt_data_entrada = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="light-outline" )
+        self.txt_data_entrada = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="light-outline", state="readonly")
         self.txt_data_entrada.grid(row=2, column=4, sticky="w", padx=10)
     
     
