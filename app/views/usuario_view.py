@@ -22,7 +22,6 @@ class Usuario_View:
     
     def configurar_janela(self):
         self.root.title("Gestão Usuários")
-        self.root.geometry("700x600")
         self.root.resizable(False, False)
 
     def configurar_estilo(self):
@@ -31,43 +30,43 @@ class Usuario_View:
 
 
     def criar_componentes(self):
-        self.lbl_titulo = ttk.Label(self.root, text="Gerenciar Usuários", font=("Courier New",20,"bold"))   
+        self.lbl_titulo = ttk.Label(self.root, text="Gerenciar Usuários", font=("Cour6ier New", 20, "bold"))   
         self.lbl_titulo.grid(row = 0, column = 0, columnspan=5) 
         self.frm_dados = ttk.Labelframe (self.root, text="Dados do Usuário", labelanchor="n")
         self.frm_dados.grid(row = 1, column = 0, columnspan = 4, padx = 10, pady = 5, sticky = "ew")
         
         
-        self.lbl_id = ttk.Label(self.frm_dados, text = "ID", font=("Courier New",13,"bold"))
+        self.lbl_id = ttk.Label(self.frm_dados, text = "ID")
         self.lbl_id.grid(row = 1, column = 0, sticky = "w", padx = (20,0), pady= 5)
         self.txt_id = ttk.Entry(self.frm_dados, width=5, state="readonly")
         self.txt_id.grid(row=1, column=1, sticky="w", padx=(10,5), pady=5)
         
         
-        self.lbl_nome = ttk.Label(self.frm_dados, text="Nome", font=("Courier New",13,"bold"))
+        self.lbl_nome = ttk.Label(self.frm_dados, text="Nome")
         self.lbl_nome.grid(row = 1, column = 2, padx=5, sticky="w")
         self.txt_nome = ttk.Entry(self.frm_dados, width=28)
         self.txt_nome.grid(row=1, column = 2, columnspan=2)
         
         
-        self.lbl_cpf = ttk.Label(self.frm_dados, text="CPF", font=("Courier New",13,"bold"))
+        self.lbl_cpf = ttk.Label(self.frm_dados, text="CPF")
         self.lbl_cpf.grid(row = 1, column = 3, padx=(20,5), sticky="e")
         self.txt_cpf = ttk.Entry(self.frm_dados, width=11)
         self.txt_cpf.grid(row=1, column=4, padx= 10, sticky="w")
         
         
-        self.lbl_senha = ttk.Label(self.frm_dados, text="Senha", font=("Courier New",13,"bold"))
+        self.lbl_senha = ttk.Label(self.frm_dados, text="Senha")
         self.lbl_senha.grid(row = 2, column = 0, padx=(10,5))
         self.txt_senha = ttk.Entry(self.frm_dados, width=20)
-        self.txt_senha.grid(row=2, column=1, sticky="e", padx= 10, pady=10)
+        self.txt_senha.grid(row=2, column=1, sticky="w", padx= 10, pady=10)
         
         
-        self.lbl_cargo = ttk.Label(self.frm_dados, text="Cargo", font=("Courier New",13,"bold"))
-        self.lbl_cargo.grid(row = 2, column = 2, sticky="w")
+        self.lbl_cargo = ttk.Label(self.frm_dados, text="Cargo")
+        self.lbl_cargo.place(relx=0.34, rely=0.4)
         self.txt_cargo = ttk.Entry(self.frm_dados, width=13)
         self.txt_cargo.grid(row=2, column=2, sticky="e", padx=(75,0))
 
 
-        self.lbl_data_entrada = ttk.Label(self.frm_dados, text="Data de Entrada", font=("Courier New",13,"bold"))
+        self.lbl_data_entrada = ttk.Label(self.frm_dados, text="Data de Entrada")
         self.lbl_data_entrada.grid(row = 2, column = 3, padx=(10,5), sticky="w")
         self.txt_data_entrada = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="light-outline" )
         self.txt_data_entrada.grid(row=2, column=4, sticky="w", padx=10)
@@ -78,23 +77,23 @@ class Usuario_View:
         self.frm_botoes.grid(row=3,column=0,padx=10,pady=5, columnspan=5,)
         
         
-        self.btn_novo = ttk.Button(self.frm_botoes,text = "Novo",width = 15, bootstyle="primary-outline", cursor="hand1")
+        self.btn_novo = ttk.Button(self.frm_botoes,text = "Novo",width = 15, bootstyle="primary-outline")
         self.btn_novo.grid(row = 0,column = 0,padx = 5,pady = 5)
         
         
-        self.btn_salvar = ttk.Button(self.frm_botoes,text = "Salvar",width = 15, bootstyle="success-outline", cursor="hand1")
+        self.btn_salvar = ttk.Button(self.frm_botoes,text = "Salvar",width = 15, bootstyle="success-outline")
         self.btn_salvar.grid(row = 0,column = 1,padx = 5, pady = 5)
         
         
-        self.btn_alterar = ttk.Button(self.frm_botoes,text = "Alterar",width = 15, bootstyle="warning-outline", cursor="hand1")
+        self.btn_alterar = ttk.Button(self.frm_botoes,text = "Alterar",width = 15, bootstyle="warning-outline")
         self.btn_alterar.grid(row = 0,column = 2,padx = 5,pady = 5)
         
         
-        self.btn_excluir = ttk.Button(self.frm_botoes,text = "Excluir",width = 15, bootstyle="danger-outline", cursor="hand1")
+        self.btn_excluir = ttk.Button(self.frm_botoes,text = "Excluir",width = 15, bootstyle="danger-outline")
         self.btn_excluir.grid(row = 0,column = 3,padx = 5,pady = 5)
         
         
-        self.btn_fechar = ttk.Button(self.frm_botoes, text = "Fechar",width = 15, bootstyle="light-outline", cursor="hand1")
+        self.btn_fechar = ttk.Button(self.frm_botoes, text = "Fechar",width = 15, bootstyle="light-outline")
         self.btn_fechar.grid(row = 0,column = 4,padx = 5,pady = 5)
         
         #TREEVIEW
