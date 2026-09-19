@@ -2,18 +2,26 @@ import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
 
 class Fornecedor_View:
-    def __init__(self, root, controller=None):
+    def __init__(self, root, controller):
         self.root = root
         self.controller = controller
         self.configurar_janela()
         self.criar_componentes()
         self.configurar_treeview()
         self.configurar_eventos()
+        self._centralizar()
 
     def configurar_janela(self):
         self.root.title("Gestão de Fornecedores")
         self.root.geometry("700x600")
         self.root.resizable(False, False)
+        
+    def _centralizar(self):
+        self.root.update_idletasks()
+        largura, altura = 675, 585
+        x = (self.root.winfo_screenwidth() // 2) - (largura // 2)
+        y = (self.root.winfo_screenheight() // 2) - (altura // 2)
+        self.root.geometry(f"{largura}x{altura}+{x}+{y}")
 
     def criar_componentes(self):
         self.lbl_titulo = ttk.Label(self.root, text="Gestão de Fornecedores", font=("Courier New", 20, "bold"))
@@ -36,7 +44,6 @@ class Fornecedor_View:
         self.lbl_cnpj.grid(row=1, column=0, padx=10, pady=10, sticky="w")
         self.txt_cnpj = ttk.Entry(self.frm_dados, width=18)
         self.txt_cnpj.grid(row=1, column=1, padx=10, pady=10, sticky="w")
-        self.txt_cnpj.bind("<KeyRelease>", self.formatar_cnpj)
 
         self.frm_botoes = ttk.Frame(self.frm_dados)
         self.frm_botoes.grid(row=2, column=0, columnspan=4, pady=10)
@@ -52,18 +59,21 @@ class Fornecedor_View:
         self.btn_fechar = ttk.Button(self.frm_botoes, text="Fechar", width=15, bootstyle="secondary-outline")
         self.btn_fechar.grid(row=0, column=4, padx=5)
 
-        self.tbl_fornecedores = ttk.Treeview(self.root, height=15, bootstyle="light")
+        self.tbl_fornecedores = ttk.Treeview(self.root, height=20, bootstyle="light")
         self.tbl_fornecedores.grid(row=2, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
 
     def configurar_treeview(self):
         self.tbl_fornecedores["columns"] = ("id", "nome", "cnpj")
         self.tbl_fornecedores.column("#0", width=0, stretch=False)
-        self.tbl_fornecedores.column("id", width=40, anchor="center", stretch=False)
-        self.tbl_fornecedores.column("nome", width=250, anchor="w", stretch=False)
-        self.tbl_fornecedores.column("cnpj", width=150, anchor="center", stretch=False)
+        self.tbl_fornecedores.column("id", width=150, anchor="w", stretch=False)
+        self.tbl_fornecedores.column("nome", width=300, anchor="w", stretch=False)
+        self.tbl_fornecedores.column("cnpj", width=200, anchor="center", stretch=False)
+        
         self.tbl_fornecedores.heading("id", text="ID")
         self.tbl_fornecedores.heading("nome", text="NOME")
         self.tbl_fornecedores.heading("cnpj", text="CNPJ")
+        
+        self.txt_cnpj.bind("<KeyRelease>", self.formatar_cnpj)
 
     def formatar_cnpj(self, event=None):
         texto = self.txt_cnpj.get()
@@ -137,16 +147,3 @@ class Fornecedor_View:
 
     def iniciar(self):
         self.controller.get_all()
-
-
-if __name__ == "__main__":
-    class ControllerFake:
-        def new(self): print("novo")
-        def save(self): print("salvar")
-        def update(self): print("alterar")
-        def delete(self): print("excluir")
-        def selecionar_fornecedor(self, event): print("selecionado")
-
-    janela = ttk.Window(themename="darkly")
-    view = Fornecedor_View(janela, controller=ControllerFake())
-    janela.mainloop()

@@ -2,18 +2,25 @@ import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
 
 class Entrada_View:
-    def __init__(self, root, controller=None):
+    def __init__(self, root, controller):
         self.root = root
         self.controller = controller
         self.configurar_janela()
         self.criar_componentes()
         self.configurar_treeview()
         self.configurar_eventos()
+        self._centralizar()
 
     def configurar_janela(self):
         self.root.title("Registrar Entrada")
-        self.root.geometry("750x600")
         self.root.resizable(False, False)
+
+    def _centralizar(self):
+        self.root.update_idletasks()
+        largura, altura = 695, 600
+        x = (self.root.winfo_screenwidth() // 2) - (largura // 2)
+        y = (self.root.winfo_screenheight() // 2) - (altura // 2)
+        self.root.geometry(f"{largura}x{altura}+{x}+{y}")
 
     def criar_componentes(self):
         self.lbl_titulo = ttk.Label(self.root, text="Registrar Entrada", font=("Courier New", 20, "bold"))
@@ -62,7 +69,7 @@ class Entrada_View:
         self.btn_fechar = ttk.Button(self.frm_botoes, text="Fechar", width=15, bootstyle="secondary-outline")
         self.btn_fechar.grid(row=0, column=2, padx=5)
 
-        self.tbl_entradas = ttk.Treeview(self.root, height=12, bootstyle="light")
+        self.tbl_entradas = ttk.Treeview(self.root, height=18, bootstyle="light")
         self.tbl_entradas.grid(row=2, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
 
     def configurar_treeview(self):
@@ -74,7 +81,9 @@ class Entrada_View:
         self.tbl_entradas.column("fornecedor", width=140, anchor="w", stretch=False)
         self.tbl_entradas.column("qtd", width=60, anchor="center", stretch=False)
         self.tbl_entradas.column("validade", width=90, anchor="center", stretch=False)
-        self.tbl_entradas.column("data", width=90, anchor="center", stretch=False)
+        self.tbl_entradas.column("data", width=110, anchor="center", stretch=False)
+        
+        
         self.tbl_entradas.heading("id", text="ID")
         self.tbl_entradas.heading("lote", text="LOTE")
         self.tbl_entradas.heading("medicamento", text="MEDICAMENTO")
@@ -139,12 +148,3 @@ class Entrada_View:
     def iniciar(self):
         self.controller.get_all()
 
-
-if __name__ == "__main__":
-    class ControllerFake:
-        def new(self): print("novo")
-        def save(self): print("salvar")
-
-    janela = ttk.Window(themename="darkly")
-    view = Entrada_View(janela, controller=ControllerFake())
-    janela.mainloop()

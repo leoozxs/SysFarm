@@ -9,14 +9,22 @@ class Medicamento_View:
         self.criar_componentes()
         self.configurar_treeview()
         self.configurar_eventos()
+        self._centralizar()
 
     def configurar_janela(self):
         self.root.title("Gestão de Medicamentos")
         self.root.geometry("700x600")
         self.root.resizable(False, False)
 
+    def _centralizar(self):
+        self.root.update_idletasks()
+        largura, altura = 665, 600
+        x = (self.root.winfo_screenwidth() // 2) - (largura // 2)
+        y = (self.root.winfo_screenheight() // 2) - (altura // 2)
+        self.root.geometry(f"{largura}x{altura}+{x}+{y}")
+
     def criar_componentes(self):
-        self.lbl_titulo = ttk.Label(self.root, text="Gestão de Medicamentos", font=("Courier New", 20, "bold"))
+        self.lbl_titulo = ttk.Label(self.root, text="Gestão de Medicamentos", font=("Cour6ier New", 20, "bold"))
         self.lbl_titulo.grid(row=0, column=0, columnspan=4, pady=10)
 
         self.frm_dados = ttk.Labelframe(self.root, text="Dados do Medicamento", labelanchor="n")
@@ -115,7 +123,7 @@ class Medicamento_View:
         self.btn_fechar = ttk.Button(self.frm_botoes, text="Fechar", width=15, bootstyle="secondary-outline")
         self.btn_fechar.grid(row=0, column=4, padx=5)
 
-        self.tbl_medicamentos = ttk.Treeview(self.root, height=15, bootstyle="light")
+        self.tbl_medicamentos = ttk.Treeview(self.root, height=18, bootstyle="light")
         self.tbl_medicamentos.grid(row=2, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
 
     def configurar_treeview(self):
@@ -125,7 +133,9 @@ class Medicamento_View:
         self.tbl_medicamentos.column("nome", width=180, anchor="w", stretch=False)
         self.tbl_medicamentos.column("tipo", width=120, anchor="w", stretch=False)
         self.tbl_medicamentos.column("categoria", width=120, anchor="w", stretch=False)
-        self.tbl_medicamentos.column("dosagem", width=80, anchor="center", stretch=False)
+        self.tbl_medicamentos.column("dosagem", width=180, anchor="center", stretch=False)
+        
+        
         self.tbl_medicamentos.heading("id", text="ID")
         self.tbl_medicamentos.heading("nome", text="NOME")
         self.tbl_medicamentos.heading("tipo", text="TIPO")
@@ -195,16 +205,3 @@ class Medicamento_View:
     def iniciar(self):
         self.controller.get_all()
 
-
-if __name__ == "__main__":
-    class ControllerFake:
-        def new(self): print("novo")
-        def save(self): print("salvar")
-        def update(self): print("alterar")
-        def delete(self): print("excluir")
-        def selecionar_medicamento(self, event): print("selecionado")
-
-    janela = ttk.Window(themename="darkly")
-    view = Medicamento_View(janela, controller=ControllerFake())
-    view.cmb_categoria["values"] = ["Analgésico", "Antibiótico", "Anti-inflamatório", "Antialérgico", "Antitérmico"]
-    janela.mainloop()

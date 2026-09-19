@@ -2,21 +2,28 @@ import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
 
 class Saida_View:
-    def __init__(self, root, controller=None):
+    def __init__(self, root, controller):
         self.root = root
         self.controller = controller
         self.configurar_janela()
         self.criar_componentes()
         self.configurar_treeview()
         self.configurar_eventos()
+        self._centralizar()
 
     def configurar_janela(self):
         self.root.title("Registrar Saída")
-        self.root.geometry("750x600")
         self.root.resizable(False, False)
+    
+    def _centralizar(self):
+        self.root.update_idletasks()
+        largura, altura = 635, 600
+        x = (self.root.winfo_screenwidth() // 2) - (largura // 2)
+        y = (self.root.winfo_screenheight() // 2) - (altura // 2)
+        self.root.geometry(f"{largura}x{altura}+{x}+{y}")
 
     def criar_componentes(self):
-        self.lbl_titulo = ttk.Label(self.root, text="Registrar Saída", font=("Courier New", 20, "bold"))
+        self.lbl_titulo = ttk.Label(self.root, text="Registrar Saída", font=("Cour6ier New", 20, "bold"))
         self.lbl_titulo.grid(row=0, column=0, columnspan=4, pady=10)
 
         self.frm_dados = ttk.Labelframe(self.root, text="Dados da Saída", labelanchor="n")
@@ -26,7 +33,7 @@ class Saida_View:
         self.lbl_lote.grid(row=0, column=0, padx=10, pady=10, sticky="w")
         self.cmb_lote = ttk.Combobox(self.frm_dados, width=25, state="readonly")
         self.cmb_lote.grid(row=0, column=1, padx=10, pady=10, sticky="w")
-        self.cmb_lote.bind("<<ComboboxSelected>>", self.preencher_medicamento_automatico)
+
 
         self.lbl_medicamento = ttk.Label(self.frm_dados, text="Medicamento")
         self.lbl_medicamento.grid(row=0, column=2, padx=10, pady=10, sticky="w")
@@ -40,8 +47,7 @@ class Saida_View:
 
         self.lbl_tipo_saida = ttk.Label(self.frm_dados, text="Tipo de Saída")
         self.lbl_tipo_saida.grid(row=1, column=2, padx=10, pady=10, sticky="w")
-        self.cmb_tipo_saida = ttk.Combobox(
-            self.frm_dados, width=15, state="readonly",
+        self.cmb_tipo_saida = ttk.Combobox(self.frm_dados, width=15, state="readonly",
             values=["Venda", "Avaria", "Perda", "Roubo"]
         )
         self.cmb_tipo_saida.grid(row=1, column=3, padx=10, pady=10, sticky="w")
@@ -61,7 +67,7 @@ class Saida_View:
         self.btn_fechar = ttk.Button(self.frm_botoes, text="Fechar", width=15, bootstyle="secondary-outline")
         self.btn_fechar.grid(row=0, column=2, padx=5)
 
-        self.tbl_saidas = ttk.Treeview(self.root, height=12, bootstyle="light")
+        self.tbl_saidas = ttk.Treeview(self.root, height=18, bootstyle="light")
         self.tbl_saidas.grid(row=2, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
 
     def configurar_treeview(self):
@@ -73,7 +79,9 @@ class Saida_View:
         self.tbl_saidas.column("qtd", width=50, anchor="center", stretch=False)
         self.tbl_saidas.column("tipo", width=80, anchor="center", stretch=False)
         self.tbl_saidas.column("usuario", width=120, anchor="w", stretch=False)
-        self.tbl_saidas.column("data", width=90, anchor="center", stretch=False)
+        self.tbl_saidas.column("data", width=103, anchor="center", stretch=False)
+        
+        
         self.tbl_saidas.heading("id", text="ID")
         self.tbl_saidas.heading("lote", text="LOTE")
         self.tbl_saidas.heading("medicamento", text="MEDICAMENTO")
@@ -81,6 +89,7 @@ class Saida_View:
         self.tbl_saidas.heading("tipo", text="TIPO")
         self.tbl_saidas.heading("usuario", text="USUÁRIO")
         self.tbl_saidas.heading("data", text="DATA")
+        self.cmb_lote.bind("<<ComboboxSelected>>", self.preencher_medicamento_automatico)
 
     def preencher_medicamento_automatico(self, event=None):
         # o controller injeta a lista de lotes; aqui só repassamos o índice escolhido
@@ -144,13 +153,3 @@ class Saida_View:
     def iniciar(self):
         self.controller.get_all()
 
-
-if __name__ == "__main__":
-    class ControllerFake:
-        def new(self): print("novo")
-        def save(self): print("salvar")
-        def lote_selecionado(self, idx): print(f"lote {idx} selecionado")
-
-    janela = ttk.Window(themename="darkly")
-    view = Saida_View(janela, controller=ControllerFake())
-    janela.mainloop()
