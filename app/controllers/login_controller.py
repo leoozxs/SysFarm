@@ -14,3 +14,4 @@ class Login_Controller:
         if usuario is None:
             self.view.exibir_mensagem("CPF ou senha incorretos.", False)
             return
+        self.ao_logar_com_sucesso(usuario)
