@@ -216,28 +216,3 @@ class Usuario_View:
 
     def iniciar(self):
         self.controller.get_all()
-
-
-
-if __name__ == "__main__":
-    import ttkbootstrap as ttk
-
-    class ControllerFake:
-        def new(self):
-            print("Novo clicado")
-
-        def save(self):
-            print("Salvar clicado")
-
-        def update(self):
-            print("Alterar clicado")
-
-        def delete(self):
-            print("Excluir clicado")
-
-        def selecionar_usuario(self, event):
-            print("Linha selecionada")
-
-    janela = ttk.Window(themename="darkly")
-    view = Usuario_View(janela, controller=ControllerFake())
-    janela.mainloop()
