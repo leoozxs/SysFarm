@@ -66,9 +66,9 @@ class Login_View:
 
     def exibir_mensagem(self, mensagem, sucesso=True):
         if sucesso:
-            Messagebox.showinfo("SysFarm", mensagem, parent=self.root)
+            Messagebox.show_info("SysFarm", mensagem, parent=self.root)
         else:
-            Messagebox.showerror("SysFarm", mensagem, parent=self.root)
+            Messagebox.show_error("SysFarm", mensagem, parent=self.root)
             
 
 if __name__ == "__main__":
@@ -80,3 +80,4 @@ if __name__ == "__main__":
     janela = ttk.Window(themename="darkly")
     view = Login_View(janela, controller=ControllerFake())
     janela.mainloop()
+    
