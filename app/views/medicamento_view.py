@@ -183,13 +183,13 @@ class Medicamento_View:
             self.tbl_medicamentos.insert("", "end", values=(m.id, m.nome, m.tipo, m.categoria, m.dosagem))
 
     def confirmar_exclusao(self):
-        return Messagebox.askyesno("Confirmação", "Deseja realmente excluir este medicamento?", parent=self.root)
+        return Messagebox.yesno("Confirmação", "Deseja realmente excluir este medicamento?", parent=self.root)
 
     def exibir_mensagem(self, mensagem, sucesso=True):
         if sucesso:
-            Messagebox.showinfo("SysFarm", mensagem, parent=self.root)
+            Messagebox.show_info("SysFarm", mensagem, parent=self.root)
         else:
-            Messagebox.showerror("SysFarm", mensagem, parent=self.root)
+            Messagebox.show_error("SysFarm", mensagem, parent=self.root)
 
     def configurar_eventos(self):
         self.btn_novo.config(command=self.controller.new)
