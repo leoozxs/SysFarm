@@ -66,7 +66,18 @@ class Login_View:
 
     def exibir_mensagem(self, mensagem, sucesso=True):
         if sucesso:
-            Messagebox.show_info("Sysfarm", mensagem, parent=self.root)
+            Messagebox.show_info("SysFarm", mensagem, parent=self.root)
         else:
-            Messagebox.show_error("Sysfarm", mensagem, parent=self.root)
+            Messagebox.show_error("SysFarm", mensagem, parent=self.root)
             
+
+if __name__ == "__main__":
+    class ControllerFake:
+        def new(self): print("novo")
+        def save(self): print("salvar")
+        def autenticar(self): print("Autenticado")
+
+    janela = ttk.Window(themename="darkly")
+    view = Login_View(janela, controller=ControllerFake())
+    janela.mainloop()
+    

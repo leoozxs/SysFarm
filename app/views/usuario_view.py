@@ -160,7 +160,7 @@ class Usuario_View:
 
     def confirmar_exclusao(self):
 
-        return Messagebox.askyesno(
+        return Messagebox.yesno(
             "Confirmação",
             "Deseja realmente excluir este usuario?",
             parent=self.root
