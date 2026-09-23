@@ -8,12 +8,12 @@ class Medicamento:
         self._ativo = ativo
    
         
-    def atualizar_dados(self, novo_nome, novo_tipo, novo_categoria, novo_dosagem):
+    def atualizar_dados(self, novo_nome, novo_tipo, nova_categoria, nova_dosagem):
         self._nome = novo_nome
         self._tipo = novo_tipo
-        self._categoria = novo_categoria
-        self._dosagem = novo_dosagem
-
+        self._categoria = nova_categoria
+        self._dosagem = nova_dosagem
+        
     @property
     def id(self):
             return self._id

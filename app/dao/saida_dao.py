@@ -111,6 +111,10 @@ class Saida_DAO(DAO):
             return [self._montar_saida(r) for r in registros]
         finally:
             self.desconectar(conexao, cursor)
+            
+    def delete(self, id):
+        pass
+        # saida não tem delete
 
     def _montar_saida(self, registro):
         medicamento = Medicamento(registro[7], registro[8], registro[9], registro[10], registro[11], registro[12])

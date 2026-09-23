@@ -9,8 +9,8 @@ class DAO(ABC):
         cursor = conexao.cursor()
         return conexao, cursor
     
-    def desconectar(self, cursor, conexao):
-        self._database.desconectar(cursor, conexao)
+    def desconectar(self, conexao, cursor):
+        self._database.desconectar(conexao, cursor)
 
     @abstractmethod
     def save(self, objeto):

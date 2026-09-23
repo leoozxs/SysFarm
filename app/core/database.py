@@ -15,7 +15,7 @@ class Database:
             user =      os.getenv("DB_USER"),
             password =  os.getenv("DB_PASSWORD")
         )
-    def desconectar(self, cursor=None, conexao=None):
+    def desconectar(self, conexao=None, cursor=None):
         if cursor:
             cursor.close()
         if conexao and conexao.is_connected():
