@@ -98,6 +98,18 @@ class Estoque_DAO(DAO):
             return [self._montar_estoque(r) for r in registros]
         finally:
             self.desconectar(conexao, cursor)
+    
+    def delete(self):
+        pass
+        #não tem delete
+        
+    def get_by_id(self, id):
+        pass
+        #nao tem get_by_id
+        
+    def update(self):
+        pass
+        #tabela nn faz update por ela mesma
 
     def _montar_estoque(self, registro):
 

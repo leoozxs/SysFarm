@@ -68,10 +68,10 @@ class SysFarmApp:
 
         # --- Controllers, todos criados já no início, com view=None ---
         self._ctrl_login = Login_Controller(view=None, usuario_dao=self._dao_usuarios, ao_logar_com_sucesso=self._abrir_menu)
-        self._ctrl_entrada = Entrada_Controller(view=None, lote_dao=self._dao_lotes, entrada_dao=self._dao_entradas,
+        self._ctrl_entrada = Entrada_Controller(view=None, lote_dao=self._dao_lotes, entrada_dao=self._dao_entradas, estoque_dao=self._dao_estoque,
                                                   medicamento_dao=self._dao_medicamentos, fornecedor_dao=self._dao_fornecedores,
                                                   usuario_dao=self._dao_usuarios)
-        self._ctrl_saida = Saida_Controller(view=None, lote_dao=self._dao_lotes, saida_dao=self._dao_saidas, usuario_dao=self._dao_usuarios)
+        self._ctrl_saida = Saida_Controller(view=None, lote_dao=self._dao_lotes, saida_dao=self._dao_saidas, estoque_dao=self._dao_estoque,usuario_dao=self._dao_usuarios)
         self._ctrl_usuarios = Usuario_Controller(view=None, dao=self._dao_usuarios)
         self._ctrl_fornecedores = Fornecedor_Controller(view=None, dao=self._dao_fornecedores)
         self._ctrl_medicamentos = Medicamento_Controller(view=None, dao=self._dao_medicamentos)
@@ -83,7 +83,7 @@ class SysFarmApp:
     def _abrir_menu(self, usuario_logado):
         for widget in self._root.winfo_children():
             widget.destroy()
-        self._root.geometry("1040x440")
+        self._root.geometry("1060x490")
         Menu_View(self._root, controller=self)  # o próprio App vira o "controller" do Menu
 
     def _abrir_janela(self, atributo_janela, classe_view, controller):
