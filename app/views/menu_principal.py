@@ -35,48 +35,46 @@ class Menu_View:
         self.lbl_logo.place(relx=0.5, rely=0.45, anchor="center")
 
         self.btn_entrada = ctk.CTkButton(
-            self.root, text="ENTRADA", width=220, height=55, corner_radius=28,
-            fg_color="transparent", border_width=2, border_color="#FFFFFF",
-            hover_color="#1e2a24", command=self._abrir_entrada
+        self.root, text="ENTRADA", width=220, height=55, corner_radius=28,
+        fg_color="transparent", border_width=2, border_color="#FFFFFF",
+        hover_color="#1e2a24", command=self.controller.abrir_entrada
         )
         self.btn_entrada.place(relx=0.15, rely=0.27, anchor="center")
 
         self.btn_saida = ctk.CTkButton(
             self.root, text="SAIDA", width=220, height=55, corner_radius=28,
             fg_color="transparent", border_width=2, border_color="#FFFFFF",
-            hover_color="#1e2a24", command=self._abrir_saida
-        )
+            hover_color="#1e2a24", command=self.controller.abrir_saida)
+        
         self.btn_saida.place(relx=0.11, rely=0.50, anchor="center")
 
         self.btn_usuarios = ctk.CTkButton(
             self.root, text="USUARIOS", width=220, height=55, corner_radius=28,
             fg_color="transparent", border_width=2, border_color="#FFFFFF",
-            hover_color="#1e2a24", command=self._abrir_usuarios
-        )
+            hover_color="#1e2a24", command=self.controller.abrir_usuarios)
+        
         self.btn_usuarios.place(relx=0.15, rely=0.73, anchor="center")
-
-
 
 
 
         self.btn_fornecedor = ctk.CTkButton(
             self.root, text="FORNECEDOR", width=220, height=55, corner_radius=28,
             fg_color="transparent", border_width=2, border_color="#FFFFFF",
-            hover_color="#1e2a24", command=self._abrir_usuarios
+            hover_color="#1e2a24", command=self.controller.abrir_fornecedores
         )
         self.btn_fornecedor.place(relx=0.84, rely=0.27, anchor="center")
 
         self.btn_medicamento = ctk.CTkButton(
             self.root, text="MEDICAMENTO", width=220, height=55, corner_radius=28,
             fg_color="transparent", border_width=2, border_color="#FFFFFF",
-            hover_color="#1e2a24", command=self._abrir_medicamentos
+            hover_color="#1e2a24", command=self.controller.abrir_medicamentos
         )
         self.btn_medicamento.place(relx=0.88, rely=0.50, anchor="center")
 
         self.btn_estoque = ctk.CTkButton(
             self.root, text="ESTOQUE", width=220, height=55, corner_radius=28,
             fg_color="transparent", border_width=2, border_color="#FFFFFF",
-            hover_color="#1e2a24", command=self._abrir_estoque
+            hover_color="#1e2a24", command=self.controller.abrir_estoque
         )
         self.btn_estoque.place(relx=0.84, rely=0.73, anchor="center")
         

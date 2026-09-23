@@ -10,7 +10,11 @@ class Login_Controller:
         if not cpf or not senha:
             self.view.exibir_mensagem("Preencha CPF e senha.", False)
             return
-        usuario = self.usuario_dao.autenticar(cpf, senha)
+        try:
+            usuario = self.usuario_dao.autenticar(cpf, senha)
+        except Exception as e:
+            self.view.exibir_mensagem(f"Erro ao conectar com o banco: {str(e)}", False)
+            return
         if usuario is None:
             self.view.exibir_mensagem("CPF ou senha incorretos.", False)
             return
