@@ -1,11 +1,9 @@
 import ttkbootstrap as ttk
 
 class Estoque_View:
-    def __init__(self, root, controller, abrir_entrada, abrir_saida):
+    def __init__(self, root, controller):
         self.root = root
         self.controller = controller
-        self.abrir_entrada = abrir_entrada
-        self.abrir_saida = abrir_saida
         self.configurar_janela()
         self.criar_componentes()
         self.configurar_treeview()
@@ -74,18 +72,13 @@ class Estoque_View:
                 i.medicamento.nome, i.lote.numero_lote, i.lote.fornecedor.nome,
                 i.validade, i.qtd_atual, i.status
             ))
+    
 
     def configurar_eventos(self):
         self.btn_atualizar.config(command=self.controller.listar)
-        self.btn_entrada.config(command=self.on_abrir_entrada)
-        self.btn_saida.config(command=self.on_abrir_saida)
+        self.btn_entrada.config(command=self.controller.abrir_entrada)
+        self.btn_saida.config(command=self.controller.abrir_saida)
         self.btn_fechar.config(command=self.fechar)
-
-    def on_abrir_entrada(self):
-            self.abrir_entrada()
-
-    def on_abrir_saida(self):
-            self.abrir_saida()
 
     def fechar(self):
         self.root.destroy()
