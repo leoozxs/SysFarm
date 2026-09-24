@@ -126,14 +126,14 @@ class Fornecedor_View:
             self.tbl_fornecedores.insert("", "end", values=(f.id, f.nome, f.cnpj))
 
     def confirmar_exclusao(self):
-        return Messagebox.yesno("Confirmação", "Deseja realmente excluir este fornecedor?", parent=self.root)
+        return Messagebox.yesno("Deseja realmente excluir este fornecedor?", "Confirmação", parent=self.root)
     
     def exibir_mensagem(self, mensagem, sucesso=True):
         if sucesso:
-            Messagebox.show_info("SysFarm", mensagem, parent=self.root)
+            Messagebox.show_info(mensagem,"SysFarm", parent=self.root)
         else:
-            Messagebox.show_error("SysFarm", mensagem, parent=self.root)
-
+            Messagebox.show_error(mensagem,"SysFarm", parent=self.root)
+            
     def configurar_eventos(self):
         self.btn_novo.config(command=self.controller.new)
         self.btn_salvar.config(command=self.controller.save)

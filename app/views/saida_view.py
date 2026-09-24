@@ -132,15 +132,15 @@ class Saida_View:
         self.limpar_treeview()
         for s in saidas:
             self.tbl_saidas.insert("", "end", values=(
-                s.id, s.lote.numero_lote, s.lote.medicamento.nome, s.qtd_saida,
-                s.tipo_saida, s.usuario.nome, s.data_saida
+                s.id, s.lote._numero_lote, s.lote._medicamento.nome, s.qtd_saida,
+                s.tipo_saida, s._usuario.nome, s.data_saida
             ))
 
     def exibir_mensagem(self, mensagem, sucesso=True):
         if sucesso:
-            Messagebox.show_info("SysFarm", mensagem, parent=self.root)
+            Messagebox.show_info( mensagem, "SysFarm",parent=self.root)
         else:
-            Messagebox.show_error("SysFarm", mensagem, parent=self.root)
+            Messagebox.show_error( mensagem,"SysFarm", parent=self.root)
 
     def configurar_eventos(self):
         self.btn_novo.config(command=self.controller.new)

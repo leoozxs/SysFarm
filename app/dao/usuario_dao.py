@@ -158,37 +158,14 @@ class Usuario_DAO(DAO):
         conexao, cursor = self.conectar()
         try:
             sql = """
-                SELECT 
-                    id,
-                    nome,
-                    cpf,
-                    senha,
-                    cargo,
-                    data_entrada,
-                    ativo
+                SELECT id, nome, cpf, senha, cargo, data_entrada, ativo
                 FROM usuario
-                WHERE cpf = %s
+                WHERE cpf = %s AND senha = %s AND ativo = True
             """
-            cursor.execute(sql, (cpf,))
+            cursor.execute(sql, (cpf, senha))
             registro = cursor.fetchone()
-            # CPF não existe
             if registro is None:
-                return None, "cpf"
-            # Usuário está inativo
-            if not registro[6]:
-                return None, "inativo"
-            # Senha incorreta
-            if registro[3] != senha:
-                return None, "senha"
-            usuario = Usuario(
-                registro[0],
-                registro[1],
-                registro[2],
-                registro[3],
-                registro[4],
-                registro[5],
-                registro[6]
-            )
-            return usuario, None
+                return None
+            return Usuario(registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6])
         finally:
             self.desconectar(conexao, cursor)

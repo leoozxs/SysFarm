@@ -66,9 +66,9 @@ class Login_View:
 
     def exibir_mensagem(self, mensagem, sucesso=True):
         if sucesso:
-            Messagebox.show_info("SysFarm", mensagem, parent=self.root)
+            Messagebox.show_info(mensagem,"SysFarm", parent=self.root)
         else:
-            Messagebox.show_error("SysFarm", mensagem, parent=self.root)
+            Messagebox.show_error(mensagem,"SysFarm", parent=self.root)
             
 
 if __name__ == "__main__":
