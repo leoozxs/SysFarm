@@ -148,12 +148,13 @@ class Usuario_DAO(DAO):
                     """
             cursor.execute(sql,(id,))
             conexao.commit()
+            return cursor.rowcount > 0
         except Exception:
             conexao.rollback()
             raise
         finally:
             self.desconectar(conexao, cursor)
-
+             
     def autenticar(self, cpf, senha):
         conexao, cursor = self.conectar()
         try:

@@ -183,7 +183,8 @@ class Medicamento_View:
             self.tbl_medicamentos.insert("", "end", values=(m.id, m.nome, m.tipo, m.categoria, m.dosagem))
 
     def confirmar_exclusao(self):
-        return Messagebox.yesno("Deseja realmente excluir este medicamento?","Confirmação", parent=self.root)
+        resposta = Messagebox.yesno( "Deseja realmente excluir este medicamento?","Confirmação", parent=self.root)
+        return resposta == "Yes"
 
     def exibir_mensagem(self, mensagem, sucesso=True):
         if sucesso:

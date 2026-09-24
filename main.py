@@ -75,7 +75,7 @@ class SysFarmApp:
         self._ctrl_usuarios = Usuario_Controller(view=None, dao=self._dao_usuarios)
         self._ctrl_fornecedores = Fornecedor_Controller(view=None, dao=self._dao_fornecedores)
         self._ctrl_medicamentos = Medicamento_Controller(view=None, dao=self._dao_medicamentos)
-        self._ctrl_estoque = Estoque_Controller(view=None, dao=self._dao_estoque)
+        self._ctrl_estoque = Estoque_Controller(view=None, dao=self._dao_estoque, abrir_entrada=self.abrir_entrada, abrir_saida=self.abrir_saida)
 
         # --- Só a tela de Login abre primeiro; o resto começa fechado ---
         self._ctrl_login.view = Login_View(self._root, self._ctrl_login)

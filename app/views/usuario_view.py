@@ -159,12 +159,8 @@ class Usuario_View:
         return nome, cpf, senha, cargo, data_entrada
 
     def confirmar_exclusao(self):
-
-        return Messagebox.yesno(
-            "Deseja realmente excluir este usuario?",
-            "Confirmação",
-            parent=self.root
-            )
+        resposta =Messagebox.yesno("Deseja realmente excluir este usuario?", "Confirmação", parent=self.root)
+        return resposta == "Yes"
 
     def exibir_mensagem(self, mensagem, sucesso=True):
         if sucesso:
