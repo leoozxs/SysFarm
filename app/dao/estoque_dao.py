@@ -91,7 +91,7 @@ class Estoque_DAO(DAO):
                     M.ID, M.NOME, M.TIPO, M.CATEGORIA, M.DOSAGEM, M.ATIVO
                 FROM 
                     ESTOQUE E JOIN LOTE L ON E.LOTE_ID = L.ID
-                JOIN MEDICAMENTO M ON E.MEDICAMENTO.ID = M.ID
+                JOIN MEDICAMENTO M ON E.MEDICAMENTO_ID = M.ID
             """
             cursor.execute(sql)
             registros = cursor.fetchall()
