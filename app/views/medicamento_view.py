@@ -42,7 +42,7 @@ class Medicamento_View:
 
         self.lbl_tipo = ttk.Label(self.frm_dados, text="Tipo")
         self.lbl_tipo.grid(row=1, column=0, padx=10, pady=10, sticky="w")
-        self.txt_tipo = ttk.Combobox(self.frm_dados, width=20, state="readonly",
+        self.cmb_tipo = ttk.Combobox(self.frm_dados, width=20, state="readonly",
             values=['Comprimido',
                     'Cápsula',
                     'Drágea',
@@ -73,7 +73,7 @@ class Medicamento_View:
                     'Injetável',
                     'Implante',
                     'Outros'])
-        self.txt_tipo.grid(row=1, column=1, padx=10, pady=10, sticky="w")
+        self.cmb_tipo.grid(row=1, column=1, padx=10, pady=10, sticky="w")
 
         self.lbl_categoria = ttk.Label(self.frm_dados, text="Categoria")
         self.lbl_categoria.grid(row=1, column=2, padx=10, pady=10, sticky="w")
@@ -106,8 +106,8 @@ class Medicamento_View:
 
         self.lbl_dosagem = ttk.Label(self.frm_dados, text="Dosagem")
         self.lbl_dosagem.grid(row=2, column=0, padx=10, pady=10, sticky="w")
-        self.cmb_dosagem = ttk.Entry(self.frm_dados, width=15)
-        self.cmb_dosagem.grid(row=2, column=1, padx=10, pady=10, sticky="w")
+        self.txt_dosagem = ttk.Entry(self.frm_dados, width=15)
+        self.txt_dosagem.grid(row=2, column=1, padx=10, pady=10, sticky="w")
 
         self.frm_botoes = ttk.Frame(self.frm_dados)
         self.frm_botoes.grid(row=3, column=0, columnspan=4, pady=10)
@@ -148,25 +148,25 @@ class Medicamento_View:
         self.txt_id.insert(0, str(medicamento.id))
         self.txt_id.config(state="readonly")
         self.txt_nome.insert(0, str(medicamento.nome))
-        self.txt_tipo.insert(0, str(medicamento.tipo))
+        self.cmb_tipo.set(medicamento.tipo)
         self.cmb_categoria.set(medicamento.categoria)
-        self.cmb_dosagem.set(medicamento.dosagem)
+        self.txt_dosagem.insert(0, str(medicamento.dosagem))
 
     def limpar_campos(self):
         self.txt_id.config(state="normal")
         self.txt_id.delete(0, "end")
         self.txt_id.config(state="readonly")
         self.txt_nome.delete(0, "end")
-        self.txt_tipo.delete(0, "end")
+        self.cmb_tipo.set("")
         self.cmb_categoria.set("")
-        self.cmb_dosagem.set("")
+        self.txt_dosagem.delete(0, "end")
         self.txt_nome.focus()
 
     def ler_dados_medicamento(self):
         nome = self.txt_nome.get()
-        tipo = self.txt_tipo.get()
+        tipo = self.cmb_tipo.get()
         categoria = self.cmb_categoria.get()
-        dosagem = self.cmb_dosagem.get()
+        dosagem = self.txt_dosagem.get()
         return nome, tipo, categoria, dosagem
 
     def get_id_selecionado(self):
@@ -183,14 +183,14 @@ class Medicamento_View:
             self.tbl_medicamentos.insert("", "end", values=(m.id, m.nome, m.tipo, m.categoria, m.dosagem))
 
     def confirmar_exclusao(self):
-        return Messagebox.yesno("Confirmação", "Deseja realmente excluir este medicamento?", parent=self.root)
+        return Messagebox.yesno("Deseja realmente excluir este medicamento?","Confirmação", parent=self.root)
 
     def exibir_mensagem(self, mensagem, sucesso=True):
         if sucesso:
-            Messagebox.show_info("SysFarm", mensagem, parent=self.root)
+            Messagebox.show_info(mensagem,"SysFarm", parent=self.root)
         else:
-            Messagebox.show_error("SysFarm", mensagem, parent=self.root)
-
+            Messagebox.show_error(mensagem,"SysFarm", parent=self.root)
+            
     def configurar_eventos(self):
         self.btn_novo.config(command=self.controller.new)
         self.btn_salvar.config(command=self.controller.save)
