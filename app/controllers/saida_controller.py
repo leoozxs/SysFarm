@@ -18,7 +18,7 @@ class Saida_Controller:
         if idx < 0 or idx >= len(self._lotes):
             return
         lote = self._lotes[idx]
-        self.view.exibir_medicamento_do_lote(lote.medicamento.nome)
+        self.view.exibir_medicamento_do_lote(lote._medicamento.nome)
 
     def save(self):
         try:

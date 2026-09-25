@@ -45,7 +45,7 @@ class Entrada_Controller:
 
             # 3. Cria a linha de estoque correspondente a esse lote
             status = self.calcular_status(qtd_entrada)
-            estoque = Estoque(None, lote, medicamento, data_entrada, validade, qtd_entrada, status)
+            estoque = Estoque(None, lote, medicamento, fornecedor, data_entrada, validade, qtd_entrada, status)
             self.estoque_dao.save(estoque)
 
             self.get_all()
