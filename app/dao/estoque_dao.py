@@ -85,13 +85,13 @@ class Estoque_DAO(DAO):
         try:
             sql = """
                 SELECT
-                    E.ID, E.LOTE_ID, E.MEDICAMENTO.ID, E.DATA_ENTRADA,
+                    E.ID, E.LOTE_ID, E.MEDICAMENTO_ID, E.DATA_ENTRADA,
                     E.VALIDADE, E.QTD_ATUAL, E.STATUS,
                     L.NUMERO_LOTE,
                     M.ID, M.NOME, M.TIPO, M.CATEGORIA, M.DOSAGEM, M.ATIVO
                 FROM 
                     ESTOQUE E JOIN LOTE L ON E.LOTE_ID = L.ID
-                JOIN MEDICAMENTO M ON E.MEDICAMENTO.ID = M.ID
+                JOIN MEDICAMENTO M ON E.MEDICAMENTO_ID = M.ID
             """
             cursor.execute(sql)
             registros = cursor.fetchall()
