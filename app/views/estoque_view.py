@@ -69,7 +69,7 @@ class Estoque_View:
         self.limpar_treeview()
         for i in itens:
             self.tbl_estoque.insert("", "end", values=(
-                i.medicamento.nome, i.lote.numero_lote, i.lote.fornecedor.nome,
+                i.medicamento.nome, i.lote._numero_lote, i.lote._fornecedor.nome,
                 i.validade, i.qtd_atual, i.status
             ))
     
@@ -84,5 +84,4 @@ class Estoque_View:
         self.root.destroy()
 
     def iniciar(self):
-        self.controller.carregar_combos()
-        self.controller.get_all()
+        self.controller.listar()

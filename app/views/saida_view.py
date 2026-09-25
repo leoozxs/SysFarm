@@ -119,7 +119,7 @@ class Saida_View:
         return lote_idx, qtd_saida, tipo_saida, usuario_idx
 
     def carregar_lotes(self, lotes):
-        self.cmb_lote["values"] = [l.numero_lote for l in lotes]
+        self.cmb_lote["values"] = [l._numero_lote for l in lotes]
 
     def carregar_usuarios(self, usuarios):
         self.cmb_usuario["values"] = [u.nome for u in usuarios]
