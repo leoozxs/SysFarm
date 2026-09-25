@@ -151,5 +151,6 @@ class Saida_View:
         self.root.destroy()
 
     def iniciar(self):
+        self.controller.carregar_combos()
         self.controller.get_all()
 
