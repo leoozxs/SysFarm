@@ -1,6 +1,7 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
 import customtkinter as ctk
+from ttkbootstrap.constants import *
 
 class Usuario_View:
     def __init__(self, root, controller):
@@ -179,12 +180,12 @@ class Usuario_View:
 
     def limpar_campos(self):
         self.txt_id.config(state = "normal")
-        self.txt_id.delete(0, ttk.END)
+        self.txt_id.delete(0, "end")
         self.txt_id.config(state = "readonly")
-        self.txt_nome.delete(0, ttk.END)
-        self.txt_cpf.delete(0, ttk.END)
-        self.txt_senha.delete(0, ttk.END)
-        self.txt_cargo.delete(0, ttk.END)
+        self.txt_nome.delete(0, "end")
+        self.txt_cpf.delete(0, "end")
+        self.txt_senha.delete(0, "end")
+        self.txt_cargo.delete(0, "end")
         self.txt_data_entrada.entry.delete(0, "end")
         self.txt_nome.focus()
         
@@ -196,7 +197,7 @@ class Usuario_View:
 
             self.tbl_usuarios.insert(
                 "",
-                ttk.END,
+                "end",
                 values=(
                     usuario.id,
                     usuario.nome,
@@ -212,40 +213,3 @@ class Usuario_View:
 
     def iniciar(self):
         self.controller.get_all()
-        
-        
-
-#WDAWWAdAWDWAD
-
-#WDAWWAdAWDWAD
-
-#WDAWWAdAWDWAD
-
-
-
-
-#WDAWWAdAWDWAD
-
-#WDAWWAdAWDWAD
-
-#WDAWWAdAWDWAD
-
-
-
-
-#WDAWWAdAWDWAD
-
-#WDAWWAdAWDWAD
-
-#WDAWWAdAWDWAD
-
-
-
-#WDAWWAdAWDWAD
-
-#WDAWWAdAWDWAD
-
-#WDAWWAdAWDWAD
-
-
-
