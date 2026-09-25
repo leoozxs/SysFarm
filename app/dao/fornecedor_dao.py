@@ -123,6 +123,7 @@ class Fornecedor_DAO(DAO):
                     """
             cursor.execute(sql,(id,))
             conexao.commit()
+            return cursor.rowcount > 0
         except Exception:
             conexao.rollback()
             raise
