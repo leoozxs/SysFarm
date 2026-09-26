@@ -24,7 +24,7 @@ class Entrada_Controller:
             medicamento_idx, fornecedor_idx, numero_lote, validade_str, qtd_entrada_str, usuario_idx = self.view.ler_dados_entrada()
 
             if medicamento_idx < 0 or fornecedor_idx < 0 or usuario_idx < 0:
-                self.view.exibir_mensagem("Selecione medicamento, fornecedor e usuário.", False)
+                self.view.exibir_mensagem("Informe medicamento, fornecedor e usuário.", False)
                 return
 
             medicamento = self._medicamentos[medicamento_idx]
@@ -40,7 +40,7 @@ class Entrada_Controller:
             lote = self.lote_dao.save(lote)
 
             # 2. Registra a entrada
-            entrada = Entrada(None, lote, qtd_entrada, data_entrada)
+            entrada = Entrada(None, lote, qtd_entrada, data_entrada, usuario)
             self.entrada_dao.save(entrada)
 
             # 3. Cria a linha de estoque correspondente a esse lote

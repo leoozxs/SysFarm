@@ -20,8 +20,8 @@ class Lote_DAO(DAO):
             """
             cursor.execute(sql, (
                 lote.numero_lote,
-                lote.medicamento.id,
-                lote.fornecedor.id,
+                lote._medicamento.id,
+                lote._fornecedor.id,
                 lote.validade
             ))
             conexao.commit()

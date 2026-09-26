@@ -46,7 +46,7 @@ class Entrada_View:
 
         self.lbl_validade = ttk.Label(self.frm_dados, text="Validade do Lote")
         self.lbl_validade.grid(row=1, column=2, padx=10, pady=10, sticky="w")
-        self.txt_validade = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="light-outline")
+        self.txt_validade = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="dark")
         self.txt_validade.grid(row=1, column=3, padx=10, pady=10, sticky="w")
 
         self.lbl_qtd_entrada = ttk.Label(self.frm_dados, text="Quantidade de Entrada")
@@ -127,7 +127,7 @@ class Entrada_View:
         self.limpar_treeview()
         for e in entradas:
             self.tbl_entradas.insert("", "end", values=(
-                e.id, e.lote.numero_lote, e.lote.medicamento.nome, e.lote.fornecedor.nome,
+                e.id, e.lote.numero_lote, e.lote._medicamento.nome, e.lote._fornecedor.nome,
                 e.qtd_entrada, e.lote.validade, e.data_entrada
             ))
 
@@ -146,5 +146,6 @@ class Entrada_View:
         self.root.destroy()
 
     def iniciar(self):
+        self.controller.carregar_combos()
         self.controller.get_all()
 
