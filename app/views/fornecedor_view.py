@@ -13,7 +13,6 @@ class Fornecedor_View:
 
     def configurar_janela(self):
         self.root.title("Gestão de Fornecedores")
-        self.root.geometry("700x600")
         self.root.resizable(False, False)
         
     def _centralizar(self):
@@ -109,7 +108,7 @@ class Fornecedor_View:
 
     def ler_dados_fornecedor(self):
         nome = self.txt_nome.get()
-        cnpj = "".join(filter(str.isdigit, self.txt_cnpj.get()))
+        cnpj = self.txt_cnpj.get()
         return nome, cnpj
 
     def get_id_selecionado(self):
