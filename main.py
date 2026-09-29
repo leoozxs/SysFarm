@@ -83,7 +83,6 @@ class SysFarmApp:
     def _abrir_menu(self, usuario_logado):
         for widget in self._root.winfo_children():
             widget.destroy()
-        self._root.geometry("1060x490")
         Menu_View(self._root, controller=self)  # o próprio App vira o "controller" do Menu
 
     def _abrir_janela(self, atributo_janela, classe_view, controller):

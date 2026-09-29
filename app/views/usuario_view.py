@@ -57,7 +57,7 @@ class Usuario_View:
         
         self.lbl_senha = ttk.Label(self.frm_dados, text="Senha")
         self.lbl_senha.grid(row = 2, column = 0, padx=(10,5))
-        self.txt_senha = ttk.Entry(self.frm_dados, width=20)
+        self.txt_senha = ttk.Entry(self.frm_dados, width=20, show="*")
         self.txt_senha.grid(row=2, column=1, sticky="w", padx= 10, pady=10)
         
         
@@ -69,7 +69,7 @@ class Usuario_View:
 
         self.lbl_data_entrada = ttk.Label(self.frm_dados, text="Data de Entrada")
         self.lbl_data_entrada.grid(row = 2, column = 3, padx=(10,5), sticky="w")
-        self.txt_data_entrada = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="light-outline" )
+        self.txt_data_entrada = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="dark" )
         self.txt_data_entrada.grid(row=2, column=4, sticky="w", padx=10)
     
     
@@ -190,11 +190,9 @@ class Usuario_View:
         self.txt_nome.focus()
         
     def exibir_usuarios(self, usuarios):
-
         self.limpar_treeview()
-
         for usuario in usuarios:
-
+            senha_mascarada = "*" * len(usuario.senha)
             self.tbl_usuarios.insert(
                 "",
                 "end",
@@ -202,7 +200,7 @@ class Usuario_View:
                     usuario.id,
                     usuario.nome,
                     usuario.cpf,
-                    usuario.senha,
+                    senha_mascarada,
                     usuario.cargo,
                     usuario.data_entrada
                 )

@@ -6,6 +6,7 @@ class Entrada:
         self._lote = lote
         self._qtd_entrada = qtd_entrada
         self._data_entrada = data_entrada
+        self._usuario = usuario
         
     @property
     def id(self):
@@ -39,8 +40,8 @@ class Entrada:
         self._data_entrada = novo_entrada
 
     @property
-    def data_entrada(self):
-        return self._data_entrada
-    @data_entrada.setter
-    def data_entrada(self, novo_entrada):
-        self._data_entrada = novo_entrada
+    def usuario(self):
+        return self._usuario
+    @usuario.setter
+    def usuario(self, novo_usuario):
+        self._usuario = novo_usuario

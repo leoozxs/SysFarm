@@ -17,14 +17,14 @@ class Saida_View:
     
     def _centralizar(self):
         self.root.update_idletasks()
-        largura, altura = 635, 600
+        largura, altura = 635, 640
         x = (self.root.winfo_screenwidth() // 2) - (largura // 2)
         y = (self.root.winfo_screenheight() // 2) - (altura // 2)
         self.root.geometry(f"{largura}x{altura}+{x}+{y}")
 
     def criar_componentes(self):
         self.lbl_titulo = ttk.Label(self.root, text="Registrar Saída", font=("Cour6ier New", 20, "bold"))
-        self.lbl_titulo.grid(row=0, column=0, columnspan=4, pady=10)
+        self.lbl_titulo.grid(row=0, column=0, columnspan=4, pady=5)
 
         self.frm_dados = ttk.Labelframe(self.root, text="Dados da Saída", labelanchor="n")
         self.frm_dados.grid(row=1, column=0, columnspan=4, padx=10, pady=5, sticky="ew")
@@ -67,8 +67,11 @@ class Saida_View:
         self.btn_fechar = ttk.Button(self.frm_botoes, text="Fechar", width=15, bootstyle="secondary-outline")
         self.btn_fechar.grid(row=0, column=2, padx=5)
 
+        self.lbl_registrar_saida = ttk.Label(self.root, text="Saídas Anteriores", font=("Cour6ier New", 15, "bold"))
+        self.lbl_registrar_saida.grid(row=2, column=0, columnspan=4, pady=10)
+        
         self.tbl_saidas = ttk.Treeview(self.root, height=18, bootstyle="light")
-        self.tbl_saidas.grid(row=2, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
+        self.tbl_saidas.grid(row=3, column=0, columnspan=4, padx=10, pady=5, sticky="nsew")
 
     def configurar_treeview(self):
         self.tbl_saidas["columns"] = ("id", "lote", "medicamento", "qtd", "tipo", "usuario", "data")

@@ -100,6 +100,8 @@ class Estoque_DAO(DAO):
                     JOIN LOTE L ON E.LOTE_ID = L.ID
                     JOIN MEDICAMENTO M ON E.MEDICAMENTO_ID = M.ID
                     JOIN FORNECEDOR F ON E.FORNECEDOR_ID = F.ID
+                WHERE
+                    E.QTD_ATUAL > 0
             """
             cursor.execute(sql)
             registros = cursor.fetchall()

@@ -58,6 +58,11 @@ class Login_View:
 
     def configurar_eventos(self):
         self.btn_entrar.configure(command=self.controller.autenticar)
+        self.txt_cpf.bind("<Return>", self.on_enter)
+        self.txt_senha.bind("<Return>", self.on_enter)
+    
+    def on_enter(self, event=None):
+        self.controller.autenticar()
 
     def ler_credenciais(self):
         cpf = self.txt_cpf.get()
