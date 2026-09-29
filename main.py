@@ -80,7 +80,7 @@ class SysFarmApp:
         # --- Só a tela de Login abre primeiro; o resto começa fechado ---
         self._ctrl_login.view = Login_View(self._root, self._ctrl_login)
 
-    def _abrir_menu(self, usuario_logado):
+    def _abrir_menu(self):
         for widget in self._root.winfo_children():
             widget.destroy()
         Menu_View(self._root, controller=self)  # o próprio App vira o "controller" do Menu
