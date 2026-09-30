@@ -17,7 +17,7 @@ class Entrada_View:
 
     def _centralizar(self):
         self.root.update_idletasks()
-        largura, altura = 695, 600
+        largura, altura = 695, 630
         x = (self.root.winfo_screenwidth() // 2) - (largura // 2)
         y = (self.root.winfo_screenheight() // 2) - (altura // 2)
         self.root.geometry(f"{largura}x{altura}+{x}+{y}")
@@ -68,9 +68,12 @@ class Entrada_View:
         self.btn_salvar.grid(row=0, column=1, padx=5)
         self.btn_fechar = ttk.Button(self.frm_botoes, text="Fechar", width=15, bootstyle="secondary-outline")
         self.btn_fechar.grid(row=0, column=2, padx=5)
+        
+        self.lbl_registro_de_entradas = ttk.Label(self.root, text="Registro de entradas", font=("Courier New", 12, "bold"))
+        self.lbl_registro_de_entradas.grid(row=2, column=0, columnspan=4)
 
         self.tbl_entradas = ttk.Treeview(self.root, height=18, bootstyle="light")
-        self.tbl_entradas.grid(row=2, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
+        self.tbl_entradas.grid(row=3, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
 
     def configurar_treeview(self):
         self.tbl_entradas["columns"] = ("id", "lote", "medicamento", "fornecedor", "qtd", "validade", "data")
