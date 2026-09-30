@@ -151,4 +151,3 @@ class Entrada_View:
     def iniciar(self):
         self.controller.carregar_combos()
         self.controller.get_all()
-
