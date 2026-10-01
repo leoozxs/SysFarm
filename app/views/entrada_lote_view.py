@@ -1,5 +1,6 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
+from app.core.idioma import Idioma
 
 class Entrada_View:
     def __init__(self, root, controller):
@@ -12,7 +13,7 @@ class Entrada_View:
         self._centralizar()
 
     def configurar_janela(self):
-        self.root.title("Registrar Entrada")
+        self.root.title(Idioma.t("entrada.janela_titulo"))
         self.root.resizable(False, False)
 
     def _centralizar(self):
@@ -23,38 +24,38 @@ class Entrada_View:
         self.root.geometry(f"{largura}x{altura}+{x}+{y}")
 
     def criar_componentes(self):
-        self.lbl_titulo = ttk.Label(self.root, text="Registrar Entrada", font=("Courier New", 20, "bold"))
+        self.lbl_titulo = ttk.Label(self.root, text=Idioma.t("entrada.titulo"), font=("Courier New", 20, "bold"))
         self.lbl_titulo.grid(row=0, column=0, columnspan=4, pady=10)
 
-        self.frm_dados = ttk.Labelframe(self.root, text="Dados da Entrada", labelanchor="n")
+        self.frm_dados = ttk.Labelframe(self.root, text=Idioma.t("entrada.dados_frame"), labelanchor="n")
         self.frm_dados.grid(row=1, column=0, columnspan=4, padx=10, pady=5, sticky="ew")
 
-        self.lbl_medicamento = ttk.Label(self.frm_dados, text="Medicamento")
+        self.lbl_medicamento = ttk.Label(self.frm_dados, text=Idioma.t("entrada.medicamento"))
         self.lbl_medicamento.grid(row=0, column=0, padx=10, pady=10, sticky="w")
         self.cmb_medicamento = ttk.Combobox(self.frm_dados, width=25, state="readonly")
         self.cmb_medicamento.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
-        self.lbl_fornecedor = ttk.Label(self.frm_dados, text="Fornecedor")
+        self.lbl_fornecedor = ttk.Label(self.frm_dados, text=Idioma.t("entrada.fornecedor"))
         self.lbl_fornecedor.grid(row=0, column=2, padx=10, pady=10, sticky="w")
         self.cmb_fornecedor = ttk.Combobox(self.frm_dados, width=25, state="readonly")
         self.cmb_fornecedor.grid(row=0, column=3, padx=10, pady=10, sticky="w")
 
-        self.lbl_numero_lote = ttk.Label(self.frm_dados, text="Número do Lote")
+        self.lbl_numero_lote = ttk.Label(self.frm_dados, text=Idioma.t("entrada.numero_lote"))
         self.lbl_numero_lote.grid(row=1, column=0, padx=10, pady=10, sticky="w")
         self.txt_numero_lote = ttk.Entry(self.frm_dados, width=20)
         self.txt_numero_lote.grid(row=1, column=1, padx=10, pady=10, sticky="w")
 
-        self.lbl_validade = ttk.Label(self.frm_dados, text="Validade do Lote")
+        self.lbl_validade = ttk.Label(self.frm_dados, text=Idioma.t("entrada.validade"))
         self.lbl_validade.grid(row=1, column=2, padx=10, pady=10, sticky="w")
         self.txt_validade = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="dark")
         self.txt_validade.grid(row=1, column=3, padx=10, pady=10, sticky="w")
 
-        self.lbl_qtd_entrada = ttk.Label(self.frm_dados, text="Quantidade de Entrada")
+        self.lbl_qtd_entrada = ttk.Label(self.frm_dados, text=Idioma.t("entrada.qtd"))
         self.lbl_qtd_entrada.grid(row=2, column=0, padx=10, pady=10, sticky="w")
         self.txt_qtd_entrada = ttk.Entry(self.frm_dados, width=10)
         self.txt_qtd_entrada.grid(row=2, column=1, padx=10, pady=10, sticky="w")
 
-        self.lbl_usuario = ttk.Label(self.frm_dados, text="Usuário Responsável")
+        self.lbl_usuario = ttk.Label(self.frm_dados, text=Idioma.t("entrada.usuario_responsavel"))
         self.lbl_usuario.grid(row=2, column=2, padx=10, pady=10, sticky="w")
         self.cmb_usuario = ttk.Combobox(self.frm_dados, width=25, state="readonly")
         self.cmb_usuario.grid(row=2, column=3, padx=10, pady=10, sticky="w")
@@ -62,21 +63,21 @@ class Entrada_View:
         self.frm_botoes = ttk.Frame(self.frm_dados)
         self.frm_botoes.grid(row=3, column=0, columnspan=4, pady=10)
 
-        self.btn_novo = ttk.Button(self.frm_botoes, text="Novo", width=15, bootstyle="primary-outline")
+        self.btn_novo = ttk.Button(self.frm_botoes, text=Idioma.t("comum.novo"), width=15, bootstyle="primary-outline")
         self.btn_novo.grid(row=0, column=0, padx=5)
-        self.btn_salvar = ttk.Button(self.frm_botoes, text="Salvar", width=15, bootstyle="success-outline")
+        self.btn_salvar = ttk.Button(self.frm_botoes, text=Idioma.t("comum.salvar"), width=15, bootstyle="success-outline")
         self.btn_salvar.grid(row=0, column=1, padx=5)
-        self.btn_fechar = ttk.Button(self.frm_botoes, text="Fechar", width=15, bootstyle="secondary-outline")
+        self.btn_fechar = ttk.Button(self.frm_botoes, text=Idioma.t("comum.fechar"), width=15, bootstyle="secondary-outline")
         self.btn_fechar.grid(row=0, column=2, padx=5)
         
-        self.lbl_registro_de_entradas = ttk.Label(self.root, text="Registro de entradas", font=("Courier New", 12, "bold"))
+        self.lbl_registro_de_entradas = ttk.Label(self.root, text=Idioma.t("entrada.registro_entradas"), font=("Courier New", 12, "bold"))
         self.lbl_registro_de_entradas.grid(row=2, column=0, columnspan=4)
 
         self.tbl_entradas = ttk.Treeview(self.root, height=18, bootstyle="light")
         self.tbl_entradas.grid(row=3, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
 
     def configurar_treeview(self):
-        self.tbl_entradas["columns"] = ("id", "lote", "medicamento", "fornecedor", "qtd", "validade", "data")
+        self.tbl_entradas["columns"] = ("id", "lote", "medicamento", "fornecedor", "qtd", "validade", "data de entrada")
         self.tbl_entradas.column("#0", width=0, stretch=False)
         self.tbl_entradas.column("id", width=40, anchor="center", stretch=False)
         self.tbl_entradas.column("lote", width=90, anchor="center", stretch=False)
@@ -84,16 +85,16 @@ class Entrada_View:
         self.tbl_entradas.column("fornecedor", width=140, anchor="w", stretch=False)
         self.tbl_entradas.column("qtd", width=60, anchor="center", stretch=False)
         self.tbl_entradas.column("validade", width=90, anchor="center", stretch=False)
-        self.tbl_entradas.column("data", width=110, anchor="center", stretch=False)
+        self.tbl_entradas.column("data de entrada", width=110, anchor="center", stretch=False)
         
         
-        self.tbl_entradas.heading("id", text="ID")
-        self.tbl_entradas.heading("lote", text="LOTE")
-        self.tbl_entradas.heading("medicamento", text="MEDICAMENTO")
-        self.tbl_entradas.heading("fornecedor", text="FORNECEDOR")
-        self.tbl_entradas.heading("qtd", text="QTD")
-        self.tbl_entradas.heading("validade", text="VALIDADE")
-        self.tbl_entradas.heading("data", text="DATA")
+        self.tbl_entradas.heading("id", text=Idioma.t("comum.id"))
+        self.tbl_entradas.heading("lote", text=Idioma.t("entrada.lote"))
+        self.tbl_entradas.heading("medicamento", text=Idioma.t("entrada.medicamento"))
+        self.tbl_entradas.heading("fornecedor", text=Idioma.t("entrada.fornecedor"))
+        self.tbl_entradas.heading("qtd", text=Idioma.t("entrada.qtd_entrada"))
+        self.tbl_entradas.heading("validade", text=Idioma.t("entrada.validade"))
+        self.tbl_entradas.heading("data de entrada", text=Idioma.t("entrada.data_entrada"))
 
     def limpar_campos(self):
         self.cmb_medicamento.set("")

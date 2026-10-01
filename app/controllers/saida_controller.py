@@ -1,5 +1,6 @@
 from datetime import date
 from app.models.saida import Saida
+from app.core.idioma import Idioma
 
 class Saida_Controller:
     def __init__(self, view, lote_dao, saida_dao, estoque_dao, usuario_dao):
@@ -25,10 +26,10 @@ class Saida_Controller:
             lote_idx, qtd_saida_str, tipo_saida, usuario_idx = self.view.ler_dados_saida()
 
             if lote_idx < 0 or usuario_idx < 0:
-                self.view.exibir_mensagem("Selecione o lote e o usuário responsável.", False)
+                self.view.exibir_mensagem(Idioma.t("saida.erro_selecao"), False)
                 return
             if not tipo_saida:
-                self.view.exibir_mensagem("Selecione o tipo de saída.", False)
+                self.view.exibir_mensagem(Idioma.t("saida.erro_tipo_saida"), False)
                 return
 
             lote = self._lotes[lote_idx]
@@ -36,16 +37,16 @@ class Saida_Controller:
             qtd_saida = int(qtd_saida_str)
 
             if qtd_saida <= 0:
-                self.view.exibir_mensagem("Quantidade de saída deve ser maior que zero.", False)
+                self.view.exibir_mensagem(Idioma.t("saida.erro_qtd_zero"), False)
                 return
 
             estoque_atual = self.estoque_dao.get_by_lote_id(lote.id)
             if estoque_atual is None:
-                self.view.exibir_mensagem("Não há estoque registrado para esse lote.", False)
+                self.view.exibir_mensagem(Idioma.t("saida.erro_sem_estoque"), False)
                 return
 
             if qtd_saida > estoque_atual.qtd_atual:
-                self.view.exibir_mensagem("Quantidade de saída maior que a disponível no lote.", False)
+                self.view.exibir_mensagem(Idioma.t("saida.erro_qtd_maior"), False)
                 return
 
             # 1. Registra a saída
@@ -59,7 +60,7 @@ class Saida_Controller:
 
             self.get_all()
             self.view.limpar_campos()
-            self.view.exibir_mensagem("Saída registrada com sucesso!")
+            self.view.exibir_mensagem(Idioma.t("saida.cadastrada_sucesso"))
         except ValueError as e:
             self.view.exibir_mensagem(f"Erro: {str(e)}", False)
 

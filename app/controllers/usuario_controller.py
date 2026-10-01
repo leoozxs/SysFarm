@@ -1,5 +1,6 @@
 from datetime import datetime
 from app.models.usuario import Usuario
+from app.core.idioma import Idioma
 
 class Usuario_Controller:
     def __init__(self, view, dao):
@@ -18,13 +19,13 @@ class Usuario_Controller:
             usuario = Usuario(None, nome, cpf, senha, cargo, data_entrada)
             self.dao.save(usuario)
             self.get_all()
-            self.view.exibir_mensagem("Usuário cadastrado com sucesso!")
+            self.view.exibir_mensagem(Idioma.t("usuario.cadastrado_sucesso"))
         except ValueError as e:
-            self.view.exibir_mensagem(f"Erro: {str(e)}", False)
+            self.view.exibir_mensagem(f"{Idioma.t('comum.erro_prefixo')}{str(e)}", False)
 
     def update(self):
         if self.usuario_selecionado is None:
-            self.view.exibir_mensagem("Selecione um usuario na lista", False)
+            self.view.exibir_mensagem(Idioma.t("usuario.selecione_da_lista"), False)
             return
         try:
             nome, cpf, senha, cargo, data_entrada = self.view.ler_dados_usuario()
@@ -32,13 +33,13 @@ class Usuario_Controller:
             self.usuario_selecionado.atualizar_dados(nome, cpf, senha, cargo, data_entrada)
             self.dao.update(self.usuario_selecionado)
             self.get_all()
-            self.view.exibir_mensagem("Usuário atualizado com sucesso!")
+            self.view.exibir_mensagem(Idioma.t("usuario.atualizado_sucesso"))
         except ValueError as e:
-            self.view.exibir_mensagem(f"Erro: {str(e)}", False)
+            self.view.exibir_mensagem(f"{Idioma.t('comum.erro_prefixo')}{str(e)}", False)
 
     def delete(self):
         if self.usuario_selecionado is None:
-            self.view.exibir_mensagem("Selecione um usuario na lista.", False)
+            self.view.exibir_mensagem(Idioma.t("usuario.selecione_da_lista"), False)
             return
         if not self.view.confirmar_exclusao():
             return
@@ -48,11 +49,11 @@ class Usuario_Controller:
                 self.usuario_selecionado = None
                 self.view.limpar_campos()
                 self.get_all()
-                self.view.exibir_mensagem("Usuario excluído com sucesso!")
+                self.view.exibir_mensagem(Idioma.t("usuario.excluido_sucesso"))
             else:
-                self.view.exibir_mensagem("Usuario não encontrado.", False)
+                self.view.exibir_mensagem(Idioma.t("usuario.nao_encontrado"), False)
         except Exception as e:
-            self.view.exibir_mensagem(f"Problemas ao excluir usuario. Erro: {str(e)}", False)
+            self.view.exibir_mensagem(f"{Idioma.t('usuario.erro_ao_excluir')}. {Idioma.t('comum.erro_prefixo')} {str(e)}", False)
 
     def get_all(self):
         usuarios = self.dao.get_all()

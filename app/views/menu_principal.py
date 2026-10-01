@@ -1,6 +1,7 @@
 # app/views/menu_view.py
 import customtkinter as ctk
 from PIL import Image
+from app.core.idioma import Idioma
 
 class Menu_View:
     def __init__(self, root, controller):
@@ -12,7 +13,7 @@ class Menu_View:
         self._centralizar()
 
     def configurar_janela(self):
-        self.root.title("SysFarm - Menu Principal")
+        self.root.title(Idioma.t("menu_principal.janela_titulo"))
         self.root.resizable(True,True)
         self.root.minsize(1650, 870)
         
@@ -59,28 +60,28 @@ class Menu_View:
 
         # Linha de cima
         self.card_medicamento = self.criar_card(
-            "MEDICAMENTO", self.icone_medicamento, self.controller.abrir_medicamentos,
+            Idioma.t("menu.medicamento"), self.icone_medicamento, self.controller.abrir_medicamentos,
             relx=0.15, rely=0.32, relwidth=0.16, relheight=0.40
         )
         self.card_fornecedor = self.criar_card(
-            "FORNECEDOR", self.icone_fornecedor, self.controller.abrir_fornecedores,
+            Idioma.t("menu.fornecedor"), self.icone_fornecedor, self.controller.abrir_fornecedores,
             relx=0.85, rely=0.32, relwidth=0.16, relheight=0.40
         )
 
         # Linha de baixo
         self.card_estoque = self.criar_card(
-            "ESTOQUE", self.icone_estoque, self.controller.abrir_estoque,
+            Idioma.t("menu.estoque"), self.icone_estoque, self.controller.abrir_estoque,
             relx=0.26, rely=0.78, relwidth=0.15, relheight=0.34
         )
         self.card_entrada = self.criar_card(
-            "ENTRADA", self.icone_entrada, self.controller.abrir_entrada,
+            Idioma.t("menu.entrada"), self.icone_entrada, self.controller.abrir_entrada,
             relx=0.60, rely=0.78, relwidth=0.15, relheight=0.34
         )
         self.card_saida = self.criar_card(
-            "SAÍDA", self.icone_saida, self.controller.abrir_saida,
+            Idioma.t("menu.saida"), self.icone_saida, self.controller.abrir_saida,
             relx=0.77, rely=0.78, relwidth=0.15, relheight=0.34
         )
         self.card_usuarios = self.criar_card(
-            "USUÁRIOS", self.icone_usuarios, self.controller.abrir_usuarios,
+            Idioma.t("menu.usuarios"), self.icone_usuarios, self.controller.abrir_usuarios,
             relx=0.43, rely=0.78, relwidth=0.15, relheight=0.34
         )

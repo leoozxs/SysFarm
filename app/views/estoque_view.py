@@ -1,4 +1,5 @@
 import ttkbootstrap as ttk
+from app.core.idioma import Idioma
 
 class Estoque_View:
     def __init__(self, root, controller):
@@ -11,7 +12,7 @@ class Estoque_View:
         self._centralizar()
 
     def configurar_janela(self):
-        self.root.title("Visão Geral do Estoque")
+        self.root.title(Idioma.t("estoque.janela_titulo"))
         self.root.resizable(False, False)
 
     def _centralizar(self):
@@ -22,22 +23,22 @@ class Estoque_View:
         self.root.geometry(f"{largura}x{altura}+{x}+{y}")
 
     def criar_componentes(self):
-        self.lbl_titulo = ttk.Label(self.root, text="Visão Geral do Estoque", font=("Courier New", 20, "bold"))
+        self.lbl_titulo = ttk.Label(self.root, text=Idioma.t("estoque.titulo"), font=("Courier New", 20, "bold"))
         self.lbl_titulo.grid(row=0, column=0, columnspan=4, pady=10)
         
         self.tbl_estoque = ttk.Treeview(self.root, height=20, bootstyle="light")
         self.tbl_estoque.grid(row=1, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
 
-        self.btn_atualizar = ttk.Button(self.root, text="Atualizar", width=15, bootstyle="info-outline")
+        self.btn_atualizar = ttk.Button(self.root, text=Idioma.t("comum.atualizar"), width=15, bootstyle="info-outline")
         self.btn_atualizar.grid(row=2, column=0, padx=5, pady=5)
 
-        self.btn_entrada = ttk.Button(self.root, text="Registrar Entrada", width=18, bootstyle="success-outline")
+        self.btn_entrada = ttk.Button(self.root, text=Idioma.t("estoque.registrar_entrada"), width=18, bootstyle="success-outline")
         self.btn_entrada.grid(row=2, column=1, padx=5, pady=5)
 
-        self.btn_saida = ttk.Button(self.root, text="Registrar Saída", width=18, bootstyle="warning-outline")
+        self.btn_saida = ttk.Button(self.root, text=Idioma.t("estoque.registrar_saida"), width=18, bootstyle="warning-outline")
         self.btn_saida.grid(row=2, column=2, padx=5, pady=5)
 
-        self.btn_fechar = ttk.Button(self.root, text="Fechar", width=15, bootstyle="secondary-outline")
+        self.btn_fechar = ttk.Button(self.root, text=Idioma.t("comum.fechar"), width=15, bootstyle="secondary-outline")
         self.btn_fechar.grid(row=2, column=3, padx=5, pady=5)
         
 
@@ -54,12 +55,13 @@ class Estoque_View:
         
         
         
-        self.tbl_estoque.heading("medicamento", text="MEDICAMENTO")
-        self.tbl_estoque.heading("lote", text="LOTE")
-        self.tbl_estoque.heading("fornecedor", text="FORNECEDOR")
-        self.tbl_estoque.heading("validade", text="VALIDADE")
-        self.tbl_estoque.heading("qtd", text="QTD")
-        self.tbl_estoque.heading("status", text="STATUS")
+        
+        self.tbl_estoque.heading("medicamento", text=Idioma.t("estoque.medicamento"))
+        self.tbl_estoque.heading("lote", text=Idioma.t("estoque.lote"))
+        self.tbl_estoque.heading("fornecedor", text=Idioma.t("estoque.fornecedor"))
+        self.tbl_estoque.heading("validade", text=Idioma.t("estoque.validade"))
+        self.tbl_estoque.heading("qtd", text=Idioma.t("estoque.qtd"))
+        self.tbl_estoque.heading("status", text=Idioma.t("estoque.status"))
 
     def limpar_treeview(self):
         for item in self.tbl_estoque.get_children():

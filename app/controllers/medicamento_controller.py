@@ -1,4 +1,5 @@
 from app.models.medicamento import Medicamento
+from app.core.idioma import Idioma
 
 class Medicamento_Controller:
     def __init__(self, view, dao):
@@ -16,26 +17,26 @@ class Medicamento_Controller:
             medicamento = Medicamento(None, nome, tipo, categoria, dosagem)
             self.dao.save(medicamento)
             self.get_all()
-            self.view.exibir_mensagem("Medicamento cadastrado com sucesso")
+            self.view.exibir_mensagem(Idioma.t("medicamento.cadastrado_sucesso"))
         except ValueError as e:
-            self.view.exibir_mensagem(f"Erro: {str(e)}", False)
+            self.view.exibir_mensagem(f"{Idioma.t('comum.erro_prefixo')}{str(e)}", False)
 
     def update(self):
         if self.medicamento_selecionado is None:
-            self.view.exibir_mensagem("Selecione um medicamento na lista", False)
+            self.view.exibir_mensagem(Idioma.t("medicamento.selecione_da_lista"), False)
             return
         try:
             nome, tipo, categoria, dosagem = self.view.ler_dados_medicamento()
             self.medicamento_selecionado.atualizar_dados(nome, tipo, categoria, dosagem)
             self.dao.update(self.medicamento_selecionado)
             self.get_all()
-            self.view.exibir_mensagem("Medicamento atualizado com sucesso!")
+            self.view.exibir_mensagem(Idioma.t("medicamento.atualizado_sucesso"))
         except ValueError as e:
             self.view.exibir_mensagem(f"Erro: {str(e)}", False)
 
     def delete(self):
         if self.medicamento_selecionado is None:
-            self.view.exibir_mensagem("Selecione um medicamento na lista.", False)
+            self.view.exibir_mensagem(Idioma.t("medicamento.selecione_da_lista"), False)
             return
         if not self.view.confirmar_exclusao():
             return
@@ -45,11 +46,11 @@ class Medicamento_Controller:
                 self.medicamento_selecionado = None
                 self.view.limpar_campos()
                 self.get_all()
-                self.view.exibir_mensagem("Medicamento excluído com sucesso!")
+                self.view.exibir_mensagem(Idioma.t("medicamento.excluido_sucesso"))
             else:
-                self.view.exibir_mensagem("Medicamento não encontrado.", False)
+                self.view.exibir_mensagem(Idioma.t("medicamento.nao_encontrado"), False)
         except Exception as e:
-            self.view.exibir_mensagem(f"Problemas ao excluir medicamento. Erro: {str(e)}", False)
+            self.view.exibir_mensagem(f"{Idioma.t('medicamento.erro_ao_excluir')}. {Idioma.t('comum.erro_prefixo')} {str(e)}", False)
 
     def get_all(self):
         medicamentos = self.dao.get_all()
