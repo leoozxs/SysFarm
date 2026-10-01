@@ -1,5 +1,6 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
+from app.core.idioma import Idioma
 
 class Fornecedor_View:
     def __init__(self, root, controller):
@@ -12,7 +13,7 @@ class Fornecedor_View:
         self._centralizar()
 
     def configurar_janela(self):
-        self.root.title("Gestão de Fornecedores")
+        self.root.title(Idioma.t("fornecedor.janela_titulo"))
         self.root.resizable(False, False)
         
     def _centralizar(self):
@@ -23,23 +24,23 @@ class Fornecedor_View:
         self.root.geometry(f"{largura}x{altura}+{x}+{y}")
 
     def criar_componentes(self):
-        self.lbl_titulo = ttk.Label(self.root, text="Gestão de Fornecedores", font=("Courier New", 20, "bold"))
+        self.lbl_titulo = ttk.Label(self.root, text=Idioma.t("fornecedor.titulo"), font=("Courier New", 20, "bold"))
         self.lbl_titulo.grid(row=0, column=0, columnspan=4, pady=10)
 
-        self.frm_dados = ttk.Labelframe(self.root, text="Dados do Fornecedor", labelanchor="n")
+        self.frm_dados = ttk.Labelframe(self.root, text=Idioma.t("fornecedor.dados_frame"), labelanchor="n")
         self.frm_dados.grid(row=1, column=0, columnspan=4, padx=10, pady=5, sticky="ew")
 
-        self.lbl_id = ttk.Label(self.frm_dados, text="ID")
+        self.lbl_id = ttk.Label(self.frm_dados, text=Idioma.t("comum.id"))
         self.lbl_id.grid(row=0, column=0, padx=10, pady=10, sticky="w")
         self.txt_id = ttk.Entry(self.frm_dados, width=5, state="readonly")
         self.txt_id.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
-        self.lbl_nome = ttk.Label(self.frm_dados, text="Nome")
+        self.lbl_nome = ttk.Label(self.frm_dados, text=Idioma.t("fornecedor.nome"))
         self.lbl_nome.grid(row=0, column=2, padx=10, pady=10, sticky="w")
         self.txt_nome = ttk.Entry(self.frm_dados, width=28)
         self.txt_nome.grid(row=0, column=3, padx=10, pady=10, sticky="w")
 
-        self.lbl_cnpj = ttk.Label(self.frm_dados, text="CNPJ")
+        self.lbl_cnpj = ttk.Label(self.frm_dados, text=Idioma.t("fornecedor.cnpj"))
         self.lbl_cnpj.grid(row=1, column=0, padx=10, pady=10, sticky="w")
         self.txt_cnpj = ttk.Entry(self.frm_dados, width=18)
         self.txt_cnpj.grid(row=1, column=1, padx=10, pady=10, sticky="w")
@@ -47,15 +48,15 @@ class Fornecedor_View:
         self.frm_botoes = ttk.Frame(self.frm_dados)
         self.frm_botoes.grid(row=2, column=0, columnspan=4, pady=10)
 
-        self.btn_novo = ttk.Button(self.frm_botoes, text="Novo", width=15, bootstyle="primary-outline")
+        self.btn_novo = ttk.Button(self.frm_botoes, text=Idioma.t("comum.novo"), width=15, bootstyle="primary-outline")
         self.btn_novo.grid(row=0, column=0, padx=5)
-        self.btn_salvar = ttk.Button(self.frm_botoes, text="Salvar", width=15, bootstyle="success-outline")
+        self.btn_salvar = ttk.Button(self.frm_botoes, text=Idioma.t("comum.salvar"), width=15, bootstyle="success-outline")
         self.btn_salvar.grid(row=0, column=1, padx=5)
-        self.btn_alterar = ttk.Button(self.frm_botoes, text="Alterar", width=15, bootstyle="warning-outline")
+        self.btn_alterar = ttk.Button(self.frm_botoes, text=Idioma.t("comum.alterar"), width=15, bootstyle="warning-outline")
         self.btn_alterar.grid(row=0, column=2, padx=5)
-        self.btn_excluir = ttk.Button(self.frm_botoes, text="Excluir", width=15, bootstyle="danger-outline")
+        self.btn_excluir = ttk.Button(self.frm_botoes, text=Idioma.t("comum.excluir"), width=15, bootstyle="danger-outline")
         self.btn_excluir.grid(row=0, column=3, padx=5)
-        self.btn_fechar = ttk.Button(self.frm_botoes, text="Fechar", width=15, bootstyle="secondary-outline")
+        self.btn_fechar = ttk.Button(self.frm_botoes, text=Idioma.t("comum.fechar"), width=15, bootstyle="secondary-outline")
         self.btn_fechar.grid(row=0, column=4, padx=5)
 
         self.tbl_fornecedores = ttk.Treeview(self.root, height=20, bootstyle="light")
@@ -68,9 +69,9 @@ class Fornecedor_View:
         self.tbl_fornecedores.column("nome", width=300, anchor="w", stretch=False)
         self.tbl_fornecedores.column("cnpj", width=200, anchor="center", stretch=False)
         
-        self.tbl_fornecedores.heading("id", text="ID")
-        self.tbl_fornecedores.heading("nome", text="NOME")
-        self.tbl_fornecedores.heading("cnpj", text="CNPJ")
+        self.tbl_fornecedores.heading("id", text=Idioma.t("comum.id"))
+        self.tbl_fornecedores.heading("nome", text=Idioma.t("fornecedor.nome"))
+        self.tbl_fornecedores.heading("cnpj", text=Idioma.t("fornecedor.cnpj"))
         
         self.txt_cnpj.bind("<KeyRelease>", self.formatar_cnpj)
 
@@ -125,7 +126,7 @@ class Fornecedor_View:
             self.tbl_fornecedores.insert("", "end", values=(f.id, f.nome, f.cnpj))
 
     def confirmar_exclusao(self):
-        resposta = Messagebox.yesno( "Deseja realmente excluir este fornecedor?", "Confirmação", parent=self.root)
+        resposta = Messagebox.yesno( Idioma.t("fornecedor.confirma_exclusao"), Idioma.t("comum.confirmacao"), parent=self.root)
         return resposta == "Yes"
     
     def exibir_mensagem(self, mensagem, sucesso=True):

@@ -1,4 +1,5 @@
 from app.models.fornecedor import Fornecedor
+from app.core.idioma import Idioma
 
 class Fornecedor_Controller:
     def __init__(self, view, dao):
@@ -16,13 +17,13 @@ class Fornecedor_Controller:
             fornecedor = Fornecedor(None, nome, cnpj)
             self.dao.save(fornecedor)
             self.get_all()
-            self.view.exibir_mensagem("Fornecedor cadastrado com sucesso!")
+            self.view.exibir_mensagem(Idioma.t("fornecedor_cadastrado_sucesso"))
         except ValueError as e:
             self.view.exibir_mensagem(f"Erro: {str(e)}", False)
 
     def update(self):
         if self.fornecedor_selecionado is None:
-            self.view.exibir_mensagem("Selecione um fornecedor na lista", False)
+            self.view.exibir_mensagem(Idioma.t("fornecedor.selecione_da_lista"), False)
             return
         try:
             nome, cnpj = self.view.ler_dados_fornecedor()
@@ -30,13 +31,13 @@ class Fornecedor_Controller:
             self.fornecedor_selecionado.cnpj = cnpj
             self.dao.update(self.fornecedor_selecionado)
             self.get_all()
-            self.view.exibir_mensagem("Fornecedor atualizado com sucesso!")
+            self.view.exibir_mensagem(Idioma.t("fornecedor_atualizado_sucesso"))
         except ValueError as e:
             self.view.exibir_mensagem(f"Erro: {str(e)}", False)
 
     def delete(self):
         if self.fornecedor_selecionado is None:
-            self.view.exibir_mensagem("Selecione um fornecedor na lista.", False)
+            self.view.exibir_mensagem(Idioma.t("selecione_fornecedor"), False)
             return
         if not self.view.confirmar_exclusao():
             return
@@ -46,11 +47,11 @@ class Fornecedor_Controller:
                 self.fornecedor_selecionado = None
                 self.view.limpar_campos()
                 self.get_all()
-                self.view.exibir_mensagem("Fornecedor excluído com sucesso!")
+                self.view.exibir_mensagem(Idioma.t("fornecedor_excluido_sucesso"))
             else:
-                self.view.exibir_mensagem("Fornecedor não encontrado.", False)
+                self.view.exibir_mensagem(Idioma.t("fornecedor_nao_encontrado"), False)
         except Exception as e:
-            self.view.exibir_mensagem(f"Problemas ao excluir fornecedor. Erro: {str(e)}", False)
+            self.view.exibir_mensagem(f"{Idioma.t('erro_excluir_fornecedor')}. {Idioma.t('comum.erro_prefixo')} {str(e)}", False)
 
     def get_all(self):
         fornecedores = self.dao.get_all()

@@ -2,6 +2,7 @@ from datetime import datetime, date
 from app.models.entrada import Entrada
 from app.models.lote import Lote
 from app.models.estoque import Estoque
+from app.core.idioma import Idioma
 
 class Entrada_Controller:
     def __init__(self, view, lote_dao, entrada_dao, estoque_dao, medicamento_dao, fornecedor_dao, usuario_dao):
@@ -24,7 +25,7 @@ class Entrada_Controller:
             medicamento_idx, fornecedor_idx, numero_lote, validade_str, qtd_entrada_str, usuario_idx = self.view.ler_dados_entrada()
 
             if medicamento_idx < 0 or fornecedor_idx < 0 or usuario_idx < 0:
-                self.view.exibir_mensagem("Informe medicamento, fornecedor e usuário.", False)
+                self.view.exibir_mensagem(Idioma.t("entrada.ausencia_campos"), False)
                 return
 
             medicamento = self._medicamentos[medicamento_idx]
@@ -50,17 +51,17 @@ class Entrada_Controller:
 
             self.get_all()
             self.view.limpar_campos()
-            self.view.exibir_mensagem("Entrada registrada com sucesso!")
+            self.view.exibir_mensagem(Idioma.t("entrada.cadastrado_sucesso"))
         except ValueError as e:
             self.view.exibir_mensagem(f"Erro: {str(e)}", False)
 
     def calcular_status(self, qtd_atual):
         if qtd_atual == 0:
-            return "Esgotado"
+            return Idioma.t("entrada.status_esgotado")
         elif qtd_atual < 20:
-            return "Baixo"
+            return Idioma.t("entrada.status_baixo")
         else:
-            return "Disponível"
+            return Idioma.t("entrada.status_disponivel")
 
     def get_all(self):
         entradas = self.entrada_dao.get_all()

@@ -1,5 +1,6 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
+from app.core.idioma import Idioma
 
 class Medicamento_View:
     def __init__(self, root, controller=None):
@@ -12,7 +13,7 @@ class Medicamento_View:
         self._centralizar()
 
     def configurar_janela(self):
-        self.root.title("Gestão de Medicamentos")
+        self.root.title(Idioma.t("medicamento.janela_titulo"))
         self.root.geometry("700x600")
         self.root.resizable(False, False)
 
@@ -24,23 +25,23 @@ class Medicamento_View:
         self.root.geometry(f"{largura}x{altura}+{x}+{y}")
 
     def criar_componentes(self):
-        self.lbl_titulo = ttk.Label(self.root, text="Gestão de Medicamentos", font=("Cour6ier New", 20, "bold"))
+        self.lbl_titulo = ttk.Label(self.root, text=Idioma.t("medicamento.titulo"), font=("Courier New", 20, "bold"))
         self.lbl_titulo.grid(row=0, column=0, columnspan=4, pady=10)
 
-        self.frm_dados = ttk.Labelframe(self.root, text="Dados do Medicamento", labelanchor="n")
+        self.frm_dados = ttk.Labelframe(self.root, text=Idioma.t("medicamento_frame.dados"), labelanchor="n")
         self.frm_dados.grid(row=1, column=0, columnspan=4, padx=10, pady=5, sticky="ew")
 
-        self.lbl_id = ttk.Label(self.frm_dados, text="ID")
+        self.lbl_id = ttk.Label(self.frm_dados, text=Idioma.t("comum.id"))
         self.lbl_id.grid(row=0, column=0, padx=10, pady=10, sticky="w")
         self.txt_id = ttk.Entry(self.frm_dados, width=5, state="readonly")
         self.txt_id.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
-        self.lbl_nome = ttk.Label(self.frm_dados, text="Nome")
+        self.lbl_nome = ttk.Label(self.frm_dados, text=Idioma.t("medicamento.nome"))
         self.lbl_nome.grid(row=0, column=2, padx=10, pady=10, sticky="w")
         self.txt_nome = ttk.Entry(self.frm_dados, width=28)
         self.txt_nome.grid(row=0, column=3, padx=10, pady=10, sticky="w")
 
-        self.lbl_tipo = ttk.Label(self.frm_dados, text="Tipo")
+        self.lbl_tipo = ttk.Label(self.frm_dados, text=Idioma.t("medicamento.tipo"))
         self.lbl_tipo.grid(row=1, column=0, padx=10, pady=10, sticky="w")
         self.cmb_tipo = ttk.Combobox(self.frm_dados, width=20, state="readonly",
             values=['Comprimido',
@@ -75,7 +76,7 @@ class Medicamento_View:
                     'Outros'])
         self.cmb_tipo.grid(row=1, column=1, padx=10, pady=10, sticky="w")
 
-        self.lbl_categoria = ttk.Label(self.frm_dados, text="Categoria")
+        self.lbl_categoria = ttk.Label(self.frm_dados, text=Idioma.t("medicamento.categoria"))
         self.lbl_categoria.grid(row=1, column=2, padx=10, pady=10, sticky="w")
         self.cmb_categoria = ttk.Combobox(self.frm_dados, width=20, state="readonly",
             values=['Analgésico',
@@ -104,7 +105,7 @@ class Medicamento_View:
                     'Outros'])
         self.cmb_categoria.grid(row=1, column=3, padx=10, pady=10, sticky="w")
 
-        self.lbl_dosagem = ttk.Label(self.frm_dados, text="Dosagem")
+        self.lbl_dosagem = ttk.Label(self.frm_dados, text=Idioma.t("medicamento.dosagem"))
         self.lbl_dosagem.grid(row=2, column=0, padx=10, pady=10, sticky="w")
         self.txt_dosagem = ttk.Entry(self.frm_dados, width=15)
         self.txt_dosagem.grid(row=2, column=1, padx=10, pady=10, sticky="w")
@@ -112,15 +113,15 @@ class Medicamento_View:
         self.frm_botoes = ttk.Frame(self.frm_dados)
         self.frm_botoes.grid(row=3, column=0, columnspan=4, pady=10)
 
-        self.btn_novo = ttk.Button(self.frm_botoes, text="Novo", width=15, bootstyle="primary-outline")
+        self.btn_novo = ttk.Button(self.frm_botoes, text=Idioma.t("comum.novo"), width=15, bootstyle="primary-outline")
         self.btn_novo.grid(row=0, column=0, padx=5)
-        self.btn_salvar = ttk.Button(self.frm_botoes, text="Salvar", width=15, bootstyle="success-outline")
+        self.btn_salvar = ttk.Button(self.frm_botoes, text=Idioma.t("comum.salvar"), width=15, bootstyle="success-outline")
         self.btn_salvar.grid(row=0, column=1, padx=5)
-        self.btn_alterar = ttk.Button(self.frm_botoes, text="Alterar", width=15, bootstyle="warning-outline")
+        self.btn_alterar = ttk.Button(self.frm_botoes, text=Idioma.t("comum.alterar"), width=15, bootstyle="warning-outline")
         self.btn_alterar.grid(row=0, column=2, padx=5)
-        self.btn_excluir = ttk.Button(self.frm_botoes, text="Excluir", width=15, bootstyle="danger-outline")
+        self.btn_excluir = ttk.Button(self.frm_botoes, text=Idioma.t("comum.excluir"), width=15, bootstyle="danger-outline")
         self.btn_excluir.grid(row=0, column=3, padx=5)
-        self.btn_fechar = ttk.Button(self.frm_botoes, text="Fechar", width=15, bootstyle="secondary-outline")
+        self.btn_fechar = ttk.Button(self.frm_botoes, text=Idioma.t("comum.fechar"), width=15, bootstyle="secondary-outline")
         self.btn_fechar.grid(row=0, column=4, padx=5)
 
         self.tbl_medicamentos = ttk.Treeview(self.root, height=18, bootstyle="light")
@@ -136,11 +137,11 @@ class Medicamento_View:
         self.tbl_medicamentos.column("dosagem", width=180, anchor="center", stretch=False)
         
         
-        self.tbl_medicamentos.heading("id", text="ID")
-        self.tbl_medicamentos.heading("nome", text="NOME")
-        self.tbl_medicamentos.heading("tipo", text="TIPO")
-        self.tbl_medicamentos.heading("categoria", text="CATEGORIA")
-        self.tbl_medicamentos.heading("dosagem", text="DOSAGEM")
+        self.tbl_medicamentos.heading("id", text=Idioma.t("comum.id"))
+        self.tbl_medicamentos.heading("nome", text=Idioma.t("medicamento.nome"))
+        self.tbl_medicamentos.heading("tipo", text=Idioma.t("medicamento.tipo"))
+        self.tbl_medicamentos.heading("categoria", text=Idioma.t("medicamento.categoria"))
+        self.tbl_medicamentos.heading("dosagem", text=Idioma.t("medicamento.dosagem"))
 
     def preencher_campos(self, medicamento):
         self.limpar_campos()
@@ -183,7 +184,7 @@ class Medicamento_View:
             self.tbl_medicamentos.insert("", "end", values=(m.id, m.nome, m.tipo, m.categoria, m.dosagem))
 
     def confirmar_exclusao(self):
-        resposta = Messagebox.yesno( "Deseja realmente excluir este medicamento?","Confirmação", parent=self.root)
+        resposta = Messagebox.yesno( Idioma.t("medicamento.confirma_exclusao"), Idioma.t("comum.confirmacao"), parent=self.root)
         return resposta == "Yes"
 
     def exibir_mensagem(self, mensagem, sucesso=True):

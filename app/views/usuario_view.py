@@ -2,6 +2,7 @@ import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
 import customtkinter as ctk
 from ttkbootstrap.constants import *
+from app.core.idioma import Idioma
 
 class Usuario_View:
     def __init__(self, root, controller):
@@ -22,7 +23,7 @@ class Usuario_View:
         self.root.geometry(f"{largura}x{altura}+{x}+{y}")
     
     def configurar_janela(self):
-        self.root.title("Gestão Usuários")
+        self.root.title(Idioma.t("usuario.janela_titulo"))
         self.root.resizable(False, False)
 
     def configurar_estilo(self):
@@ -31,43 +32,43 @@ class Usuario_View:
 
 
     def criar_componentes(self):
-        self.lbl_titulo = ttk.Label(self.root, text="Gerenciar Usuários", font=("Cour6ier New", 20, "bold"))   
+        self.lbl_titulo = ttk.Label(self.root, text=Idioma.t("usuario.titulo"), font=("Cour6ier New", 20, "bold"))   
         self.lbl_titulo.grid(row = 0, column = 0, columnspan=5) 
-        self.frm_dados = ttk.Labelframe (self.root, text="Dados do Usuário", labelanchor="n")
+        self.frm_dados = ttk.Labelframe (self.root, text=Idioma.t("usuario.dados_frame"), labelanchor="n")
         self.frm_dados.grid(row = 1, column = 0, columnspan = 4, padx = 10, pady = 5, sticky = "ew")
         
         
-        self.lbl_id = ttk.Label(self.frm_dados, text = "ID")
+        self.lbl_id = ttk.Label(self.frm_dados, text = Idioma.t("comum.id"))
         self.lbl_id.grid(row = 1, column = 0, sticky = "w", padx = (20,0), pady= 5)
         self.txt_id = ttk.Entry(self.frm_dados, width=5, state="readonly")
         self.txt_id.grid(row=1, column=1, sticky="w", padx=(10,5), pady=5)
         
         
-        self.lbl_nome = ttk.Label(self.frm_dados, text="Nome")
+        self.lbl_nome = ttk.Label(self.frm_dados, text=Idioma.t("usuario.nome"))
         self.lbl_nome.grid(row = 1, column = 2, padx=5, sticky="w")
         self.txt_nome = ttk.Entry(self.frm_dados, width=28)
         self.txt_nome.grid(row=1, column = 2, columnspan=2)
         
         
-        self.lbl_cpf = ttk.Label(self.frm_dados, text="CPF")
+        self.lbl_cpf = ttk.Label(self.frm_dados, text=Idioma.t("usuario.cpf"))
         self.lbl_cpf.grid(row = 1, column = 3, padx=(20,5), sticky="e")
         self.txt_cpf = ttk.Entry(self.frm_dados, width=11)
         self.txt_cpf.grid(row=1, column=4, padx= 10, sticky="w")
         
         
-        self.lbl_senha = ttk.Label(self.frm_dados, text="Senha")
+        self.lbl_senha = ttk.Label(self.frm_dados, text=Idioma.t("usuario.senha"))
         self.lbl_senha.grid(row = 2, column = 0, padx=(10,5))
         self.txt_senha = ttk.Entry(self.frm_dados, width=20, show="*")
         self.txt_senha.grid(row=2, column=1, sticky="w", padx= 10, pady=10)
         
         
-        self.lbl_cargo = ttk.Label(self.frm_dados, text="Cargo")
+        self.lbl_cargo = ttk.Label(self.frm_dados, text=Idioma.t("usuario.cargo"))
         self.lbl_cargo.place(relx=0.34, rely=0.4)
         self.txt_cargo = ttk.Entry(self.frm_dados, width=13)
         self.txt_cargo.grid(row=2, column=2, sticky="e", padx=(75,0))
 
 
-        self.lbl_data_entrada = ttk.Label(self.frm_dados, text="Data de Entrada")
+        self.lbl_data_entrada = ttk.Label(self.frm_dados, text=Idioma.t("usuario.data_entrada"))
         self.lbl_data_entrada.grid(row = 2, column = 3, padx=(10,5), sticky="w")
         self.txt_data_entrada = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="dark" )
         self.txt_data_entrada.grid(row=2, column=4, sticky="w", padx=10)
@@ -78,23 +79,23 @@ class Usuario_View:
         self.frm_botoes.grid(row=3,column=0,padx=10,pady=5, columnspan=5,)
         
         
-        self.btn_novo = ttk.Button(self.frm_botoes,text = "Novo",width = 15, bootstyle="primary-outline")
+        self.btn_novo = ttk.Button(self.frm_botoes,text = Idioma.t("comum.novo"),width = 15, bootstyle="primary-outline")
         self.btn_novo.grid(row = 0,column = 0,padx = 5,pady = 5)
         
         
-        self.btn_salvar = ttk.Button(self.frm_botoes,text = "Salvar",width = 15, bootstyle="success-outline")
+        self.btn_salvar = ttk.Button(self.frm_botoes,text = Idioma.t("comum.salvar"),width = 15, bootstyle="success-outline")
         self.btn_salvar.grid(row = 0,column = 1,padx = 5, pady = 5)
         
         
-        self.btn_alterar = ttk.Button(self.frm_botoes,text = "Alterar",width = 15, bootstyle="warning-outline")
+        self.btn_alterar = ttk.Button(self.frm_botoes,text = Idioma.t("comum.alterar"),width = 15, bootstyle="warning-outline")
         self.btn_alterar.grid(row = 0,column = 2,padx = 5,pady = 5)
         
         
-        self.btn_excluir = ttk.Button(self.frm_botoes,text = "Excluir",width = 15, bootstyle="danger-outline")
+        self.btn_excluir = ttk.Button(self.frm_botoes,text = Idioma.t("comum.excluir"),width = 15, bootstyle="danger-outline")
         self.btn_excluir.grid(row = 0,column = 3,padx = 5,pady = 5)
         
         
-        self.btn_fechar = ttk.Button(self.frm_botoes, text = "Fechar",width = 15, bootstyle="light-outline")
+        self.btn_fechar = ttk.Button(self.frm_botoes, text = Idioma.t("comum.fechar"),width = 15, bootstyle="light-outline")
         self.btn_fechar.grid(row = 0,column = 4,padx = 5,pady = 5)
         
         #TREEVIEW
@@ -113,12 +114,12 @@ class Usuario_View:
         self.tbl_usuarios.column("data de entrada",width=190, anchor="center", stretch=False)
         
         
-        self.tbl_usuarios.heading("id",text="ID")
-        self.tbl_usuarios.heading("nome",text="NOME")
-        self.tbl_usuarios.heading("cpf",text="CPF")
-        self.tbl_usuarios.heading("senha",text="SENHA")
-        self.tbl_usuarios.heading("cargo",text="CARGO")
-        self.tbl_usuarios.heading("data de entrada",text="DATA DE ENTRADA")
+        self.tbl_usuarios.heading("id",text=Idioma.t("comum.id"))
+        self.tbl_usuarios.heading("nome",text=Idioma.t("usuario.nome"))
+        self.tbl_usuarios.heading("cpf",text=Idioma.t("usuario.cpf"))
+        self.tbl_usuarios.heading("senha",text=Idioma.t("usuario.senha"))
+        self.tbl_usuarios.heading("cargo",text=Idioma.t("usuario.cargo"))
+        self.tbl_usuarios.heading("data de entrada",text=Idioma.t("usuario.data_entrada"))
         style.configure("Treeview.Heading", font=("Arial", 9), padding=(1, 1))
         
     def preencher_campos(self, usuario):
@@ -160,7 +161,7 @@ class Usuario_View:
         return nome, cpf, senha, cargo, data_entrada
 
     def confirmar_exclusao(self):
-        resposta =Messagebox.yesno("Deseja realmente excluir este usuario?", "Confirmação", parent=self.root)
+        resposta =Messagebox.yesno(Idioma.t("usuario.confirma_exclusao"), Idioma.t("comum.confirmacao"), parent=self.root)
         return resposta == "Yes"
 
     def exibir_mensagem(self, mensagem, sucesso=True):

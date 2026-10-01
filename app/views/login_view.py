@@ -2,6 +2,7 @@ import ttkbootstrap as ttk
 import customtkinter as ctk
 from ttkbootstrap.dialogs import Messagebox
 from PIL import Image
+from app.core.idioma import Idioma
 
 class Login_View:
     def __init__(self, root, controller=None):
@@ -21,7 +22,7 @@ class Login_View:
  
 
     def configurar_janela(self):
-        self.root.title("Login SysFarm")
+        self.root.title(Idioma.t("login.janela_titulo"))
         self.root.resizable(False, False)
 
     def criar_componentes(self):
@@ -34,13 +35,13 @@ class Login_View:
         self.lbl_icone_sistema = ctk.CTkLabel(self.root, image=self.icone_sistema, text="")
         self.lbl_icone_sistema.place(relx=0.2, rely=0.25, anchor="w")
         
-        self.lbl_titulo = ttk.Label(self.root, text="━━━━ Login ━━━━", font=("Aptos",10,"bold"))
+        self.lbl_titulo = ttk.Label(self.root, text=Idioma.t("login.titulo"), font=("Aptos",10,"bold"))
         self.lbl_titulo.place(relx= 0.5, rely= 0.5, anchor="center")
         
-        self.txt_cpf = ctk.CTkEntry(self.root, width=180, placeholder_text="CPF", height=35, justify="center", corner_radius=0)
+        self.txt_cpf = ctk.CTkEntry(self.root, width=180, placeholder_text=Idioma.t("login.cpf"), height=35, justify="center", corner_radius=0)
         self.txt_cpf.place(relx= 0.5, rely= 0.6, anchor="center")
         
-        self.txt_senha = ctk.CTkEntry(self.root, width=180, show="*", placeholder_text="Senha", height=35, justify="center", corner_radius=0)
+        self.txt_senha = ctk.CTkEntry(self.root, width=180, show="*", placeholder_text=Idioma.t("login.senha"), height=35, justify="center", corner_radius=0)
         self.txt_senha.place(relx= 0.5, rely= 0.7, anchor="center")
         
         
@@ -53,7 +54,7 @@ class Login_View:
         
         
         #botao
-        self.btn_entrar = ttk.Button(self.root,text = "Entrar",width = 25, bootstyle="success-outline", cursor="hand2") 
+        self.btn_entrar = ttk.Button(self.root,text = Idioma.t("login.entrar"),width = 25, bootstyle="success-outline", cursor="hand2") 
         self.btn_entrar.place(relx = 0.5, rely = 0.8, anchor="center")
 
     def configurar_eventos(self):
@@ -75,14 +76,3 @@ class Login_View:
         else:
             Messagebox.show_error(mensagem,"SysFarm", parent=self.root)
             
-
-if __name__ == "__main__":
-    class ControllerFake:
-        def new(self): print("novo")
-        def save(self): print("salvar")
-        def autenticar(self): print("Autenticado")
-
-    janela = ttk.Window(themename="darkly")
-    view = Login_View(janela, controller=ControllerFake())
-    janela.mainloop()
-    
