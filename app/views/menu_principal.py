@@ -1,5 +1,4 @@
 # app/views/menu_view.py
-import ttkbootstrap as ttk
 import customtkinter as ctk
 from PIL import Image
 
@@ -10,12 +9,20 @@ class Menu_View:
         self.configurar_janela()
         self.carregar_imagens()
         self.criar_componentes()
+        self._centralizar()
 
     def configurar_janela(self):
         self.root.title("SysFarm - Menu Principal")
-        self.root.resizable(False, False)
-        self.root.state("zoomed")
-
+        self.root.resizable(True,True)
+        self.root.minsize(1650, 870)
+        
+    def _centralizar(self):
+        self.root.update_idletasks()
+        largura, altura = 1850, 920
+        x = (self.root.winfo_screenwidth() // 2) - (largura // 2)
+        y = (self.root.winfo_screenheight() // 2) - (altura // 2)
+        self.root.geometry(f"{largura}x{altura}+{x}+{y}")
+    
     def carregar_imagens(self):
         self.logo_image = ctk.CTkImage(
             light_image=Image.open("assets/logo_sys_farm_bemvindo.png"),
