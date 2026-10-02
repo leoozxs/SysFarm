@@ -1,3 +1,4 @@
+# Os imports necessários para a classe Entrada_DAO
 from app.dao.dao import DAO
 from app.models.entrada import Entrada
 from app.models.lote import Lote
@@ -5,6 +6,7 @@ from app.models.medicamento import Medicamento
 from app.models.fornecedor import Fornecedor
 from app.models.usuario import Usuario
 
+#Criação da classe Entrada_DAO que herda da classe DAO para operações específicas de entrada para o banco de dados
 class Entrada_DAO(DAO):
     def __init__(self, database):
         super().__init__(database)

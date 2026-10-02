@@ -1,5 +1,7 @@
 from app.models.lote import Lote
 from app.models.usuario import Usuario
+
+#Criação da classe de entrada de medicamentos no estoque com as propriedades necessárias para o registro
 class Entrada:
     def __init__(self, id, lote: Lote, qtd_entrada, data_entrada, usuario: Usuario):
         self._id = id

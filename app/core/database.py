@@ -1,7 +1,7 @@
 import mysql.connector
 import os
 from dotenv import load_dotenv
-
+#Criação da classe de conexão com o banco de dados
 class Database:
 
     load_dotenv()

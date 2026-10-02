@@ -1,12 +1,13 @@
 from app.models.fornecedor import Fornecedor
 from app.core.idioma import Idioma
 
+# Criando classe Fornecedor
 class Fornecedor_Controller:
     def __init__(self, view, dao):
         self.dao = dao
         self.view = view
         self.fornecedor_selecionado = None
-
+        
     def new(self):
         self.fornecedor_selecionado = None
         self.view.limpar_campos()
