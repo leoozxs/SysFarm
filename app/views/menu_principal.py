@@ -13,7 +13,7 @@ class Menu_View:
         self._centralizar()
 
     def configurar_janela(self):
-        self.root.title(Idioma.t("menu_principal.janela_titulo"))
+        self.root.title(Idioma.t("menu.janela_titulo"))
         self.root.resizable(True,True)
         self.root.minsize(1650, 870)
         
@@ -85,3 +85,22 @@ class Menu_View:
             Idioma.t("menu.usuarios"), self.icone_usuarios, self.controller.abrir_usuarios,
             relx=0.43, rely=0.78, relwidth=0.15, relheight=0.34
         )
+        self.cmb_idioma = ctk.CTkComboBox(
+            self.root, width=150, values=list(Idioma.NOMES.values()),
+            justify="center", corner_radius=0, state="readonly",
+            command=self.mudar_idioma)
+        self.cmb_idioma.set(Idioma.nome_atual())
+        self.cmb_idioma.place(relx=0.97, rely=0.03, anchor="ne")
+        
+    def mudar_idioma(self, nome_selecionado):
+        Idioma.definir(Idioma.codigo_por_nome(nome_selecionado))
+        self.atualizar_textos()
+
+    def atualizar_textos(self):
+        self.root.title(Idioma.t("menu.janela_titulo"))
+        self.card_medicamento.configure(text=Idioma.t("menu.medicamento"))
+        self.card_fornecedor.configure(text=Idioma.t("menu.fornecedor"))
+        self.card_estoque.configure(text=Idioma.t("menu.estoque"))
+        self.card_entrada.configure(text=Idioma.t("menu.entrada"))
+        self.card_saida.configure(text=Idioma.t("menu.saida"))
+        self.card_usuarios.configure(text=Idioma.t("menu.usuarios"))

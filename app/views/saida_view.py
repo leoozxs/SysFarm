@@ -2,6 +2,8 @@ import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
 from app.core.idioma import Idioma
 
+TIPOS_SAIDA_BANCO = ["Venda", "Avaria", "Perda", "Roubo"]
+
 class Saida_View:
     def __init__(self, root, controller):
         self.root = root
@@ -79,7 +81,7 @@ class Saida_View:
         self.tbl_saidas.column("#0", width=0, stretch=False)
         self.tbl_saidas.column("id", width=40, anchor="center", stretch=False)
         self.tbl_saidas.column("lote", width=80, anchor="center", stretch=False)
-        self.tbl_saidas.column("medicamento", width=140, anchor="w", stretch=False)
+        self.tbl_saidas.column("medicamento", width=140, anchor="center", stretch=False)
         self.tbl_saidas.column("qtd", width=50, anchor="center", stretch=False)
         self.tbl_saidas.column("tipo", width=80, anchor="center", stretch=False)
         self.tbl_saidas.column("usuario", width=120, anchor="w", stretch=False)
@@ -87,11 +89,11 @@ class Saida_View:
         
         
         self.tbl_saidas.heading("id", text=Idioma.t("comum.id"))
-        self.tbl_saidas.heading("lote", text=Idioma.t("saida.lote_referente"))
+        self.tbl_saidas.heading("lote", text=Idioma.t("saida.lote"))
         self.tbl_saidas.heading("medicamento", text=Idioma.t("saida.medicamento"))
-        self.tbl_saidas.heading("qtd", text=Idioma.t("saida.qtd_saida"))
-        self.tbl_saidas.heading("tipo", text=Idioma.t("saida.tipo_saida"))
-        self.tbl_saidas.heading("usuario", text=Idioma.t("saida.usuario_responsavel"))
+        self.tbl_saidas.heading("qtd", text=Idioma.t("saida.qtd"))
+        self.tbl_saidas.heading("tipo", text=Idioma.t("saida.tipo"))
+        self.tbl_saidas.heading("usuario", text=Idioma.t("saida.responsavel"))
         self.tbl_saidas.heading("data", text=Idioma.t("saida.data_saida"))
         self.cmb_lote.bind("<<ComboboxSelected>>", self.preencher_medicamento_automatico)
 
@@ -118,7 +120,8 @@ class Saida_View:
     def ler_dados_saida(self):
         lote_idx = self.cmb_lote.current()
         qtd_saida = self.txt_qtd_saida.get()
-        tipo_saida = self.cmb_tipo_saida.get()
+        i_tipo = self.cmb_tipo_saida.current()
+        tipo_saida = TIPOS_SAIDA_BANCO[i_tipo] if i_tipo >= 0 else ""
         usuario_idx = self.cmb_usuario.current()
         return lote_idx, qtd_saida, tipo_saida, usuario_idx
 
@@ -134,10 +137,12 @@ class Saida_View:
 
     def exibir_saidas(self, saidas):
         self.limpar_treeview()
+        tipos = self.cmb_tipo_saida["values"]
         for s in saidas:
+            tipo = tipos[TIPOS_SAIDA_BANCO.index(s.tipo_saida)] if s.tipo_saida in TIPOS_SAIDA_BANCO else s.tipo_saida
             self.tbl_saidas.insert("", "end", values=(
                 s.id, s.lote._numero_lote, s.lote._medicamento.nome, s.qtd_saida,
-                s.tipo_saida, s._usuario.nome, s.data_saida
+                tipo, s._usuario.nome, s.data_saida
             ))
 
     def exibir_mensagem(self, mensagem, sucesso=True):

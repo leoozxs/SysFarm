@@ -46,11 +46,11 @@ class Estoque_View:
     def configurar_treeview(self):
         self.tbl_estoque["columns"] = ("medicamento", "lote", "fornecedor", "validade", "qtd", "status")
         self.tbl_estoque.column("#0", width=0, stretch=False)
-        self.tbl_estoque.column("medicamento", width=180, anchor="w", stretch=False)
+        self.tbl_estoque.column("medicamento", width=180, anchor="center", stretch=False)
         self.tbl_estoque.column("lote", width=100, anchor="center", stretch=False)
-        self.tbl_estoque.column("fornecedor", width=150, anchor="w", stretch=False)
+        self.tbl_estoque.column("fornecedor", width=130, anchor="w", stretch=False)
         self.tbl_estoque.column("validade", width=90, anchor="center", stretch=False)
-        self.tbl_estoque.column("qtd", width=60, anchor="center", stretch=False)
+        self.tbl_estoque.column("qtd", width=80, anchor="center", stretch=False)
         self.tbl_estoque.column("status", width=100, anchor="center", stretch=False)
         
         
