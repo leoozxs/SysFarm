@@ -24,7 +24,7 @@ class Idioma:
             "login.titulo": "━━━━ Login ━━━━",
             "login.cpf": "CPF",
             "login.senha": "Senha",
-            "login.entrar": "Entrar",
+            "login.entrar": "Autenticar",
             "login.campos_obrigatorios": "Preencha CPF e senha.",
             "login.credenciais_invalidas": "CPF ou senha incorretos.",
             
@@ -60,7 +60,7 @@ class Idioma:
             "medicamento.excluido_sucesso": "Medicamento excluído com sucesso!",
             "medicamento.nao_encontrado": "Medicamento não encontrado.",
             "medicamento.selecione_da_lista": "Selecione um medicamento na lista.",
-            "medicamento.erro_ao_excluir": "Problemas ao excluir medicamento"
+            "medicamento.erro_ao_excluir": "Problemas ao excluir medicamento",
 
             # Tela de Fornecedores
             "fornecedor.janela_titulo": "Gestão de Fornecedores",
@@ -94,6 +94,11 @@ class Idioma:
             "entrada.status_esgotado": "Esgotado",
             "entrada.status_baixo": "Baixo",
             "entrada.status_disponivel": "Disponível",
+            
+            "entrada.qtd": "QTD",
+            "entrada.validadet": "Validade",
+            
+            
 
             # Tela de Saída
             "saida.janela_titulo": "Registrar Saída",
@@ -116,6 +121,13 @@ class Idioma:
             "saida.tipo_perda": "Perda",
             "saida.tipo_roubo": "Roubo",
             "saida.data_saida": "Data de Saída",
+            
+            "saida.lote": "Lote",
+            "saida.qtd": "QTD",
+            "saida.tipo": "Tipo",
+            "saida.responsavel": "Responsável",
+            
+            
 
             # Tela de Estoque
             "estoque.janela_titulo": "Visão Geral do Estoque",
@@ -124,7 +136,7 @@ class Idioma:
             "estoque.lote": "Lote",
             "estoque.fornecedor": "Fornecedor",
             "estoque.validade": "Validade",
-            "estoque.qtd": "Qtd",
+            "estoque.qtd": "Quantidade",
             "estoque.status": "Status",
             "estoque.status_disponivel": "Disponível",
             "estoque.status_baixo": "Baixo",
@@ -140,6 +152,67 @@ class Idioma:
             "menu.entrada": "ENTRADA",
             "menu.saida": "SAÍDA",
             "menu.usuarios": "USUÁRIOS",
+            
+            # Medicamento: tipos
+            "medicamento.tipo.comprimido": "Comprimido",
+            "medicamento.tipo.capsula": "Cápsula",
+            "medicamento.tipo.dragea": "Drágea",
+            "medicamento.tipo.pastilha": "Pastilha",
+            "medicamento.tipo.goma": "Goma medicamentosa",
+            "medicamento.tipo.po": "Pó",
+            "medicamento.tipo.granulado": "Granulado",
+            "medicamento.tipo.sache": "Sachê",
+            "medicamento.tipo.xarope": "Xarope",
+            "medicamento.tipo.solucao_oral": "Solução oral",
+            "medicamento.tipo.suspensao_oral": "Suspensão oral",
+            "medicamento.tipo.gotas": "Gotas",
+            "medicamento.tipo.spray": "Spray",
+            "medicamento.tipo.aerossol": "Aerossol",
+            "medicamento.tipo.inalavel": "Inalável",
+            "medicamento.tipo.creme": "Creme",
+            "medicamento.tipo.pomada": "Pomada",
+            "medicamento.tipo.gel": "Gel",
+            "medicamento.tipo.locao": "Loção",
+            "medicamento.tipo.espuma": "Espuma",
+            "medicamento.tipo.adesivo": "Adesivo transdérmico",
+            "medicamento.tipo.supositorio": "Supositório",
+            "medicamento.tipo.ovulo": "Óvulo vaginal",
+            "medicamento.tipo.colirio": "Colírio",
+            "medicamento.tipo.pomada_oftalmica": "Pomada oftálmica",
+            "medicamento.tipo.gotas_otologicas": "Gotas otológicas",
+            "medicamento.tipo.spray_nasal": "Spray nasal",
+            "medicamento.tipo.injetavel": "Injetável",
+            "medicamento.tipo.implante": "Implante",
+            "medicamento.tipo.outros": "Outros",
+
+            # Medicamento: categorias
+            "medicamento.categoria.analgesico": "Analgésico",
+            "medicamento.categoria.antibiotico": "Antibiótico",
+            "medicamento.categoria.antiinflamatorio": "Anti-inflamatório",
+            "medicamento.categoria.antialergico": "Antialérgico",
+            "medicamento.categoria.antitermico": "Antitérmico",
+            "medicamento.categoria.antifungico": "Antifúngico",
+            "medicamento.categoria.antiviral": "Antiviral",
+            "medicamento.categoria.antidepressivo": "Antidepressivo",
+            "medicamento.categoria.ansiolitico": "Ansiolítico",
+            "medicamento.categoria.antisseptico": "Antisséptico",
+            "medicamento.categoria.anticoagulante": "Anticoagulante",
+            "medicamento.categoria.antihipertensivo": "Anti-hipertensivo",
+            "medicamento.categoria.antidiabetico": "Antidiabético",
+            "medicamento.categoria.anticoncepcional": "Anticoncepcional",
+            "medicamento.categoria.antiacido": "Antiácido",
+            "medicamento.categoria.antiemetico": "Antiemético",
+            "medicamento.categoria.laxante": "Laxante",
+            "medicamento.categoria.antidiarreico": "Antidiarreico",
+            "medicamento.categoria.expectorante": "Expectorante",
+            "medicamento.categoria.descongestionante": "Descongestionante",
+            "medicamento.categoria.corticoide": "Corticoide",
+            "medicamento.categoria.relaxante_muscular": "Relaxante muscular",
+            "medicamento.categoria.vitaminas": "Vitaminas",
+            "medicamento.categoria.outros": "Outros",
+            
+            "medicamento.erro_selecao": "Selecione o tipo e a categoria.",
+            
         },
         "eng": {
 
@@ -158,21 +231,22 @@ class Idioma:
             "comum.sistema_titulo": "SysFarm",
 
             # Login screen
+            "login.titulo": "━━━━ Login ━━━━",
             "login.janela_titulo": "SysFarm Login",
-            "login.cpf": "ID Number",
+            "login.cpf": "CPF",
             "login.senha": "Password",
             "login.entrar": "Sign in",
-            "login.campos_obrigatorios": "Enter your ID number and password.",
-            "login.credenciais_invalidas": "Incorrect ID number or password.",
+            "login.campos_obrigatorios": "Enter your CPF and password.",
+            "login.credenciais_invalidas": "Incorrect CPF or password.",
 
             # Users screen
             "usuario.janela_titulo": "User Management",
             "usuario.titulo": "Manage Users",
             "usuario.dados_frame": "User Data",
             "usuario.nome": "Name",
-            "usuario.cpf": "ID Number",
+            "usuario.cpf": "CPF",
             "usuario.senha": "Password",
-            "usuario.cargo": "Role",
+            "usuario.cargo": "        Role",
             "usuario.data_entrada": "Start Date",
             "usuario.confirmar_exclusao": "Do you really want to delete this user?",
             "usuario.cadastrado_sucesso": "User registered successfully!",
@@ -230,6 +304,10 @@ class Idioma:
             "entrada.status_esgotado": "Empty",
             "entrada.status_baixo": "Low",
             "entrada.status_disponivel": "Available",
+            
+            "entrada.qtd": "QTY",
+            "entrada.validadet": "Expiration",
+            
 
             # Exit screen
             "saida.janela_titulo": "Register Exit",
@@ -252,6 +330,11 @@ class Idioma:
             "saida.tipo_perda": "Loss",
             "saida.tipo_roubo": "Theft",
             "saida.data_saida": "Exit Date",
+            
+            "saida.lote": "Batch",
+            "saida.qtd": "QTY",
+            "saida.tipo": "Type",
+            "saida.responsavel": "Responsible",
 
             # Stock Overview screen
             "estoque.janela_titulo": "Stock Overview",
@@ -260,7 +343,7 @@ class Idioma:
             "estoque.lote": "Batch",
             "estoque.fornecedor": "Supplier",
             "estoque.validade": "Expiration",
-            "estoque.qtd": "Qty",
+            "estoque.qtd": "Quantity",
             "estoque.status": "Status",
             "estoque.status_disponivel": "Available",
             "estoque.status_baixo": "Low",
@@ -277,8 +360,69 @@ class Idioma:
             "menu.entrada": "ENTRY",
             "menu.saida": "EXIT",
             "menu.usuarios": "USERS",
+            
+            # Medication: types
+            "medicamento.tipo.comprimido": "Tablet",
+            "medicamento.tipo.capsula": "Capsule",
+            "medicamento.tipo.dragea": "Coated tablet",
+            "medicamento.tipo.pastilha": "Lozenge",
+            "medicamento.tipo.goma": "Medicated gummy",
+            "medicamento.tipo.po": "Powder",
+            "medicamento.tipo.granulado": "Granules",
+            "medicamento.tipo.sache": "Sachet",
+            "medicamento.tipo.xarope": "Syrup",
+            "medicamento.tipo.solucao_oral": "Oral solution",
+            "medicamento.tipo.suspensao_oral": "Oral suspension",
+            "medicamento.tipo.gotas": "Drops",
+            "medicamento.tipo.spray": "Spray",
+            "medicamento.tipo.aerossol": "Aerosol",
+            "medicamento.tipo.inalavel": "Inhalable",
+            "medicamento.tipo.creme": "Cream",
+            "medicamento.tipo.pomada": "Ointment",
+            "medicamento.tipo.gel": "Gel",
+            "medicamento.tipo.locao": "Lotion",
+            "medicamento.tipo.espuma": "Foam",
+            "medicamento.tipo.adesivo": "Transdermal patch",
+            "medicamento.tipo.supositorio": "Suppository",
+            "medicamento.tipo.ovulo": "Vaginal ovule",
+            "medicamento.tipo.colirio": "Eye drops",
+            "medicamento.tipo.pomada_oftalmica": "Ophthalmic ointment",
+            "medicamento.tipo.gotas_otologicas": "Ear drops",
+            "medicamento.tipo.spray_nasal": "Nasal spray",
+            "medicamento.tipo.injetavel": "Injectable",
+            "medicamento.tipo.implante": "Implant",
+            "medicamento.tipo.outros": "Other",
+
+            # Medication: categories
+            "medicamento.categoria.analgesico": "Analgesic",
+            "medicamento.categoria.antibiotico": "Antibiotic",
+            "medicamento.categoria.antiinflamatorio": "Anti-inflammatory",
+            "medicamento.categoria.antialergico": "Antiallergic",
+            "medicamento.categoria.antitermico": "Antipyretic",
+            "medicamento.categoria.antifungico": "Antifungal",
+            "medicamento.categoria.antiviral": "Antiviral",
+            "medicamento.categoria.antidepressivo": "Antidepressant",
+            "medicamento.categoria.ansiolitico": "Anxiolytic",
+            "medicamento.categoria.antisseptico": "Antiseptic",
+            "medicamento.categoria.anticoagulante": "Anticoagulant",
+            "medicamento.categoria.antihipertensivo": "Antihypertensive",
+            "medicamento.categoria.antidiabetico": "Antidiabetic",
+            "medicamento.categoria.anticoncepcional": "Contraceptive",
+            "medicamento.categoria.antiacido": "Antacid",
+            "medicamento.categoria.antiemetico": "Antiemetic",
+            "medicamento.categoria.laxante": "Laxative",
+            "medicamento.categoria.antidiarreico": "Antidiarrheal",
+            "medicamento.categoria.expectorante": "Expectorant",
+            "medicamento.categoria.descongestionante": "Decongestant",
+            "medicamento.categoria.corticoide": "Corticosteroid",
+            "medicamento.categoria.relaxante_muscular": "Muscle relaxant",
+            "medicamento.categoria.vitaminas": "Vitamins",
+            "medicamento.categoria.outros": "Other",
+            "medicamento.erro_selecao": "Select the type and the category.",
         }
     }
+    
+    NOMES = {"pt": "Português", "eng": "English"}
 
     @classmethod
     def definir(cls, codigo):
@@ -287,3 +431,12 @@ class Idioma:
     @classmethod
     def t(cls, chave):
         return cls.TEXTOS[cls.ATUAL].get(chave, chave)
+    
+
+    @classmethod
+    def nome_atual(cls):
+        return cls.NOMES[cls.ATUAL]
+
+    @classmethod
+    def codigo_por_nome(cls, nome):
+        return next(c for c, n in cls.NOMES.items() if n == nome)

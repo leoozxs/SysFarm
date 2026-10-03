@@ -60,7 +60,7 @@ class Saida_Controller:
 
             self.get_all()
             self.view.limpar_campos()
-            self.view.exibir_mensagem(Idioma.t("saida.cadastrada_sucesso"))
+            self.view.exibir_mensagem(Idioma.t("saida.cadastrado_sucesso"))
         except ValueError as e:
             self.view.exibir_mensagem(f"Erro: {str(e)}", False)
 

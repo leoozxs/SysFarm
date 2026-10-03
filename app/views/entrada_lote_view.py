@@ -50,7 +50,7 @@ class Entrada_View:
         self.txt_validade = ttk.DateEntry(self.frm_dados, width=11, date_format="%d/%m/%Y", bootstyle="dark")
         self.txt_validade.grid(row=1, column=3, padx=10, pady=10, sticky="w")
 
-        self.lbl_qtd_entrada = ttk.Label(self.frm_dados, text=Idioma.t("entrada.qtd"))
+        self.lbl_qtd_entrada = ttk.Label(self.frm_dados, text=Idioma.t("entrada.qtd_entrada"))
         self.lbl_qtd_entrada.grid(row=2, column=0, padx=10, pady=10, sticky="w")
         self.txt_qtd_entrada = ttk.Entry(self.frm_dados, width=10)
         self.txt_qtd_entrada.grid(row=2, column=1, padx=10, pady=10, sticky="w")
@@ -81,7 +81,7 @@ class Entrada_View:
         self.tbl_entradas.column("#0", width=0, stretch=False)
         self.tbl_entradas.column("id", width=40, anchor="center", stretch=False)
         self.tbl_entradas.column("lote", width=90, anchor="center", stretch=False)
-        self.tbl_entradas.column("medicamento", width=140, anchor="w", stretch=False)
+        self.tbl_entradas.column("medicamento", width=140, anchor="center", stretch=False)
         self.tbl_entradas.column("fornecedor", width=140, anchor="w", stretch=False)
         self.tbl_entradas.column("qtd", width=60, anchor="center", stretch=False)
         self.tbl_entradas.column("validade", width=90, anchor="center", stretch=False)
@@ -89,11 +89,11 @@ class Entrada_View:
         
         
         self.tbl_entradas.heading("id", text=Idioma.t("comum.id"))
-        self.tbl_entradas.heading("lote", text=Idioma.t("entrada.lote"))
+        self.tbl_entradas.heading("lote", text=Idioma.t("estoque.lote"))
         self.tbl_entradas.heading("medicamento", text=Idioma.t("entrada.medicamento"))
         self.tbl_entradas.heading("fornecedor", text=Idioma.t("entrada.fornecedor"))
-        self.tbl_entradas.heading("qtd", text=Idioma.t("entrada.qtd_entrada"))
-        self.tbl_entradas.heading("validade", text=Idioma.t("entrada.validade"))
+        self.tbl_entradas.heading("qtd", text=Idioma.t("entrada.qtd"))
+        self.tbl_entradas.heading("validade", text=Idioma.t("entrada.validadet"))
         self.tbl_entradas.heading("data de entrada", text=Idioma.t("entrada.data_entrada"))
 
     def limpar_campos(self):
@@ -115,7 +115,7 @@ class Entrada_View:
         return medicamento_idx, fornecedor_idx, numero_lote, validade, qtd_entrada, usuario_idx
 
     def carregar_medicamentos(self, medicamentos):
-        self.cmb_medicamento["values"] = [m.nome for m in medicamentos]
+        self.cmb_medicamento["values"] = [f"{m.nome} - {m.dosagem}" for m in medicamentos]
 
     def carregar_fornecedores(self, fornecedores):
         self.cmb_fornecedor["values"] = [f.nome for f in fornecedores]
@@ -152,3 +152,5 @@ class Entrada_View:
     def iniciar(self):
         self.controller.carregar_combos()
         self.controller.get_all()
+        
+        

@@ -65,8 +65,8 @@ class Fornecedor_View:
     def configurar_treeview(self):
         self.tbl_fornecedores["columns"] = ("id", "nome", "cnpj")
         self.tbl_fornecedores.column("#0", width=0, stretch=False)
-        self.tbl_fornecedores.column("id", width=150, anchor="w", stretch=False)
-        self.tbl_fornecedores.column("nome", width=300, anchor="w", stretch=False)
+        self.tbl_fornecedores.column("id", width=150, anchor="center", stretch=False)
+        self.tbl_fornecedores.column("nome", width=300, anchor="center", stretch=False)
         self.tbl_fornecedores.column("cnpj", width=200, anchor="center", stretch=False)
         
         self.tbl_fornecedores.heading("id", text=Idioma.t("comum.id"))

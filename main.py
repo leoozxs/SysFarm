@@ -34,6 +34,7 @@ from app.controllers.fornecedor_controller import Fornecedor_Controller
 #componentes medicamento
 from app.dao.medicamento_dao import Medicamento_DAO
 from app.views.medicamento_view import Medicamento_View
+
 from app.controllers.medicamento_controller import Medicamento_Controller
 
 #componentes estoque
