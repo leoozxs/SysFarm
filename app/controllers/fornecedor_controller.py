@@ -15,6 +15,9 @@ class Fornecedor_Controller:
     def save(self):
         try:
             nome, cnpj = self.view.ler_dados_fornecedor()
+            if not nome or not cnpj:
+                self.view.exibir_mensagem(Idioma.t("fornecedor.campo_ausente"), False)
+                return
             fornecedor = Fornecedor(None, nome, cnpj)
             self.dao.save(fornecedor)
             self.get_all()
@@ -24,10 +27,13 @@ class Fornecedor_Controller:
 
     def update(self):
         if self.fornecedor_selecionado is None:
-            self.view.exibir_mensagem(Idioma.t("fornecedor.selecione_da_lista"), False)
+            self.view.exibir_mensagem(Idioma.t("fornecedor.campo_ausente"), False)
             return
         try:
             nome, cnpj = self.view.ler_dados_fornecedor()
+            if not nome or not cnpj:
+                self.view.exibir_mensagem(Idioma.t("fornecedor.erro_selecao"), False)
+                return
             self.fornecedor_selecionado.nome = nome
             self.fornecedor_selecionado.cnpj = cnpj
             self.dao.update(self.fornecedor_selecionado)

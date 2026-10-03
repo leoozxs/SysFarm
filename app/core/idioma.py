@@ -75,6 +75,8 @@ class Idioma:
             "fornecedor.nao_encontrado": "Fornecedor não encontrado.",
             "fornecedor.selecione_da_lista": "Selecione um fornecedor na lista.",
             "fornecedor.erro_ao_excluir": "Problemas ao excluir fornecedor",
+            
+            "fornecedor.campo_ausente": "Informe CNPJ/NOME!",
 
             # Tela de Entrada (Entrada + Lote)
             "entrada.janela_titulo": "Registrar Entrada",
@@ -285,6 +287,8 @@ class Idioma:
             "fornecedor.nao_encontrado": "Supplier not found.",
             "fornecedor.selecione_da_lista": "Select a supplier from the list.",
             "fornecedor.erro_ao_excluir": "Problem deleting supplier",
+            
+            "fornecedor.campo_ausente": "Please provide CNPJ/Name",
 
             # Entry screen (Entry + Batch)
             "entrada.janela_titulo": "Register Entry",
