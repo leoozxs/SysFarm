@@ -4,6 +4,7 @@ from app.models.lote import Lote
 from app.models.estoque import Estoque
 from app.core.idioma import Idioma
 
+# Inicio da entrada de medicamentos no estoque
 class Entrada_Controller:
     def __init__(self, view, lote_dao, entrada_dao, estoque_dao, medicamento_dao, fornecedor_dao, usuario_dao):
         self.view = view
@@ -17,9 +18,11 @@ class Entrada_Controller:
         self._fornecedores = []
         self._usuarios = []
 
+# Criação de um novo lote e registro da entrada no estoque
     def new(self):
         self.view.limpar_campos()
 
+#Definindo o status do estoque com base na quantidade atual
     def save(self):
         try:
             medicamento_idx, fornecedor_idx, numero_lote, validade_str, qtd_entrada_str, usuario_idx = self.view.ler_dados_entrada()
@@ -54,7 +57,8 @@ class Entrada_Controller:
             self.view.exibir_mensagem(Idioma.t("entrada.cadastrado_sucesso"))
         except ValueError as e:
             self.view.exibir_mensagem(f"Erro: {str(e)}", False)
-
+            
+# Cálculo do status do estoque referente a quantidade atual de medicamentos
     def calcular_status(self, qtd_atual):
         if qtd_atual == 0:
             return Idioma.t("entrada.status_esgotado")
@@ -62,11 +66,13 @@ class Entrada_Controller:
             return Idioma.t("entrada.status_baixo")
         else:
             return Idioma.t("entrada.status_disponivel")
-
+        
+# Exibição de todas as entradas registradas no estoque
     def get_all(self):
         entradas = self.entrada_dao.get_all()
         self.view.exibir_entradas(entradas)
 
+# Carregamento dos combos de seleção de medicamentos, fornecedores e usuários
     def carregar_combos(self):
         self._medicamentos = self.medicamento_dao.get_all()
         self._fornecedores = self.fornecedor_dao.get_all()
@@ -75,6 +81,7 @@ class Entrada_Controller:
         self.view.carregar_fornecedores(self._fornecedores)
         self.view.carregar_usuarios(self._usuarios)
 
+# Carregamento para iniciar as combos registradas
     def iniciar(self):
         self.carregar_combos()
         self.get_all()

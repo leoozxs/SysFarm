@@ -118,6 +118,7 @@ class Estoque_DAO(DAO):
     def update(self):
         pass
 
+#Ciração da montagem de estoque com base nos registros do banco de dados
     def _montar_estoque(self, registro):
         medicamento = Medicamento(registro[9], registro[10], registro[11], registro[12], registro[13], registro[14])
         fornecedor = Fornecedor(registro[15], registro[16], registro[17], registro[18])
