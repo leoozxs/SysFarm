@@ -14,7 +14,7 @@ class Medicamento_Controller:
     def save(self):
         try:
             nome, tipo, categoria, dosagem = self.view.ler_dados_medicamento()
-            if not tipo or not categoria:
+            if not tipo or not categoria or not dosagem or not nome:
                 self.view.exibir_mensagem(Idioma.t("medicamento.erro_selecao"), False)
                 return
             medicamento = Medicamento(None, nome, tipo, categoria, dosagem)
@@ -30,7 +30,7 @@ class Medicamento_Controller:
             return
         try:
             nome, tipo, categoria, dosagem = self.view.ler_dados_medicamento()
-            if not tipo or not categoria:
+            if not tipo or not categoria or not dosagem or not nome:
                 self.view.exibir_mensagem(Idioma.t("medicamento.erro_selecao"), False)
                 return
             self.medicamento_selecionado.atualizar_dados(nome, tipo, categoria, dosagem)

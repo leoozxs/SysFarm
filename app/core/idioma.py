@@ -213,7 +213,7 @@ class Idioma:
             "medicamento.categoria.vitaminas": "Vitaminas",
             "medicamento.categoria.outros": "Outros",
             
-            "medicamento.erro_selecao": "Selecione o tipo e a categoria.",
+            "medicamento.erro_selecao": "Preencha todos os campos!",
             
         },
         "eng": {
@@ -422,7 +422,7 @@ class Idioma:
             "medicamento.categoria.relaxante_muscular": "Muscle relaxant",
             "medicamento.categoria.vitaminas": "Vitamins",
             "medicamento.categoria.outros": "Other",
-            "medicamento.erro_selecao": "Select the type and the category.",
+            "medicamento.erro_selecao": "Fill in all fields!",
         }
     }
     
