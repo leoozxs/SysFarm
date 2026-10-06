@@ -24,7 +24,6 @@ Projeto acadêmico desenvolvido no módulo de Projeto Integrador.
 - [Estrutura de pastas](#estrutura-de-pastas)
 - [Internacionalização](#internacionalização)
 - [Roadmap](#roadmap)
-- [Licença](#licença)
 
 ---
 
@@ -261,9 +260,3 @@ Todos os textos exibidos na interface são centralizados em `app/core/idioma.py`
 
 - [ ] Relatórios de movimentação de estoque por período
 - [ ] Alertas de medicamentos próximos do vencimento
-- [ ] Permissões por cargo de usuário
-- [ ] Testes automatizados para controllers e DAOs
-
-## Licença
-
-Projeto acadêmico, sem licença de distribuição definida até o momento.
