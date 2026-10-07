@@ -161,7 +161,7 @@ class Usuario_View:
         return nome, cpf, senha, cargo, data_entrada
 
     def confirmar_exclusao(self):
-        resposta =Messagebox.yesno(Idioma.t("usuario.confirma_exclusao"), Idioma.t("comum.confirmacao"), parent=self.root)
+        resposta =Messagebox.yesno(Idioma.t("usuario.confirmar_exclusao"), Idioma.t("comum.confirmacao"), parent=self.root)
         return resposta == "Yes"
 
     def exibir_mensagem(self, mensagem, sucesso=True):

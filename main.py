@@ -31,7 +31,7 @@ from app.dao.fornecedor_dao import Fornecedor_DAO
 from app.views.fornecedor_view import Fornecedor_View
 from app.controllers.fornecedor_controller import Fornecedor_Controller
 
-#componentes medicamento
+#componentes medicamento6
 from app.dao.medicamento_dao import Medicamento_DAO
 from app.views.medicamento_view import Medicamento_View
 

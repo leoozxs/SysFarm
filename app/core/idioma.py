@@ -45,6 +45,7 @@ class Idioma:
             "usuario.nao_encontrado": "Usuário não encontrado.",
             "usuario.selecione_da_lista": "Selecione um usuário na lista.",
             "usuario.erro_ao_excluir": "Problemas ao excluir usuário",
+            "usuario.campo_ausente": "Informe todos os campos.",
 
             # Tela de Medicamentos
             "medicamento.janela_titulo": "Gestão de Medicamentos",
@@ -93,9 +94,11 @@ class Idioma:
             "entrada.cadastrado_sucesso": "Entrada registrada com sucesso!",
             "entrada.erro_selecao": "Selecione medicamento, fornecedor e usuário.",
             "entrada.ausencia_campos": "Informe medicamento, fornecedor e usuário.",
+            "entrada.ausencia_lote": "Informe o número do Lote.",
             "entrada.status_esgotado": "Esgotado",
             "entrada.status_baixo": "Baixo",
             "entrada.status_disponivel": "Disponível",
+            "entrada.erro_qtd_invalida": "Informe uma quantidade de entrada válida (Número inteiro)",
             
             "entrada.qtd": "QTD",
             "entrada.validadet": "Validade",
@@ -123,6 +126,7 @@ class Idioma:
             "saida.tipo_perda": "Perda",
             "saida.tipo_roubo": "Roubo",
             "saida.data_saida": "Data de Saída",
+            "saida.erro_qtd_invalida": "Informe uma quantidade válida (número inteiro).",
             
             "saida.lote": "Lote",
             "saida.qtd": "QTD",
@@ -257,6 +261,7 @@ class Idioma:
             "usuario.nao_encontrado": "User not found.",
             "usuario.selecione_da_lista": "Select a user from the list.",
             "usuario.erro_ao_excluir": "Problem deleting user",
+            "usuario.campo_ausente": "Fill in all the fields.",
 
             # Medications screen
             "medicamento.janela_titulo": "Medication Management",
@@ -308,9 +313,10 @@ class Idioma:
             "entrada.status_esgotado": "Empty",
             "entrada.status_baixo": "Low",
             "entrada.status_disponivel": "Available",
-            
+            "entrada.erro_qtd_invalida": "Enter a valid quantity (whole number).",            
             "entrada.qtd": "QTY",
             "entrada.validadet": "Expiration",
+            "entrada.ausencia_lote": "Enter the batch number.",
             
 
             # Exit screen
@@ -334,6 +340,7 @@ class Idioma:
             "saida.tipo_perda": "Loss",
             "saida.tipo_roubo": "Theft",
             "saida.data_saida": "Exit Date",
+            "saida.erro_qtd_invalida": "Enter a valid quantity (whole number).",
             
             "saida.lote": "Batch",
             "saida.qtd": "QTY",

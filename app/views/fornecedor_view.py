@@ -126,7 +126,7 @@ class Fornecedor_View:
             self.tbl_fornecedores.insert("", "end", values=(f.id, f.nome, f.cnpj))
 
     def confirmar_exclusao(self):
-        resposta = Messagebox.yesno( Idioma.t("fornecedor.confirma_exclusao"), Idioma.t("comum.confirmacao"), parent=self.root)
+        resposta = Messagebox.yesno( Idioma.t("fornecedor.confirmar_exclusao"), Idioma.t("comum.confirmacao"), parent=self.root)
         return resposta == "Yes"
     
     def exibir_mensagem(self, mensagem, sucesso=True):

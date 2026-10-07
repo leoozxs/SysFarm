@@ -21,30 +21,30 @@ class Fornecedor_Controller:
             fornecedor = Fornecedor(None, nome, cnpj)
             self.dao.save(fornecedor)
             self.get_all()
-            self.view.exibir_mensagem(Idioma.t("fornecedor_cadastrado_sucesso"))
+            self.view.exibir_mensagem(Idioma.t("fornecedor.cadastrado_sucesso"))
         except ValueError as e:
             self.view.exibir_mensagem(f"Erro: {str(e)}", False)
 
     def update(self):
         if self.fornecedor_selecionado is None:
-            self.view.exibir_mensagem(Idioma.t("fornecedor.campo_ausente"), False)
+            self.view.exibir_mensagem(Idioma.t("fornecedor.selecione_da_lista"), False)
             return
         try:
             nome, cnpj = self.view.ler_dados_fornecedor()
             if not nome or not cnpj:
-                self.view.exibir_mensagem(Idioma.t("fornecedor.erro_selecao"), False)
+                self.view.exibir_mensagem(Idioma.t("fornecedor.campo_ausente"), False)
                 return
             self.fornecedor_selecionado.nome = nome
             self.fornecedor_selecionado.cnpj = cnpj
             self.dao.update(self.fornecedor_selecionado)
             self.get_all()
-            self.view.exibir_mensagem(Idioma.t("fornecedor_atualizado_sucesso"))
+            self.view.exibir_mensagem(Idioma.t("fornecedor.atualizado_sucesso"))
         except ValueError as e:
             self.view.exibir_mensagem(f"Erro: {str(e)}", False)
 
     def delete(self):
         if self.fornecedor_selecionado is None:
-            self.view.exibir_mensagem(Idioma.t("selecione_fornecedor"), False)
+            self.view.exibir_mensagem(Idioma.t("fornecedor.selecione_da_lista"), False)
             return
         if not self.view.confirmar_exclusao():
             return
@@ -54,9 +54,9 @@ class Fornecedor_Controller:
                 self.fornecedor_selecionado = None
                 self.view.limpar_campos()
                 self.get_all()
-                self.view.exibir_mensagem(Idioma.t("fornecedor_excluido_sucesso"))
+                self.view.exibir_mensagem(Idioma.t("fornecedor.excluido_sucesso"))
             else:
-                self.view.exibir_mensagem(Idioma.t("fornecedor_nao_encontrado"), False)
+                self.view.exibir_mensagem(Idioma.t("fornecedor.nao_encontrado"), False)
         except Exception as e:
             self.view.exibir_mensagem(f"{Idioma.t('erro_excluir_fornecedor')}. {Idioma.t('comum.erro_prefixo')} {str(e)}", False)
 

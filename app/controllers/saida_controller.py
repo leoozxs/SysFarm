@@ -34,8 +34,13 @@ class Saida_Controller:
 
             lote = self._lotes[lote_idx]
             usuario = self._usuarios[usuario_idx]
-            qtd_saida = int(qtd_saida_str)
+            try:
+                qtd_saida = int(qtd_saida_str)
+            except ValueError:
+                self.view.exibir_mensagem(Idioma.t("saida.erro_qtd_invalida"), False)
+                return
 
+    
             if qtd_saida <= 0:
                 self.view.exibir_mensagem(Idioma.t("saida.erro_qtd_zero"), False)
                 return
