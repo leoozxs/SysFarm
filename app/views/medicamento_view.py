@@ -188,7 +188,6 @@ class Medicamento_View:
         tipo = TIPOS_BANCO[i_tipo] if i_tipo >= 0 else ""
         categoria = CATEGORIAS_BANCO[i_categoria] if i_categoria >= 0 else ""
         dosagem = self.txt_dosagem.get()
-        print("DEBUG:", tipo, categoria)   # temporário
         return nome, tipo, categoria, dosagem
 
     def get_id_selecionado(self):

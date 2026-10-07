@@ -15,6 +15,9 @@ class Usuario_Controller:
     def save(self):
         try:
             nome, cpf, senha, cargo, data_entrada = self.view.ler_dados_usuario()
+            if not nome or not cpf or not senha or not cargo or not data_entrada:
+                self.view.exibir_mensagem(Idioma.t("usuario.campo_ausente"), False)
+                return
             data_entrada = datetime.strptime(data_entrada, "%d/%m/%Y").date()
             usuario = Usuario(None, nome, cpf, senha, cargo, data_entrada)
             self.dao.save(usuario)
@@ -27,8 +30,12 @@ class Usuario_Controller:
         if self.usuario_selecionado is None:
             self.view.exibir_mensagem(Idioma.t("usuario.selecione_da_lista"), False)
             return
+        
         try:
             nome, cpf, senha, cargo, data_entrada = self.view.ler_dados_usuario()
+            if not nome or not cpf or not senha or not cargo or not data_entrada:
+                self.view.exibir_mensagem(Idioma.t("usuario.campo_ausente"), False)
+                return
             data_entrada = datetime.strptime(data_entrada, "%d/%m/%Y").date()
             self.usuario_selecionado.atualizar_dados(nome, cpf, senha, cargo, data_entrada)
             self.dao.update(self.usuario_selecionado)
