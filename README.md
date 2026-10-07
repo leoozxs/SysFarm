@@ -176,7 +176,7 @@ Os scripts de criação de cada tabela estão disponíveis em [`app/migrations`]
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/<seu-usuario>/SysFarm.git
+git clone https://github.com/leoozxs/SysFarm.git
 cd SysFarm
 ```
 
