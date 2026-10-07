@@ -50,6 +50,7 @@ class Usuario_Controller:
                 self.view.limpar_campos()
                 self.get_all()
                 self.view.exibir_mensagem(Idioma.t("usuario.excluido_sucesso"))
+                
             else:
                 self.view.exibir_mensagem(Idioma.t("usuario.nao_encontrado"), False)
         except Exception as e:
