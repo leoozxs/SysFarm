@@ -52,7 +52,7 @@ class Usuario_View:
         
         self.lbl_cpf = ttk.Label(self.frm_dados, text=Idioma.t("usuario.cpf"))
         self.lbl_cpf.grid(row = 1, column = 3, padx=(20,5), sticky="e")
-        self.txt_cpf = ttk.Entry(self.frm_dados, width=11)
+        self.txt_cpf = ttk.Entry(self.frm_dados, width=14)
         self.txt_cpf.grid(row=1, column=4, padx= 10, sticky="w")
         
         
@@ -121,7 +121,24 @@ class Usuario_View:
         self.tbl_usuarios.heading("cargo",text=Idioma.t("usuario.cargo"))
         self.tbl_usuarios.heading("data de entrada",text=Idioma.t("usuario.data_entrada"))
         style.configure("Treeview.Heading", font=("Arial", 9), padding=(1, 1))
+
+        self.txt_cpf.bind("<KeyRelease>", self.formatar_cpf)
+
         
+    def formatar_cpf(self, event=None):
+            texto = self.txt_cpf.get()
+            numeros = "".join(filter(str.isdigit, texto))[:11]
+            if len(numeros) > 9:
+                formatado = f"{numeros[:3]}.{numeros[3:6]}.{numeros[6:9]}-{numeros[8:]}"
+            elif len(numeros) > 6:
+                formatado = f"{numeros[:3]}.{numeros[3:6]}.{numeros[6:]}"
+            elif len(numeros) > 3:
+                formatado = f"{numeros[:3]}.{numeros[3:]}"
+            else:
+                formatado = numeros
+            self.txt_cpf.delete(0, "end")
+            self.txt_cpf.insert(0, formatado)
+
     def preencher_campos(self, usuario):
         self.limpar_campos()
         

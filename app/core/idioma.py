@@ -46,6 +46,7 @@ class Idioma:
             "usuario.selecione_da_lista": "Selecione um usuário na lista.",
             "usuario.erro_ao_excluir": "Problemas ao excluir usuário",
             "usuario.campo_ausente": "Informe todos os campos.",
+            "usuario.cpf_invalido": "CPF Inválido! Informe apenas números inteiros.",
 
             # Tela de Medicamentos
             "medicamento.janela_titulo": "Gestão de Medicamentos",
@@ -262,6 +263,7 @@ class Idioma:
             "usuario.selecione_da_lista": "Select a user from the list.",
             "usuario.erro_ao_excluir": "Problem deleting user",
             "usuario.campo_ausente": "Fill in all the fields.",
+            "usuario.cpf_invalido": "Invlid CPF! Only provide integer numbers.",
 
             # Medications screen
             "medicamento.janela_titulo": "Medication Management",
