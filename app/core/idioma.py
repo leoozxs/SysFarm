@@ -47,6 +47,8 @@ class Idioma:
             "usuario.erro_ao_excluir": "Problemas ao excluir usuário",
             "usuario.campo_ausente": "Informe todos os campos.",
             "usuario.cpf_invalido": "CPF Inválido! Informe apenas números inteiros.",
+            "usuario.IntegrityError1062": "CPF Já cadastrado!",
+            "usuario.erro_data_invalida": "Informe a data de entrada no formato dd/mm/aaaa.",
 
             # Tela de Medicamentos
             "medicamento.janela_titulo": "Gestão de Medicamentos",
@@ -264,6 +266,8 @@ class Idioma:
             "usuario.erro_ao_excluir": "Problem deleting user",
             "usuario.campo_ausente": "Fill in all the fields.",
             "usuario.cpf_invalido": "Invlid CPF! Only provide integer numbers.",
+            "usuario.IntegrityError1062": "CPF already registered",
+            "usuario.erro_data_invalida": "Enter the start date as dd/mm/yyyy.",
 
             # Medications screen
             "medicamento.janela_titulo": "Medication Management",

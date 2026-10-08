@@ -128,16 +128,8 @@ class Usuario_View:
     def formatar_cpf(self, event=None):
             texto = self.txt_cpf.get()
             numeros = "".join(filter(str.isdigit, texto))[:11]
-            if len(numeros) > 9:
-                formatado = f"{numeros[:3]}.{numeros[3:6]}.{numeros[6:9]}-{numeros[8:]}"
-            elif len(numeros) > 6:
-                formatado = f"{numeros[:3]}.{numeros[3:6]}.{numeros[6:]}"
-            elif len(numeros) > 3:
-                formatado = f"{numeros[:3]}.{numeros[3:]}"
-            else:
-                formatado = numeros
             self.txt_cpf.delete(0, "end")
-            self.txt_cpf.insert(0, formatado)
+            self.txt_cpf.insert(0, numeros)
 
     def preencher_campos(self, usuario):
         self.limpar_campos()

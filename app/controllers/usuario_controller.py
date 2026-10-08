@@ -1,6 +1,7 @@
 from datetime import datetime
 from app.models.usuario import Usuario
 from app.core.idioma import Idioma
+from mysql.connector import IntegrityError
 
 class Usuario_Controller:
     def __init__(self, view, dao):
@@ -18,11 +19,18 @@ class Usuario_Controller:
             if not nome or not cpf or not senha or not cargo or not data_entrada:
                 self.view.exibir_mensagem(Idioma.t("usuario.campo_ausente"), False)
                 return
-            data_entrada = datetime.strptime(data_entrada, "%d/%m/%Y").date()
+            try:
+                data_entrada = datetime.strptime(data_entrada, "%d/%m/%Y").date()
+            except ValueError:
+                self.view.exibir_mensagem(Idioma.t("usuario.erro_data_invalida"), False)
+                return
             usuario = Usuario(None, nome, cpf, senha, cargo, data_entrada)
             self.dao.save(usuario)
             self.get_all()
             self.view.exibir_mensagem(Idioma.t("usuario.cadastrado_sucesso"))
+        except IntegrityError:
+            self.view.exibir_mensagem(Idioma.t("usuario.IntegrityError1062"), False)
+            return
         except ValueError as e:
             self.view.exibir_mensagem(f"{Idioma.t('comum.erro_prefixo')}{str(e)}", False)
 
@@ -36,11 +44,18 @@ class Usuario_Controller:
             if not nome or not cpf or not senha or not cargo or not data_entrada:
                 self.view.exibir_mensagem(Idioma.t("usuario.campo_ausente"), False)
                 return
-            data_entrada = datetime.strptime(data_entrada, "%d/%m/%Y").date()
+            try:
+                data_entrada = datetime.strptime(data_entrada, "%d/%m/%Y").date()
+            except ValueError:
+                self.view.exibir_mensagem(Idioma.t("usuario.erro_data_invalida"), False)
+                return
             self.usuario_selecionado.atualizar_dados(nome, cpf, senha, cargo, data_entrada)
             self.dao.update(self.usuario_selecionado)
             self.get_all()
             self.view.exibir_mensagem(Idioma.t("usuario.atualizado_sucesso"))
+        except IntegrityError:
+            self.view.exibir_mensagem(Idioma.t("usuario.IntegrityError1062"), False)
+            return
         except ValueError as e:
             self.view.exibir_mensagem(f"{Idioma.t('comum.erro_prefixo')}{str(e)}", False)
 
