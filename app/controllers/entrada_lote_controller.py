@@ -39,7 +39,11 @@ class Entrada_Controller:
             fornecedor = self._fornecedores[fornecedor_idx]
             usuario = self._usuarios[usuario_idx]
 
-            validade = datetime.strptime(validade_str, "%d/%m/%Y").date()
+            try:
+                validade = datetime.strptime(validade_str, "%d/%m/%Y").date()
+            except ValueError:
+                self.view.exibir_mensagem(Idioma.t("usuario.erro_data_invalida"), False)
+                return
             try:
                 qtd_entrada = int(qtd_entrada_str)
             except ValueError:
