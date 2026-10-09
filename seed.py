@@ -10,7 +10,7 @@ def criar_usuario_inicial(usuario_dao, nome, cpf, senha):
     if usuario_dao.get_all():
         return None
 
-    usuario = Usuario(None, nome, cpf, senha, "Administrador", date.today())
+    usuario = Usuario(None, nome, cpf, senha, "Usuário Inicial", date.today())
     return usuario_dao.save(usuario)
 
 
