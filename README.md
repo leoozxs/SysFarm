@@ -254,8 +254,3 @@ SysFarm/
 ## Internacionalização
 
 Todos os textos exibidos na interface são centralizados em `app/core/idioma.py`, organizados por chave (ex.: `usuario.cadastrado_sucesso`) e disponíveis em Português e Inglês. Isso permite adicionar um novo idioma sem alterar nenhuma tela, bastando incluir um novo dicionário de traduções.
-
-## Roadmap
-
-- [ ] Relatórios de movimentação de estoque por período
-- [ ] Alertas de medicamentos próximos do vencimento
