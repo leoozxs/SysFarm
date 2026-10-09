@@ -96,7 +96,7 @@ erDiagram
     USUARIO {
         int id PK
         string nome
-        string cpf UK
+        string cpf
         string senha
         string cargo
         date data_entrada
@@ -113,7 +113,7 @@ erDiagram
     FORNECEDOR {
         int id PK
         string nome
-        string cnpj UK
+        string cnpj
         boolean ativo
     }
     LOTE {
