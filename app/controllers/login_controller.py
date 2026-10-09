@@ -8,6 +8,7 @@ class Login_Controller:
 
     def autenticar(self):
         cpf, senha = self.view.ler_credenciais()
+
         if not cpf or not senha:
             self.view.exibir_mensagem(Idioma.t("login.campos_obrigatorios"), False)
             return
