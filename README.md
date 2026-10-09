@@ -45,7 +45,6 @@ A aplicação é multiusuário, com autenticação por CPF e senha, e possui sup
 | Saídas | Baixa de quantidade de um lote, classificada como Venda, Avaria, Perda ou Roubo |
 | Estoque | Visão consolidada de todos os lotes, com quantidade atual e status calculado automaticamente |
 | Internacionalização | Toda a interface textual é centralizada e traduzida entre PT-BR e EN |
-| Tema | Alternância entre tema claro e escuro |
 
 ## Arquitetura
 
