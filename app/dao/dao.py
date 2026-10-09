@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+
+# Definindo a classe DAO como uma classe abstrata para operações de banco de dados
 class DAO(ABC):
 
     def __init__(self, database):

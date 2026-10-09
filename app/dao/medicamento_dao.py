@@ -139,8 +139,9 @@ class Medicamento_DAO(DAO):
                     """
             cursor.execute(sql,(id,))
             conexao.commit()
+            return cursor.rowcount > 0
         except Exception:
             conexao.rollback()
             raise
         finally:
-            self.desconectar(conexao, cursor)            
+            self.desconectar(conexao, cursor)  

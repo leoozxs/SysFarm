@@ -31,9 +31,10 @@ from app.dao.fornecedor_dao import Fornecedor_DAO
 from app.views.fornecedor_view import Fornecedor_View
 from app.controllers.fornecedor_controller import Fornecedor_Controller
 
-#componentes medicamento
+#componentes medicamento6
 from app.dao.medicamento_dao import Medicamento_DAO
 from app.views.medicamento_view import Medicamento_View
+
 from app.controllers.medicamento_controller import Medicamento_Controller
 
 #componentes estoque
@@ -75,15 +76,14 @@ class SysFarmApp:
         self._ctrl_usuarios = Usuario_Controller(view=None, dao=self._dao_usuarios)
         self._ctrl_fornecedores = Fornecedor_Controller(view=None, dao=self._dao_fornecedores)
         self._ctrl_medicamentos = Medicamento_Controller(view=None, dao=self._dao_medicamentos)
-        self._ctrl_estoque = Estoque_Controller(view=None, dao=self._dao_estoque)
+        self._ctrl_estoque = Estoque_Controller(view=None, dao=self._dao_estoque, abrir_entrada=self.abrir_entrada, abrir_saida=self.abrir_saida)
 
         # --- Só a tela de Login abre primeiro; o resto começa fechado ---
         self._ctrl_login.view = Login_View(self._root, self._ctrl_login)
 
-    def _abrir_menu(self, usuario_logado):
+    def _abrir_menu(self):
         for widget in self._root.winfo_children():
             widget.destroy()
-        self._root.geometry("1060x490")
         Menu_View(self._root, controller=self)  # o próprio App vira o "controller" do Menu
 
     def _abrir_janela(self, atributo_janela, classe_view, controller):
